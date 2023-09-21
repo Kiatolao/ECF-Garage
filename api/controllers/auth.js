@@ -8,12 +8,26 @@ export const register = async (req, res) => {
             return res.json(err); 
         }
         if (data.length > 0) {
-            // 409 = données déja existantes
-            return res.status(409).json("Email or username already exists"); 
+            // 409 = données déja existantes (conflit)
+            return res.status(409).json("L'Email ou le nom d'utilisateur existe déja"); 
         }
         //hashage du mot de passe et creation de l'utilisateur
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt);
+
+        const q = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+        const values = [
+            req.body.username,
+            req.body.email,
+            hash
+        ]
+
+        db.query(q, values, (err, result) => {
+            if (err) {
+                return res.json(err); 
+            }
+            return res.status(200).json("L'utilisateur a bien été créé"); 
+        });
     });
 };
 
