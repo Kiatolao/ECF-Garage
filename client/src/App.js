@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { Footer} from './components/Footer';
 import { Home } from './pages/Home';
 import { Register } from './pages/Register';
+import './index.css';
  
 function App(){
   const router = createBrowserRouter(
@@ -22,13 +23,17 @@ function App(){
 }
 const Roote = () => {
   return (
-    <div>
+    <>
+    <div className='flex flex-col h-screen'>
       <Navbar/>
-      <div>
+      <div className='flex-grow'>
         <Outlet/>
       </div>
-      <Footer/>
+      <Footer />
     </div>
+
+    </>
+
   )
 }
 export default App;
