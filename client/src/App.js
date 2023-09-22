@@ -23,7 +23,6 @@ function App(){
 }
 const Roote = () => {
   return (
-    <>
     <div className='flex flex-col h-screen'>
       <Navbar/>
       <div className='flex-grow'>
@@ -31,9 +30,6 @@ const Roote = () => {
       </div>
       <Footer />
     </div>
-
-    </>
-
   )
 }
 export default App;

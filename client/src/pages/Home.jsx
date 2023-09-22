@@ -1,7 +1,9 @@
-import React from 'react'
-
+import React from 'react';
+import garageImage from '../assets/garage.png';
 export const Home = () => {
   return (
-    <div>Home</div>
-  )
+    <>
+      <img src={garageImage} alt="" />
+    </>
+  );
 }
