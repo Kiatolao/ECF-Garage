@@ -1,9 +1,10 @@
 import { db } from "../db.js";
+import bcrypt from "bcrypt";
 
 export const register = async (req, res) => { 
     // Vérification des utilisateurs
     const q = "SELECT * FROM users WHERE email = ? OR username = ?";
-    db.query(q, [req.body.email, req.body.username], (err, result) => {
+    db.query(q, [req.body.email, req.body.username], (err, data) => {
         if (err) {
             return res.json(err); 
         }
@@ -22,7 +23,7 @@ export const register = async (req, res) => {
             hash
         ]
 
-        db.query(q, values, (err, result) => {
+        db.query(q, values, (err, data) => {
             if (err) {
                 return res.json(err); 
             }

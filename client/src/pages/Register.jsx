@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import axios from 'axios';
 
 export const Register = () => {
 
@@ -15,6 +16,12 @@ export const Register = () => {
   }
   const handleSubmit = async e => {
     e.preventDefault()
+    try {
+    const res = await axios.post("http://localhost:8000/api/auth/register", inputs)
+    console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
