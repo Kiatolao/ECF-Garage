@@ -1,13 +1,14 @@
 import React from 'react'
 import { useState } from 'react';
 import garageLogo from '../assets/parrot-logo.png';
+import { Link } from 'react-router-dom';
 
 
 export const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
 
   return (
-      <nav className="w-full bg-stone-100 shadow absolute opacity-90 z-10">
+      <nav className="w-full bg-stone-100 shadow  opacity-90 z-10">
           <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
               <div>
                   <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -58,37 +59,26 @@ export const Navbar = () => {
                   >
                       <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                           <li className="text-dark hover:text-indigo-200 opacity-100">
-                              <a href="javascript:void(0)">Home</a>
+                            <Link to="/">Accueil</Link>
                           </li>
                           <li className="text-dark hover:text-indigo-200">
-                              <a href="javascript:void(0)">Blog</a>
+                            <Link to="/cars">Occasions</Link>
                           </li>
                           <li className="text-dark hover:text-indigo-200">
-                              <a href="javascript:void(0)">About US</a>
+                  
                           </li>
                           <li className="text-dark hover:text-indigo-200">
-                              <a href="javascript:void(0)">Contact US</a>
+                    
                           </li>
                       </ul>
 
                       <div className="mt-3 space-y-2 lg:hidden md:inline-block">
-                  <a
-                      href="javascript:void(0)"
-                      className="inline-block w-full px-4 py-2 text-center text-white bg-red-600 rounded-md shadow hover:bg-red-800"
-                  >
-                      Sign in
-                  </a>
 
               </div>
                   </div>
               </div>
               <div className="hidden space-x-2 md:inline-block">
-                  <a
-                      href="javascript:void(0)"
-                      className="px-4 py-2 text-white bg-red-600 rounded-md shadow hover:bg-red-800"
-                  >
-                      Accès réservé
-                  </a>
+                    <button className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:bg-red-500">Accès réservé</button>
 
               </div>
           </div>
