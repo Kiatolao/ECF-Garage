@@ -10,7 +10,7 @@ export const register = async (req, res) => {
         }
         if (data.length > 0) {
             // 409 = données déja existantes (conflit)
-            return res.status(409).json("L'Email ou le nom d'utilisateur existe déja"); 
+            return res.status(409).json("L'email ou le nom d'utilisateur existe déjà"); 
         }
         //hashage du mot de passe et creation de l'utilisateur
         const salt = bcrypt.genSaltSync(10);
@@ -35,7 +35,16 @@ export const register = async (req, res) => {
 
 
 export const login = async (req, res) => { 
+//Si l'utilisateur existe
+    const q = "SELECT * FROM users WHERE email = ?";
+    
+    db.query(q, [req, body, email], (err, data) => {
+        if (err) return res.json(err);
+        if (data.length === 0) return res.status(401).json("L'utilisateur n'existe pas");
+    });
 
+//Si le mot de passe est correct
+    const isPasswordValid = bcrypt.compareSync(req.body.password, data);
 };
 
 export const logout = async (req, res) => { 
