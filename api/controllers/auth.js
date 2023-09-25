@@ -1,13 +1,15 @@
 import { db } from "../db.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import cors from "cors";
 
 export const register = async (req, res) => { 
+
     // Vérification des utilisateurs
     const q = "SELECT * FROM users WHERE email = ? OR username = ?";
     db.query(q, [req.body.email, req.body.username], (err, data) => {
         if (err) {
-            return res.json(err); 
+            return res.status(500).json(err); 
         }
         if (data.length > 0) {
             // 409 = données déja existantes (conflit)
@@ -26,7 +28,7 @@ export const register = async (req, res) => {
 
         db.query(q, values, (err, data) => {
             if (err) {
-                return res.json(err); 
+                return res.status(500).json(err); 
             }
             return res.status(200).json("L'utilisateur a bien été créé"); 
         });
@@ -34,22 +36,35 @@ export const register = async (req, res) => {
 };
 
 
-
 export const login = async (req, res) => { 
-//Si l'utilisateur existe
+
+    // Si l'utilisateur existe
     const q = "SELECT * FROM users WHERE email = ?";
     
-    db.query(q, [req, body, email], (err, data) => {
+    db.query(q, [req.body.email], (err, data) => {
         if (err) return res.json(err);
-        if (data.length === 0) return res.status(401).json("L'utilisateur n'existe pas");
+        if (data.length === 0) {
+            return res.status(401).json("L'utilisateur n'existe pas");
+        }
+
+        // Si le mot de passe est correct
+        const isPasswordValid = bcrypt.compareSync(
+            req.body.password, 
+            data[0].password
+        );
+
+        if (!isPasswordValid)
+        return res.status(400).json("Email ou mot de passe incorrect");
+        // Création du token    
+        const token = jwt.sign({ id: data[0].id }, "jwtkey");
+        // extraire le mot de passe de data
+        const { password, ...other } = data[0];
+  
+        res.cookie("access_token", token, {
+            httpOnly: true,
+            }).status(200).json(other);
     });
-
-//Si le mot de passe est correct
-    const isPasswordValid = bcrypt.compareSync(req.body.password, data[0].password);
-    if (!isPasswordValid) return res.status(401).json("Le mot de passe est incorrect");
-
-    const token = jwt.sign({id:data[0].id}, "jwtkey")
-};
+  };
 
 export const logout = async (req, res) => { 
 

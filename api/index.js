@@ -10,7 +10,10 @@ const app = express();
 // lien avec la base de données
 app.use(express.json());
 // activation de cors
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}));
 // activation de cookie-parser
 app.use(cookieParser());
 // utilisation des routes

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export const Login = () => {
+  
   // mise en place du state input
   const [inputs, setInputs] = useState({
     email: '',
@@ -22,7 +23,7 @@ export const Login = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      await axios.post("http://localhost:8000/api/auth/login", inputs)
+      await axios.post("http://localhost:8000/api/auth/login", inputs, {withCredentials: true})
       //reset les values si tout est ok et on affiche un message de succes
       navigate('/dashboard')
     } catch (err) {
