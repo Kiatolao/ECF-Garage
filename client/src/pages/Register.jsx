@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useNavigate } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 export const Register = () => {

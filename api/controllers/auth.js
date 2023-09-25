@@ -1,5 +1,6 @@
 import { db } from "../db.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => { 
     // Vérification des utilisateurs
@@ -46,6 +47,8 @@ export const login = async (req, res) => {
 //Si le mot de passe est correct
     const isPasswordValid = bcrypt.compareSync(req.body.password, data[0].password);
     if (!isPasswordValid) return res.status(401).json("Le mot de passe est incorrect");
+
+    const token = jwt.sign({id:data[0].id}, "jwtkey")
 };
 
 export const logout = async (req, res) => { 
