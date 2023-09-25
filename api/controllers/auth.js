@@ -44,7 +44,8 @@ export const login = async (req, res) => {
     });
 
 //Si le mot de passe est correct
-    const isPasswordValid = bcrypt.compareSync(req.body.password, data);
+    const isPasswordValid = bcrypt.compareSync(req.body.password, data[0].password);
+    if (!isPasswordValid) return res.status(401).json("Le mot de passe est incorrect");
 };
 
 export const logout = async (req, res) => { 
