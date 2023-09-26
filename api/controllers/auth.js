@@ -1,7 +1,6 @@
 import { db } from "../db.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import cors from "cors";
 
 export const register = async (req, res) => { 
 
