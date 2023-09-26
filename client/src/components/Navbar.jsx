@@ -1,7 +1,9 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import garageLogo from '../assets/parrot-logo.png';
 import { Link } from 'react-router-dom';
+import  {AuthContext}  from '../context/authContext';
+
 
 
 export const Navbar = () => {
@@ -10,7 +12,9 @@ export const Navbar = () => {
     const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
     };
-  
+    
+    const {currentUser, logout} = useContext(AuthContext)
+    console.log(logout)
     return (
       <nav className="bg-white border-gray-200">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -28,6 +32,7 @@ export const Navbar = () => {
             >
               Get started
             </button>
+            
             <button
               onClick={toggleMenu}
               type="button"
@@ -67,8 +72,14 @@ export const Navbar = () => {
                 <Link to="/contact">Contact</Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+              <span className='mr-2'>{currentUser?.username}</span>
+              {currentUser ? (
+              <span onClick={logout}>Logout</span> 
+              ) : (
+              <Link to="/login">Login</Link>
+              )}
               </li>
+
             </ul>
           </div>
         </div>

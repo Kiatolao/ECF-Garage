@@ -67,5 +67,10 @@ export const login = async (req, res) => {
   };
 
 export const logout = async (req, res) => { 
+    //on efface le cookie pour se déconnecter
+    res.clearCookie("access_token", {
+        sameSites: "none",
+        secure: true,
+    }).status(200).json("Vous êtes déconnecté");
+};   
 
-};
