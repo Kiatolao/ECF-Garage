@@ -6,6 +6,7 @@ import { Register } from './pages/Register';
 import { Login } from './pages/Login';
 import { Cars } from './pages/Cars';
 import { Dashboard } from './pages/Dashboard';
+import { Contact } from './pages/Contact';
 import './index.css';
  
 function App(){
@@ -17,6 +18,7 @@ function App(){
         <Route path = '/login' element = {<Login />}/>
         <Route path = '/cars' element = {<Cars />}/>
         <Route path ='dashboard' element =  {<Dashboard />}/>
+        <Route path ='contact' element =  {<Contact />}/>
       </Route>
     )
     

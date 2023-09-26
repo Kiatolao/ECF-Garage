@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import garageLogo from '../assets/parrot-logo.png';
+import { AuthContext } from '../context/authContext';
 
 export const Login = () => {
   
@@ -16,6 +16,8 @@ export const Login = () => {
 
   const navigate = useNavigate()
 
+  const {login} = useContext(AuthContext)
+
   // Ici on recupère la valeur courante du state pour la mettre a jour
   const handleChange = (e) => {
     setInputs(prev=>({...prev, [e.target.name]: e.target.value}))
@@ -24,8 +26,7 @@ export const Login = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      await axios.post("http://localhost:8000/api/auth/login", inputs, {withCredentials: true})
-      //reset les values si tout est ok et on affiche un message de succes
+      await login(inputs)
       navigate('/dashboard')
     } catch (err) {
       // Si il y a une erreur on la stock dans le state error

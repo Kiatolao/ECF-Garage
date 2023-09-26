@@ -34,7 +34,6 @@ export const Register = () => {
     } catch (err) {
       // Si il y a une erreur on la stock dans le state error
       setError(err.response.data)
-      console.log(err.response.data)
     }
   }
 
