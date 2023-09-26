@@ -57,7 +57,7 @@ export const login = async (req, res) => {
         return res.status(400).json("Email ou mot de passe incorrect");
         // Création du token    
         const token = jwt.sign({ id: data[0].id }, "jwtkey");
-        // extraire le mot de passe de data
+        //separer le mot de passe de data
         const { password, ...other } = data[0];
   
         res.cookie("access_token", token, {
