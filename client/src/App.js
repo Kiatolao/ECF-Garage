@@ -7,6 +7,7 @@ import { Login } from './pages/Login';
 import { Cars } from './pages/Cars';
 import { Dashboard } from './pages/Dashboard';
 import { Contact } from './pages/Contact';
+import PrivateRoute from './components/PrivateRoute';
 import './index.css';
  
 function App(){
@@ -14,7 +15,7 @@ function App(){
     createRoutesFromElements(
       <Route path= "/" element = {<Roote />}>
         <Route index element = {<Home />}/>
-        <Route path = '/register' element = {<Register />}/>
+        <Route path='/register' element={<Register />}/>
         <Route path = '/login' element = {<Login />}/>
         <Route path = '/cars' element = {<Cars />}/>
         <Route path ='dashboard' element =  {<Dashboard />}/>
