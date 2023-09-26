@@ -1,31 +1,42 @@
-import { createContext, useEffect, useState  } from "react"
-import axios from 'axios'
+import { createContext, useState } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
 
-export const AuthContext = createContext()
+export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-    //on vient chercher l'utilisateur dans le local storage, si aucun - null
-    const [currentUser, setCurrentUser] = useState(
-        JSON.parse(localStorage.getItem('user')) || null
-        )
+    const [currentUser, setCurrentUser] = useState(null);
 
     const login = async (inputs) => {
-       const res = await axios.post("http://localhost:8000/api/auth/login", inputs, {withCredentials: true})
-        setCurrentUser(res.data)
-    } 
-    
-    const logout = async (inputs) => {
-        await axios.post("http://localhost:8000/api/auth/logout")
-        setCurrentUser(null)
-    }  
-    
-    useEffect(() => {
-        localStorage.setItem("user", JSON.stringify(currentUser))
-    }, [currentUser])
+        try {
+            const res = await axios.post(
+                "http://localhost:8000/api/auth/login", inputs, {
+                withCredentials: true,
+            });
+            setCurrentUser(res.data);
+            // stocker le token dans un cookie
+            Cookies.set("access_token", res.data.token, { 
+                sameSites: "none",
+                secure: true });
 
-  return (
-    <AuthContext.Provider value={{currentUser, login, logout}}>
-      {children}
-    </AuthContext.Provider>
-  )
-}
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const logout = async () => {
+        try {
+            await axios.post("http://localhost:8000/api/auth/logout");
+            // effacer le cookie utilisateur
+            Cookies.remove("access_token");
+            setCurrentUser(null);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    return (
+        <AuthContext.Provider value={{ currentUser, login, logout }}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
