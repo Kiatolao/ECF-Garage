@@ -13,8 +13,10 @@ const Sidebar = ({ onSelectMenuItem }) => {
 
   return (
     <div className="w-1/4 h-screen bg-stone-50 p-5 z-0 shadow-lg">
-      <h2 className="text-l font-bold mb-4 text-red-700">{currentUser?.username} - {currentUser?.role}</h2>
-      <div className="mb-4 border-b border-gray-400"></div>
+      <h2 className="text-l font-bold mb-4 text-red-700">
+          {currentUser?.username} - {currentUser?.role === 'admin' ? 'Administrateur': 
+          currentUser?.role === 'staff' ? 'Employé' : currentUser?.role}</h2>
+      <div className="mb-4 border-b border-gray-300"></div>
       <ul>
         <li className="mb-2 cursor-pointer" onClick={() => onSelectMenuItem('ajouter-voiture')}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -26,7 +28,8 @@ const Sidebar = ({ onSelectMenuItem }) => {
           <GoCodeReview style={{ marginRight: '0.5rem' }} />
           Ajouter un témoignage
         </div></li>
-        <div className="mb-4 border-b border-gray-400"></div>
+        <div className="mb-4 border-b border-gray-300"></div>
+        <p>Administration<br/></p>
         <li className="mb-2 cursor-pointer" onClick={() => onSelectMenuItem('ajouter-employe')}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <AiOutlineTeam style={{ marginRight: '0.5rem' }} />
@@ -41,6 +44,7 @@ const Sidebar = ({ onSelectMenuItem }) => {
           <MdSchedule style={{ marginRight: '0.5rem' }} />
           Définir les horaires
         </div></li>
+        <div className="mb-4 border-b border-gray-300"></div>
       </ul>
     </div>
   );

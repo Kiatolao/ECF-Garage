@@ -4,9 +4,6 @@ import garageLogo from '../assets/parrot-logo.png';
 import { Link } from 'react-router-dom';
 import  {AuthContext}  from '../context/authContext';
 
-
-
-
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -74,7 +71,7 @@ export const Navbar = () => {
                 <Link to="/contact">Contact</Link>
               </li>
               <li>
-                <Link to="/dashboard">Dashboard</Link>
+                {currentUser &&<Link to="/dashboard">Dashboard</Link>}
               </li>
 
             </ul>
