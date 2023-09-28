@@ -6,6 +6,7 @@ import { GoCodeReview } from 'react-icons/go';
 import { AiOutlineTeam } from 'react-icons/ai';
 import { GrServices } from 'react-icons/gr';
 import { MdSchedule } from 'react-icons/md';
+import { RiPassValidLine } from 'react-icons/ri';
 
 const Sidebar = ({ onSelectMenuItem }) => {
 
@@ -28,6 +29,12 @@ const Sidebar = ({ onSelectMenuItem }) => {
           <div className="flex items-center">
             <GoCodeReview className="mr-2" />
             Ajouter un témoignage
+          </div>
+        </li>
+        <li className="mb-2 cursor-pointer" onClick={() => onSelectMenuItem('valider-temoignage')}>
+          <div className="flex items-center">
+            <RiPassValidLine className="mr-2" />
+            Valider un témoignage
           </div>
         </li>
         <div className="mb-4 border-b border-gray-300"></div>

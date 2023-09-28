@@ -60,7 +60,6 @@ export const login = async (req, res) => {
         const { password, ...other } = data[0];
   
         res.cookie("access_token", token, {
-            sameSites: "none",
             httpOnly: true,
             }).status(200).json(other);
     });

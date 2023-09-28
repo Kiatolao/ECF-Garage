@@ -10,6 +10,8 @@ const Content = ({ selectedMenuItem }) => {
         return <div>Ajouter une voiture</div>;
       case 'ajouter-temoignage':
         return <div>Ajouter un témoignage</div>;
+      case 'valider-temoignage':
+        return <div>Validation des témoignages</div>;
       case 'modifier-services':
         return <div>Modifier les services</div>;
       case 'definir-horaires':
