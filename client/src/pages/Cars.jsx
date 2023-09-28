@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export const Cars = () =>  {
   const [cars, setCars] = useState([]);
 
-  // Effect pour récupérer les données des voitures depuis l'API Node.js
-  useEffect(() => {
-    fetch('http://localhost:8000/api/cars') // Assurez-vous d'utiliser le chemin correct pour votre API
-      .then((response) => response.json())
-      .then((data) => setCars(data))
-      .catch((error) => console.error('Erreur lors de la récupération des données :', error));
-  }, []);
+ // recuperation des données de l'api
+ useEffect(() => {
+  async function fetchCars() {
+    try {
+      const response = await axios.get('http://localhost:8000/api/cars');
+      setCars(response.data);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données :', error);
+    }
+  }
+
+  fetchCars();
+}, [cars]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
