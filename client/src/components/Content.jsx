@@ -1,10 +1,11 @@
 import React from 'react';
+import {Register} from '../DashboardFeatures/Register';
 
 const Content = ({ selectedMenuItem }) => {
   const renderContent = () => {
     switch (selectedMenuItem) {
       case 'ajouter-employe':
-        return <div>Ajouter un employé</div>;
+        return <Register/>;
       case 'ajouter-voiture':
         return <div>Ajouter une voiture</div>;
       case 'ajouter-temoignage':
@@ -15,8 +16,6 @@ const Content = ({ selectedMenuItem }) => {
         return <div>Définir les horaires</div>;
       case 'messagerie':
         return <div>Messagerie</div>;
-      case 'se-deconnecter':
-        return <div>Se déconnecter</div>;
       default:
         return <div>Sélectionnez une option du menu</div>;
     }

@@ -14,7 +14,6 @@ const Sidebar = ({ onSelectMenuItem }) => {
         <li className="mb-2 cursor-pointer" onClick={() => onSelectMenuItem('definir-horaires')}>Définir les horaires</li>
         <div className="mb-4 border-b border-gray-400"></div>
         <li className="mb-2 cursor-pointer" onClick={() => onSelectMenuItem('messagerie')}>Messagerie</li>
-        <li className="mb-2 cursor-pointer" onClick={() => onSelectMenuItem('se-deconnecter')}>Se déconnecter</li>
       </ul>
     </div>
   );
