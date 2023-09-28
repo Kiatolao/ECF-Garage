@@ -6,6 +6,7 @@ import  {AuthContext}  from '../context/authContext';
 
 
 
+
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -25,11 +26,11 @@ export const Navbar = () => {
               alt="Flowbite Logo"
             />
           </a>
-          <div className="flex md:order-2">
+          <div className="flex md:order-3">
 
             <span className='mr-2'>{currentUser?.username}</span>
               {currentUser ? (
-              <span onClick={logout} className='cursor-pointer'>Se deconnecter</span> 
+              <span onClick={logout} className='cursor-pointer'>|  Se deconnecter</span> 
               ) : (
               <Link to="/login">Login</Link>
               )}
