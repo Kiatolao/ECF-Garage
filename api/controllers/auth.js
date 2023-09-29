@@ -43,7 +43,7 @@ export const login = async (req, res) => {
     db.query(q, [req.body.email], (err, data) => {
         if (err) return res.json(err);
         if (data.length === 0) {
-            return res.status(401).json("L'utilisateur n'existe pas");
+            return res.status(401).json("Donnée incorrecte!");
         }
 
         // Si le mot de passe est correct
@@ -61,6 +61,7 @@ export const login = async (req, res) => {
   
         res.cookie("access_token", token, {
             httpOnly: true,
+            secure: true
             }).status(200).json(other);
     });
   };

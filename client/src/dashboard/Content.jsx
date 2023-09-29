@@ -1,5 +1,6 @@
 import React from 'react';
 import {Register} from './Register';
+import {CarsCrud} from './CarsCrud';
 
 const Content = ({ selectedMenuItem }) => {
   const renderContent = () => {
@@ -9,7 +10,7 @@ const Content = ({ selectedMenuItem }) => {
       case 'voir-messages':
         return <div>Voir les messages</div>;
       case 'ajouter-voiture':
-        return <div>Ajouter une voiture</div>;
+        return <div><CarsCrud/></div>;
       case 'ajouter-temoignage':
         return <div>Ajouter un témoignage</div>;
       case 'valider-temoignage':
