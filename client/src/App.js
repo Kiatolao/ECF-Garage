@@ -8,6 +8,7 @@ import { Dashboard } from './pages/Dashboard';
 import {Navbar} from './components/Navbar';
 import {Footer} from './components/Footer';
 import { Cars } from './pages/Cars';
+import { CarDetail } from './pages/CarDetail';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
                 <Route element={<Home/>} path="/" exact/>
                 <Route element={<Login/>} path="/login"/>
                 <Route element={<Cars/>} path="/cars"/>
+                <Route path="/" exact component={Cars} />
+                <Route path="/car_detail/:id" component={CarDetail} />
                 <Route element={<Contact/>} path="/contact"/>
               </Routes>
             </div>
