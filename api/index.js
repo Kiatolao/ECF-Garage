@@ -1,10 +1,17 @@
-import  express  from "express"
-import  authRoutes  from "./routes/auth.js"
-import  carRoutes  from "./routes/cars.js"
-import cookieParser from "cookie-parser"
-import cors from "cors"
+import  express  from "express";
+import  authRoutes  from "./routes/auth.js";
+import  carRoutes  from "./routes/cars.js";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import multer from "multer";
 
 const app = express();
+
+// activation de multer 
+const upload = multer({ dest: 'uploads/'});
+app.post('/upload', upload.single('file'), (req, res) => {
+  res.status(200).json('Le fichier a bien été envoyé');
+});
 
 // lien avec la base de données
 app.use(express.json());
