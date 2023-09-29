@@ -7,6 +7,7 @@ import { AiOutlineTeam } from 'react-icons/ai';
 import { GrServices } from 'react-icons/gr';
 import { MdSchedule } from 'react-icons/md';
 import { RiPassValidLine } from 'react-icons/ri';
+import { AiOutlineMessage } from 'react-icons/ai';
 
 const Sidebar = ({ onSelectMenuItem }) => {
 
@@ -19,6 +20,19 @@ const Sidebar = ({ onSelectMenuItem }) => {
           currentUser?.role === 'staff' ? 'Employé' : currentUser?.role}</h2>
       <div className="mb-4 border-b border-gray-300"></div>
       <ul>
+      <li className="mb-2 cursor-pointer" onClick={() => onSelectMenuItem('voir-messages')}>
+          <div className="flex items-center">
+            <AiOutlineMessage className="mr-2" />
+            Messagerie
+          </div>
+        </li>
+        <li className="mb-2 cursor-pointer" onClick={() => onSelectMenuItem('valider-temoignage')}>
+          <div className="flex items-center">
+            <RiPassValidLine className="mr-2" />
+            Valider un témoignage
+          </div>
+        </li>
+        <div className="mb-4 border-b border-gray-300"></div>
         <li className="mb-2 cursor-pointer" onClick={() => onSelectMenuItem('ajouter-voiture')}>
           <div className="flex items-center">
             <AiFillCar className="mr-2" />
@@ -29,12 +43,6 @@ const Sidebar = ({ onSelectMenuItem }) => {
           <div className="flex items-center">
             <GoCodeReview className="mr-2" />
             Ajouter un témoignage
-          </div>
-        </li>
-        <li className="mb-2 cursor-pointer" onClick={() => onSelectMenuItem('valider-temoignage')}>
-          <div className="flex items-center">
-            <RiPassValidLine className="mr-2" />
-            Valider un témoignage
           </div>
         </li>
         <div className="mb-4 border-b border-gray-300"></div>

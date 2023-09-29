@@ -6,6 +6,8 @@ const Content = ({ selectedMenuItem }) => {
     switch (selectedMenuItem) {
       case 'ajouter-employe':
         return <Register/>;
+      case 'voir-messages':
+        return <div>Voir les messages</div>;
       case 'ajouter-voiture':
         return <div>Ajouter une voiture</div>;
       case 'ajouter-temoignage':
