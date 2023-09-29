@@ -22,8 +22,8 @@ function App() {
                 </Route>
                 <Route element={<Home/>} path="/" exact/>
                 <Route element={<Login/>} path="/login"/>
-                <Route element={<Cars/>} path="/cars"/>
-                <Route path="/" exact component={Cars} />
+                <Route path="/cars" element={<Cars />} />
+                <Route path="/car_detail/:id" element={<CarDetail />} />
                 <Route path="/car_detail/:id" component={CarDetail} />
                 <Route element={<Contact/>} path="/contact"/>
               </Routes>

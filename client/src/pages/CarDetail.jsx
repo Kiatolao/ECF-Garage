@@ -10,12 +10,16 @@ export const CarDetail = () => {
     async function fetchCarDetails() {
       try {
         const response = await axios.get(`http://localhost:8000/api/cars/${id}`);
-        setCar(response.data);
+        // date.lenght > 0, on verifie si le tableau contient des données
+        if (response.data.length > 0) { 
+          const carData = response.data[0]; 
+          setCar(carData);
+        }
       } catch (error) {
         console.error('Erreur lors de la récupération des données :', error);
       }
     }
-
+  
     fetchCarDetails();
   }, [id]);
 
@@ -23,6 +27,7 @@ export const CarDetail = () => {
     <div>
 
       <h1>{car.title}</h1>
+      <p>lorem250</p>
 
     </div>
   );
