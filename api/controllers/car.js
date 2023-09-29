@@ -1,4 +1,5 @@
 import {db} from '../db.js';
+import jwt from 'jsonwebtoken';
 
 export const addCar =  (req, res) => {
     res.json('du controller');
@@ -20,9 +21,27 @@ export const getCar =  (req, res) => {
         res.status(200).json(result);
     });
 };
-export const deleteCar=  (req, res) => {
-    res.json('du controller');
-}; 
+
+export const deleteCar = (req, res) => {
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).json("Vous devez être connecté pour supprimer une voiture.");
+  
+    jwt.verify(token, "jwtkey", (err, userInfo) => {
+      if (err) return res.status(403).json("Vous n'êtes pas autorisé à supprimer cette voiture.");
+      
+      const carId = req.params.id;
+      const q = 'DELETE FROM cars WHERE `id` = ?';
+  
+      db.query(q, [carId], (err, data) => {
+        if (err) {
+          return res.status(500).json('Une erreur s\'est produite lors de la suppression de la voiture.');
+        }
+        return res.status(200).json('La voiture a été supprimée avec succès.');
+      });
+    });
+  };
+  
+
 export const updateCar =  (req, res) => {
     res.json('du controller');
 }; 
