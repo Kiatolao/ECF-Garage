@@ -8,7 +8,16 @@ import multer from "multer";
 const app = express();
 
 // activation de multer 
-const upload = multer({ dest: 'uploads/'});
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  },
+});
+
+const upload = multer({storage});
 app.post('/upload', upload.single('file'), (req, res) => {
   res.status(200).json('Le fichier a bien été envoyé');
 });

@@ -51,9 +51,10 @@ export const login = async (req, res) => {
             req.body.password, 
             data[0].password
         );
-
+        
         if (!isPasswordValid)
         return res.status(400).json("Email ou mot de passe incorrect");
+
         // Création du token    
         const token = jwt.sign({ id: data[0].id }, "jwtkey");
         //separer le mot de passe de data
