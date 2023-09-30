@@ -15,7 +15,7 @@ export const AuthContextProvider = ({ children }) => {
             });
             setCurrentUser(res.data);
             // stocker le token dans un cookie
-            Cookies.set("access_token_", res.data.token, { 
+            Cookies.set("access_token", res.data.token, { 
                 sameSites: "none",
                 secure: true,
                 httpsOnly: true
