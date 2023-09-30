@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useLocation} from 'react-router-dom';
 
 
-const CreateCar = () => {
+export const AddCar = () => {
 
   const state = useLocation().state;
   const [title, setTitle] = useState("");
@@ -15,6 +15,7 @@ const CreateCar = () => {
   const [gearbox, setGearbox] = useState("");
   const [warrant, setWarrant] = useState("");
   const [file, setFile] = useState(null);
+
 
   const upload = async () => {
     try {
@@ -130,6 +131,7 @@ const CreateCar = () => {
             onChange={(e) => setFuel(e.target.value)}
             required
           >
+             <option value="">Sélectionnez un carburant</option>
             <option value="Essence">Essence</option>
             <option value="Diesel">Diesel</option>
           </select>
@@ -142,6 +144,7 @@ const CreateCar = () => {
             onChange={(e) => setGearbox(e.target.value)}
             required
           >
+             <option value="">Sélectionnez une transmission</option>
             <option value="Manuelle">Manuelle</option>
             <option value="Auto">Automatique</option>
             </select>
@@ -161,4 +164,4 @@ const CreateCar = () => {
   );
 };
 
-export default CreateCar;
+

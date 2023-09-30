@@ -1,6 +1,6 @@
 import React, { useState} from 'react'
-import Sidebar from '../dashboard/Sidebar'
-import Content from '../dashboard/Content'
+import Sidebar from '../dashboard/menu/Sidebar'
+import Content from '../dashboard/menu/Content'
 
 export const Dashboard = () => {
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
