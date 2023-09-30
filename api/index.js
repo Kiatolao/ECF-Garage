@@ -7,10 +7,27 @@ import multer from "multer";
 
 const app = express();
 
+app.use((err, req, res, next) => {
+  console.error(err.stack); // Log the error
+  res.status(500).send('Something went wrong!');
+});
+
+// lien avec la base de données
+app.use(express.json());
+
+// activation de cors
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}));
+
+// activation de cookie-parser
+app.use(cookieParser());
+
 // activation de multer 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, '../client/public/upload/');
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);
@@ -18,19 +35,14 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({storage});
-app.post('/upload', upload.single('file'), (req, res) => {
-  res.status(200).json('Le fichier a bien été envoyé');
+
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  const file = req.file;
+  res.status(200).json(file.filename);
 });
 
-// lien avec la base de données
-app.use(express.json());
-// activation de cors
-app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true
-}));
-// activation de cookie-parser
-app.use(cookieParser());
+
+
 // utilisation des routes
 app.use("/api/auth", authRoutes);
 app.use("/api/cars", carRoutes);

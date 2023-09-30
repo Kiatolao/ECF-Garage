@@ -26,10 +26,11 @@ export const Cars = () =>  {
   {cars.map((car) => (
     <div
       key={car.id}
-      className="bg-white shadow-md rounded-md p-4 hover:border-red-500 border border-transparent cursor-pointer"
+      className="bg-stone-100 shadow-md rounded-md p-4 hover:border-red-500 border border-transparent cursor-pointer"
       onClick={() => navigate(`/car_detail/${car.id}`)}
     >
-      <img src={car.image} alt={car.title} className="w-full h-auto" />
+      <img src={`/upload/${car?.image}`} alt={car.title} className="w-full h-auto" />
+
       <h2 className="text-lg font-semibold mt-2">{car.title}</h2>
       <div className="flex justify-between mt-1">
       <p className="text-sm text-gray-600">

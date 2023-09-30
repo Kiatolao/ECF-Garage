@@ -1,34 +1,7 @@
 import {db} from '../db.js';
 import jwt from 'jsonwebtoken';
 
-export const addCar= (req, res) => {
-    const token = req.cookies.access_token;
-    if (!token) return res.status(401).json("Pas de token trouvé.");
-  
-    jwt.verify(token, "jwtkey", (err) => {
-      if (err) return res.status(403).json("Le token n'est pas valide.");
-  
-      const q =
-        "INSERT INTO cars (`title`, `desc`, `image`, `year`, `price`,`km, `fuel`, `gearbox`, `warrant`,) VALUES (?)";
-  
-      const values = [
-        req.body.title,
-        req.body.desc,
-        req.body.img,
-        req.body.year,
-        req.body.price,
-        req.body.km,
-        req.body.fuel,
-        req.body.gearbox,
-        req.body.warrant,
-      ];
-  
-      db.query(q, [values], (err, data) => {
-        if (err) return res.status(500).json(err);
-        return res.json("Post has been created.");
-      });
-    });
-  };
+
   
 export const getCars =  (req, res) => {
     const q = 'SELECT * FROM cars';
@@ -67,7 +40,60 @@ export const deleteCar = (req, res) => {
     });
   };
   
+  export const addCar= (req, res) => {
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).json("Pas de token trouvé.");
+  
+    jwt.verify(token, "jwtkey", (err) => {
+      if (err) return res.status(403).json("Le token n'est pas valide.");
+  
+      const q =
+        "INSERT INTO cars (`title`, `desc`, `image`, `year`, `price`,`km`, `fuel`, `gearbox`, `warrant`) VALUES (?)";
+  
+      const values = [
+        req.body.title,
+        req.body.desc,
+        req.body.image,
+        req.body.year,
+        req.body.price,
+        req.body.km,
+        req.body.fuel,
+        req.body.gearbox,
+        req.body.warrant,
+      ];
+  
+      db.query(q, [values], (err, data) => {
+        if (err) return res.status(500).json(err);
+        return res.json("La voiture a été ajoutée avec succès.");
+      });
+    });
+  };
 
 export const updateCar =  (req, res) => {
-    res.json('du controller');
+       const token = req.cookies.access_token;
+    if (!token) return res.status(401).json("Pas de token trouvé.");
+  
+    jwt.verify(token, "jwtkey", (err) => {
+      if (err) return res.status(403).json("Le token n'est pas valide.");
+  
+      const q =
+        "UPDATE INTO cars (`title`, `desc`, `image`, `year`, `price`,`km`, `fuel`, `gearbox`, `warrant`) VALUES (?)";
+  
+      const values = [
+        req.body.title,
+        req.body.desc,
+        req.body.image,
+        req.body.year,
+        req.body.price,
+        req.body.km,
+        req.body.fuel,
+        req.body.gearbox,
+        req.body.warrant,
+      ];
+  
+      db.query(q, [values], (err, data) => {
+        if (err) return res.status(500).json(err);
+        return res.json("La voiture a été modifiée avec succès.");
+      });
+    });
 }; 
