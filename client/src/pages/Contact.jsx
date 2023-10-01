@@ -16,8 +16,7 @@ export function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Envoyer les données du formulaire au backend (Express) pour traitement
-    // Vous pouvez utiliser Axios ou une autre bibliothèque pour cela
+
   };
 
   return (
