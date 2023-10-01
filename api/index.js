@@ -1,6 +1,7 @@
 import  express  from "express";
 import  authRoutes  from "./routes/auth.js";
 import  carRoutes  from "./routes/cars.js";
+import  messagesRoutes  from "./routes/messages.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import multer from "multer";
@@ -46,6 +47,7 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
 // utilisation des routes
 app.use("/api/auth", authRoutes);
 app.use("/api/cars", carRoutes);
+app.use("/api/messages", messagesRoutes);
 
 app.listen(8000, () => {
   console.log('Server is running on port 8000');

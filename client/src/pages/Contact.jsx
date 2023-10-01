@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 export function Contact() {
   const [formData, setFormData] = useState({
-    nom: '',
-    prenom: '',
+    lastName: '',
+    firstName: '',
     email: '',
-    telephone: '',
+    phone: '',
     message: '',
   });
 
@@ -14,9 +15,26 @@ export function Contact() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    try {
+      await axios.post('http://localhost:8000/api/messages', formData, {
+        withCredentials: true, // Ajoutez cette option pour inclure les cookies
+      });
+      // Réinitialisez le formulaire après l'envoi réussi
+      setFormData({
+        lastName: '',
+        firstName: '',
+        email: '',
+        phone: '',
+        message: '',
+      });
+      alert('Message envoyé avec succès!');
+    } catch (err) {
+      console.error('Erreur lors de l\'ajout de la voiture :', err.response ? err.response.data : err.message);
+      alert('Une erreur s\'est produite lors de l\'envoi du message.');
+    }
   };
 
   return (
@@ -24,24 +42,24 @@ export function Contact() {
       <h2 className="text-2xl font-bold mb-4">Contactez-nous</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="nom" className="block text-gray-600">Nom :</label>
+          <label htmlFor="lastName" className="block text-gray-600">Nom :</label>
           <input
             type="text"
-            id="nom"
-            name="nom"
-            value={formData.nom}
+            id="lastName"
+            name="lastName"
+            value={formData.lastName}
             onChange={handleChange}
             className="w-full border rounded px-3"
             required
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="prenom" className="block text-gray-600">Prénom :</label>
+          <label htmlFor="firstName" className="block text-gray-600">Prénom :</label>
           <input
             type="text"
-            id="prenom"
-            name="prenom"
-            value={formData.prenom}
+            id="firstName"
+            name="firstName"
+            value={formData.firstName}
             onChange={handleChange}
             className="w-full border rounded  px-3"
             required
@@ -60,12 +78,12 @@ export function Contact() {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="telephone" className="block text-gray-600">Numéro de téléphone :</label>
+          <label htmlFor="phone" className="block text-gray-600">Numéro de téléphone :</label>
           <input
             type="tel"
-            id="telephone"
-            name="telephone"
-            value={formData.telephone}
+            id="phone"
+            name="phone"
+            value={formData.phone}
             onChange={handleChange}
             className="w-full border rounded  px-3"
             required
@@ -80,7 +98,7 @@ export function Contact() {
             value=""
             onChange={handleChange}
             className="w-full border rounded  px-3"
-            required
+
           />
         </div>
         <div className="mb-4">
