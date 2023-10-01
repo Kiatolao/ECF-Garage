@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useLocation} from 'react-router-dom';
+import '../../App.css'
 
 
 export const AddCar = () => {
@@ -66,101 +67,116 @@ export const AddCar = () => {
   };
 
   return (
+<div className="max-w-md  ">
+  <h1 className="font-bold text-l mb-4">Créer une Nouvelle Voiture</h1>
+  <form onSubmit={handleClick} className="">
     <div>
-      <h1>Créer une Nouvelle Voiture</h1>
-      <form onSubmit={handleClick}>
-        <div>
-          <label>Image de la Voiture</label>
-          <input
-            type="file"
-            id="file"
-            name=""
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-
-        </div>
-        
-        <div>
-          <label>Modèle de la Voiture</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Année</label>
-          <input
-            type="number"
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Prix (en €)</label>
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Kilomètres (en km)</label>
-          <input
-            type="number"
-            value={km}
-            onChange={(e) => setKm(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Description</label>
-          <textarea
-            value={desc}
-            onChange={(e) => setDesc(e.target.value)}
-            required
-          ></textarea>
-        </div>
-        <div>
-          <label>Type de Carburant</label>
-          <select
-            value={fuel}
-            onChange={(e) => setFuel(e.target.value)}
-            required
-          >
-             <option value="">Sélectionnez un carburant</option>
-            <option value="Essence">Essence</option>
-            <option value="Diesel">Diesel</option>
-          </select>
-        </div>
-        <div>
-          <label>Boîte de Vitesses</label>
-          <select
-            type="text"
-            value={gearbox}
-            onChange={(e) => setGearbox(e.target.value)}
-            required
-          >
-             <option value="">Sélectionnez une transmission</option>
-            <option value="Manuelle">Manuelle</option>
-            <option value="Auto">Automatique</option>
-            </select>
-        </div>
-        <div>
-          <label>Garantie (en mois)</label>
-          <input
-            type="number"
-            value={warrant}
-            onChange={(e) => setWarrant(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Créer la Voiture</button>
-      </form>
+      <label className="block mb-2">Image de la Voiture</label>
+      <input
+        type="file"
+        id="file"
+        name=""
+        onChange={(e) => setFile(e.target.files[0])}
+        className="border border-gray-400 w-full"
+      />
     </div>
+    <div>
+      <label className="block mb-2">Modèle de la Voiture</label>
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        required
+        className="border border-gray-400 w-full"
+      />
+    </div>
+    <div>
+      <label className="block mb-2">Année</label>
+      <input
+        type="number"
+        value={year}
+        onChange={(e) => setYear(e.target.value)}
+        required
+        className="border border-gray-400 w-full"
+      />
+    </div>
+    <div>
+      <label className="block mb-2">Prix (en €)</label>
+      <input
+        type="number"
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+        required
+        className="border border-gray-400 w-full"
+      />
+    </div>
+    <div>
+      <label className="block mb-2">Kilomètres (en km)</label>
+      <input
+        type="number"
+        value={km}
+        onChange={(e) => setKm(e.target.value)}
+        required
+        className="border border-gray-400 w-full"
+      />
+    </div>
+    <div className="sm:col-span-2">
+      <label className="block mb-2">Description</label>
+      <textarea
+        value={desc}
+        onChange={(e) => setDesc(e.target.value)}
+        required
+        className="border border-gray-400 w-full"
+      ></textarea>
+    </div>
+    <div>
+      <label className="block mb-2">Type de Carburant</label>
+      <select
+        value={fuel}
+        onChange={(e) => setFuel(e.target.value)}
+        required
+        className="border border-gray-400 w-full"
+      >
+        <option value="">Sélectionnez un carburant</option>
+        <option value="Essence">Essence</option>
+        <option value="Diesel">Diesel</option>
+      </select>
+    </div>
+    <div>
+      <label className="block mb-2">Boîte de Vitesses</label>
+      <select
+        type="text"
+        value={gearbox}
+        onChange={(e) => setGearbox(e.target.value)}
+        required
+        className="border border-gray-400 w-full"
+      >
+        <option value="">Sélectionnez une transmission</option>
+        <option value="Manuelle">Manuelle</option>
+        <option value="Auto">Automatique</option>
+      </select>
+    </div>
+    <div>
+      <label className="block mb-2">Garantie (en mois)</label>
+      <input
+        type="number"
+        value={warrant}
+        onChange={(e) => setWarrant(e.target.value)}
+        required
+        className="border border-gray-400 w-full"
+      />
+    </div>
+    <div className="sm:col-span-2">
+      <button
+        type="submit"
+        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full"
+      >
+        Créer la Voiture
+      </button>
+    </div>
+  </form>
+</div>
+
   );
 };
 

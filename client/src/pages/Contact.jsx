@@ -21,7 +21,7 @@ export function Contact() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-4">
+    <div className="max-w-md mx-auto mt-10 ">
       <h2 className="text-2xl font-bold mb-4">Contactez-nous</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -32,7 +32,7 @@ export function Contact() {
             name="nom"
             value={formData.nom}
             onChange={handleChange}
-            className="w-full border rounded py-2 px-3"
+            className="w-full border rounded px-3"
             required
           />
         </div>
@@ -44,7 +44,7 @@ export function Contact() {
             name="prenom"
             value={formData.prenom}
             onChange={handleChange}
-            className="w-full border rounded py-2 px-3"
+            className="w-full border rounded  px-3"
             required
           />
         </div>
@@ -56,7 +56,7 @@ export function Contact() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full border rounded py-2 px-3"
+            className="w-full border rounded  px-3"
             required
           />
         </div>
@@ -68,7 +68,19 @@ export function Contact() {
             name="telephone"
             value={formData.telephone}
             onChange={handleChange}
-            className="w-full border rounded py-2 px-3"
+            className="w-full border rounded  px-3"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="telephone" className="block text-gray-600">Objet :</label>
+          <input
+            type="text"
+            id="object"
+            name="tobject"
+            value=""
+            onChange={handleChange}
+            className="w-full border rounded  px-3"
             required
           />
         </div>
@@ -86,7 +98,7 @@ export function Contact() {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          className="bg-blue-500 text-white py-2 px-4 mb-4 rounded  hover:bg-blue-600"
         >
           Envoyer
         </button>

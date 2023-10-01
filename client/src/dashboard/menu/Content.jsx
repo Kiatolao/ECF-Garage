@@ -1,7 +1,7 @@
 import React from 'react';
 import {Register} from '../admin/Register';
+import {CarTable} from '../list/CarTable';
 import {AddCar} from '../cars/AddCar';
-import {Cars} from '../../pages/Cars';
 
 const Content = ({ selectedMenuItem }) => {
   const renderContent = () => {
@@ -11,13 +11,13 @@ const Content = ({ selectedMenuItem }) => {
       case 'voir-messages':
         return <div>Voir les messages</div>;
       case 'ajouter-voiture':
-        return <div><AddCar /></div>;
+        return <div><AddCar/></div>;
       case 'ajouter-temoignage':
         return <div>Ajouter un témoignage</div>;
       case 'modifier-voiture':
-        return <div>Modifier une voiture</div>;
+        return <div><CarTable /></div>;
       case 'supprimer-voiture':
-        return <div><Cars /></div>;
+        return <div>Supprimer </div>;
       case 'valider-temoignage':
         return <div>Validation des témoignages</div>;
       case 'modifier-services':
