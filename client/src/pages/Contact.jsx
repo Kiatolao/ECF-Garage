@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 export function Contact() {
+
+  const currentDate = new Date();
+
   const [formData, setFormData] = useState({
     lastName: '',
     firstName: '',
@@ -9,12 +12,14 @@ export function Contact() {
     phone: '',
     message: '',
     object: '',
+    date: currentDate,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +36,7 @@ export function Contact() {
         phone: '',
         message: '',
         object: '',
+        date: '',
       });
       alert('Message envoyé avec succès!');
     } catch (err) {

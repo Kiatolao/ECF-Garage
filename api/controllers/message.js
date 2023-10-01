@@ -47,8 +47,11 @@ export const addMessage = (req, res) => {
   jwt.verify(token, "jwtkey", (err) => {
     if (err) return res.status(403).json("Le token n'est pas valide.");
 
+    const date = new Date();
+    const dateString = date.toISOString().slice(0, 19).replace('T', ' ');
+
     const q =
-      "INSERT INTO messages (`firstName`, `lastName`, `email`, `phone`, `message`, `object`) VALUES (?)";
+      "INSERT INTO messages (`firstName`, `lastName`, `email`, `phone`, `message`, `object`, `date`) VALUES (?)";
 
     const values = [
       req.body.firstName,
@@ -57,6 +60,7 @@ export const addMessage = (req, res) => {
       req.body.phone,
       req.body.message,
       req.body.object,
+      dateString
     ];
 
     db.query(q, [values], (err, data) => {
