@@ -2,6 +2,7 @@ import React from 'react';
 import {Register} from '../admin/Register';
 import {CarTable} from '../list/CarTable';
 import {AddCar} from '../cars/AddCar';
+import {Message} from '../customers/Message';
 
 const Content = ({ selectedMenuItem }) => {
   const renderContent = () => {
@@ -9,7 +10,7 @@ const Content = ({ selectedMenuItem }) => {
       case 'ajouter-employe':
         return <Register />;
       case 'voir-messages':
-        return <div>Voir les messages</div>;
+        return <div><Message /></div>;
       case 'ajouter-voiture':
         return <div><AddCar/></div>;
       case 'ajouter-temoignage':

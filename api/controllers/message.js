@@ -46,7 +46,8 @@ export const addMessage = (req, res) => {
 
   jwt.verify(token, "jwtkey", (err) => {
     if (err) return res.status(403).json("Le token n'est pas valide.");
-
+    
+    //pour convertir la date en format ISO
     const date = new Date();
     const dateString = date.toISOString().slice(0, 19).replace('T', ' ');
 
