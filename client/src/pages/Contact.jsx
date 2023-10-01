@@ -8,6 +8,7 @@ export function Contact() {
     email: '',
     phone: '',
     message: '',
+    object: '',
   });
 
   const handleChange = (e) => {
@@ -29,6 +30,7 @@ export function Contact() {
         email: '',
         phone: '',
         message: '',
+        object: '',
       });
       alert('Message envoyé avec succès!');
     } catch (err) {
@@ -90,12 +92,12 @@ export function Contact() {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="telephone" className="block text-gray-600">Objet :</label>
+          <label htmlFor="object" className="block text-gray-600">Objet :</label>
           <input
             type="text"
             id="object"
-            name="tobject"
-            value=""
+            name="object"
+            value={formData.object}
             onChange={handleChange}
             className="w-full border rounded  px-3"
 

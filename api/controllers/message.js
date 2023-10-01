@@ -48,7 +48,7 @@ export const addMessage = (req, res) => {
     if (err) return res.status(403).json("Le token n'est pas valide.");
 
     const q =
-      "INSERT INTO messages (`firstName`, `lastName`, `email`, `phone`, `message`) VALUES (?)";
+      "INSERT INTO messages (`firstName`, `lastName`, `email`, `phone`, `message`, `object`) VALUES (?)";
 
     const values = [
       req.body.firstName,
@@ -56,6 +56,7 @@ export const addMessage = (req, res) => {
       req.body.email,
       req.body.phone,
       req.body.message,
+      req.body.object,
     ];
 
     db.query(q, [values], (err, data) => {
