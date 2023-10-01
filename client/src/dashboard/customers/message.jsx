@@ -25,6 +25,13 @@ export const Message= () => {
     fetchMessages();
   }, []); // Le tableau vide indique que useEffect s'exécute une seule fois lors du montage
 
+  //conveti iso en date au format français
+  const formatDate = (isoDate) => {
+    const date = new Date(isoDate);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' }; 
+    return date.toLocaleDateString(undefined, options); 
+  };
+  
   return (
     <div className="max-w-xl mx-auto mt-10">
       <h2 className="text-2xl font-bold mb-4">Liste des Messages</h2>
@@ -33,7 +40,7 @@ export const Message= () => {
           <li key={message.id} className="mb-4 p-4 border rounded shadow">
             <div className="font-semibold text-lg">{message.object}</div>
             <div className="text-gray-600">{message.message}</div>
-            <div className="text-gray-400 mt-2">{message.date}</div>
+            <div className="text-gray-400 mt-2">{formatDate(message.date)}</div>
           </li>
         ))}
       </ul>
