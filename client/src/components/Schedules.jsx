@@ -26,7 +26,8 @@ export const Schedules = () => {
         {schedules.map((schedule) => (
           <div key={schedule.id}>
             <p className="font-semibold">{schedule.day} :</p>
-            <p>{schedule.opening} - {schedule.closing}</p>
+            <p>{schedule.openingM.slice(0, 5)} - {schedule.closingM.slice(0, 5)}</p>
+            <p>{schedule.openingA.slice(0, 5)} - {schedule.closingA.slice(0, 5)}</p>
           </div>
         ))}
       </div>

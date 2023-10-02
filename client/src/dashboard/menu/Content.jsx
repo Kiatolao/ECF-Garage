@@ -3,6 +3,7 @@ import {Register} from '../admin/Register';
 import {CarTable} from '../list/CarTable';
 import {AddCar} from '../cars/AddCar';
 import {Message} from '../customers/Message';
+import {ScheduleEditor} from '../admin/ScheduleEditor';
 
 const Content = ({ selectedMenuItem }) => {
   const renderContent = () => {
@@ -24,7 +25,7 @@ const Content = ({ selectedMenuItem }) => {
       case 'modifier-services':
         return <div>Modifier les services</div>;
       case 'definir-horaires':
-        return <div>Définir les horaires</div>;
+        return <div><ScheduleEditor /></div>;
       default:
         return <div>Sélectionnez une option du menu</div>;
     }
