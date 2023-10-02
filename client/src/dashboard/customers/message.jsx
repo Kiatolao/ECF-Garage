@@ -33,7 +33,7 @@ export const Message= () => {
   };
   
   return (
-    <div className="max-w-xl mx-auto mt-10">
+    <div className="max-w-xl mt-10">
       <h2 className="text-2xl font-bold mb-4">Liste des Messages</h2>
       <ul>
         {messages.map((message) => (

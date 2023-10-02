@@ -47,7 +47,10 @@ export const login = async (req, res) => {
         }
 
         // Si le mot de passe est correct
-        const isPasswordValid = bcrypt.compareSync(req.body.password, data[0].password);
+        const isPasswordValid = bcrypt.compareSync(
+            req.body.password, 
+            data[0].password
+        );
         
         if (!isPasswordValid)
         return res.status(400).json("Email ou mot de passe incorrect");
