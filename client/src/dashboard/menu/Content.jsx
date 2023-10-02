@@ -2,7 +2,7 @@ import React from 'react';
 import {Register} from '../admin/Register';
 import {CarTable} from '../list/CarTable';
 import {AddCar} from '../cars/AddCar';
-import {Message} from '../customers/Message';
+import {Messages} from '../customers/Messages';
 import {ScheduleEditor} from '../admin/ScheduleEditor';
 
 const Content = ({ selectedMenuItem }) => {
@@ -11,7 +11,7 @@ const Content = ({ selectedMenuItem }) => {
       case 'ajouter-employe':
         return <Register />;
       case 'voir-messages':
-        return <div><Message /></div>;
+        return <div><Messages /></div>;
       case 'ajouter-voiture':
         return <div><AddCar/></div>;
       case 'ajouter-temoignage':

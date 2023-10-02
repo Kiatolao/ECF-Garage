@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export const Message= () => {
+export const Messages= () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {

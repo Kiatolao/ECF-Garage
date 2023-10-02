@@ -5,7 +5,7 @@ export const ScheduleEditor = () => {
   const [schedules, setSchedules] = useState([]);
   const [editSchedule, setEditSchedule] = useState(null);
 
-  // Charger les horaires depuis la base de données lors du chargement initial du composant
+  // charger les horaires 
   useEffect(() => {
     async function fetchSchedules() {
       try {
@@ -18,19 +18,19 @@ export const ScheduleEditor = () => {
     fetchSchedules();
   }, []);
 
-  // Fonction pour mettre à jour un horaire dans la base de données
+  //  mettre à jour un horaire dans la base de données
   const updateSchedule = async () => {
     if (!editSchedule) return;
 
     try {
       await axios.put(`/api/horaires/${editSchedule.id}`, editSchedule);
-      // Mettre à jour l'horaires modifié dans la liste des horaires
+      // mise a jour de l'horaire dans le state
       setSchedules((prevSchedules) =>
         prevSchedules.map((schedule) =>
           schedule.id === editSchedule.id ? editSchedule : schedule
         )
       );
-      // Réinitialiser l'horaires en cours d'édition
+
       setEditSchedule(null);
     } catch (error) {
       console.error('Erreur lors de la mise à jour de l\'horaire :', error);
@@ -43,36 +43,28 @@ export const ScheduleEditor = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-lg ">
       <h2 className="text-2xl font-semibold mb-4">Horaires</h2>
       <ul>
         {schedules.map((schedule) => (
           <li key={schedule.id} className="mb-4">
             {editSchedule === schedule ? (
               <div className="flex items-center space-x-2">
+                <div>{schedule.day}</div>
                 <input
                   type="text"
-                  value={editSchedule.day}
+                  value={editSchedule.openingM}
                   onChange={(e) =>
-                    setEditSchedule({...editSchedule, day: e.target.value,
+                    setEditSchedule({...editSchedule, openingM: e.target.value,
                     })
                   }
                   className="w-24 px-2 py-1 border rounded"
                 />
                 <input
                   type="text"
-                  value={editSchedule.opening}
+                  value={editSchedule.closingM}
                   onChange={(e) =>
-                    setEditSchedule({...editSchedule, opening: e.target.value,
-                    })
-                  }
-                  className="w-24 px-2 py-1 border rounded"
-                />
-                <input
-                  type="text"
-                  value={editSchedule.closing}
-                  onChange={(e) =>
-                    setEditSchedule({...editSchedule, opening: e.target.value,
+                    setEditSchedule({...editSchedule, closingM: e.target.value,
                     })
                   }
                   className="w-24 px-2 py-1 border rounded"
@@ -93,8 +85,11 @@ export const ScheduleEditor = () => {
             ) : (
               <div className="flex items-center space-x-4">
                 <div>{schedule.day}</div>
-                <div>{schedule.opening}</div>
-                <div>{schedule.closing}</div>
+                <div>{schedule.openingM}</div>
+                <div>{schedule.closingM}</div>
+                <p>/</p>
+                <div>{schedule.openingA}</div>
+                <div>{schedule.closingA}</div>
                 <button
                   onClick={() => setEditSchedule(schedule)}
                   className="text-blue-500 hover:underline"
