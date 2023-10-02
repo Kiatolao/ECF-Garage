@@ -169,7 +169,7 @@ export const AddCar = () => {
     <div className="sm:col-span-2">
       <button
         type="submit"
-        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full"
+        className="bg-blue-500 text-white py-2 mt-5 px-4 rounded hover:bg-blue-600 w-full"
       >
         Créer la Voiture
       </button>

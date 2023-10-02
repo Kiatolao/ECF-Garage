@@ -18,8 +18,8 @@ export const Home = () => {
               title="map"
               src="https://maps.google.com/maps?q=manhattan&t=&z=13&ie=UTF8&iwloc=&output=embed"
               className="h-64 w-full"
-              frameborder="0"
-              allowfullscreen
+              frameBorder="0"
+              allowFullScreen
             ></iframe>
 
             <Schedules /> 
