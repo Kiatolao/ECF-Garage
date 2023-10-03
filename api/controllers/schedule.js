@@ -28,8 +28,14 @@ export const updateSchedule = (req, res) => {
     const q =
       "UPDATE schedules SET `day` = ?, `openingM` = ?, `closingM` = ?, `openingA` = ?, `closingA` = ? WHERE `id` = ?";
 
-    const values = [req.body.day, req.body.start_time, req.body.end_time, req.params.id];
-
+      const values = [
+        req.body.day,
+        req.body.openingM, 
+        req.body.closingM, 
+        req.body.openingA, 
+        req.body.closingA,
+        req.params.id
+      ];
     db.query(q, values, (err, data) => {
       if (err) return res.status(500).json(err);
       return res.json("L'horaire a été modifié avec succès.");
