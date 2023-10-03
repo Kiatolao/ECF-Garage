@@ -32,7 +32,7 @@ export const getServices = (req, res) => {
       if (err) return res.status(403).json("Vous n'êtes pas autorisé à ajouter un service.");
   
       const { description } = req.body;
-      const q = 'INSERT INTO services (description) VALUES (?)';
+      const q = 'INSERT INTO services (service, expertise) VALUES (?, ?)';
       const values = [description];
       db.query(q, values, (err, data) => {
         if (err) {
@@ -53,7 +53,7 @@ export const getServices = (req, res) => {
   
       const serviceId = req.params.id;
       const { description } = req.body;
-      const q = 'UPDATE services SET description = ? WHERE id = ?';
+      const q = 'UPDATE services SET service = ?, expertise = ? WHERE id = ?';
       const values = [description, serviceId];
       db.query(q, values, (err, data) => {
         if (err) {
