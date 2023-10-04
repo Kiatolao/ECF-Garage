@@ -32,11 +32,12 @@ export const addTestimonial = (req, res) => {
   jwt.verify(token, "jwtkey", (err) => {
     if (err) return res.status(403).json("Vous n'êtes pas autorisé à ajouter un témoignage.");
 
-    const q = 'INSERT INTO testimonials (user, testimonial, note) VALUES (?, ?, ?)';
+    const q = 'INSERT INTO testimonials (user, testimonial, note, validated) VALUES (?, ?, ?, ?)';
     const values = [
         req.body.user, 
         req.body.testimonial, 
-        req.body.note
+        req.body.note,
+        req.body.validated
     ];
     db.query(q, values, (err, data) => {
       if (err) {

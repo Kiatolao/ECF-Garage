@@ -6,6 +6,7 @@ import {Messages} from '../customers/Messages';
 import {ScheduleEditor} from '../admin/ScheduleEditor';
 import {ServiceEditor} from '../admin/ServiceEditor';
 import {TestimonialsValidation} from '../customers/TestimonialsValidation';
+import { TestimonialAdd } from '../customers/TestimonialAdd';
 
 const Content = ({ selectedMenuItem }) => {
   const renderContent = () => {
@@ -17,7 +18,7 @@ const Content = ({ selectedMenuItem }) => {
       case 'ajouter-voiture':
         return <div><AddCar/></div>;
       case 'ajouter-temoignage':
-        return <div>Ajouter un témoignage</div>;
+        return <div><TestimonialAdd /></div>;
       case 'modifier-voiture':
         return <div><CarTable /></div>;
 
