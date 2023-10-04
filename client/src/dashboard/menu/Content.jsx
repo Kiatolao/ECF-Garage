@@ -5,6 +5,7 @@ import {AddCar} from '../cars/AddCar';
 import {Messages} from '../customers/Messages';
 import {ScheduleEditor} from '../admin/ScheduleEditor';
 import {ServiceEditor} from '../admin/ServiceEditor';
+import {TestimonialsValidation} from '../customers/TestimonialsValidation';
 
 const Content = ({ selectedMenuItem }) => {
   const renderContent = () => {
@@ -21,7 +22,7 @@ const Content = ({ selectedMenuItem }) => {
         return <div><CarTable /></div>;
 
       case 'valider-temoignage':
-        return <div>Validation des témoignages</div>;
+        return <div><TestimonialsValidation /></div>;
       case 'modifier-services':
         return <div><ServiceEditor /></div>;
       case 'definir-horaires':

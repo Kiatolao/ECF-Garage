@@ -12,7 +12,7 @@ export const getTestimonials = (req, res) => {
   });
 };
 
-// Récupérer un témoignage par son ID
+// récupérer un témoignage par son ID
 export const getTestimonial = (req, res) => {
   const testimonialId = req.params.id;
   const q = 'SELECT * FROM testimonials WHERE id = ?';
@@ -24,7 +24,7 @@ export const getTestimonial = (req, res) => {
   });
 };
 
-// Ajouter un nouveau témoignage
+// ajouter un nouveau témoignage
 export const addTestimonial = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Vous devez être connecté pour ajouter un témoignage.");
@@ -32,9 +32,12 @@ export const addTestimonial = (req, res) => {
   jwt.verify(token, "jwtkey", (err) => {
     if (err) return res.status(403).json("Vous n'êtes pas autorisé à ajouter un témoignage.");
 
-    const { user, testimonial, note } = req.body;
     const q = 'INSERT INTO testimonials (user, testimonial, note) VALUES (?, ?, ?)';
-    const values = [user, testimonial, note];
+    const values = [
+        req.body.user, 
+        req.body.testimonial, 
+        req.body.note
+    ];
     db.query(q, values, (err, data) => {
       if (err) {
         return res.status(500).send(err);
@@ -44,7 +47,7 @@ export const addTestimonial = (req, res) => {
   });
 };
 
-// Mettre à jour un témoignage par son ID
+// mettre à jour un témoignage 
 export const updateTestimonial = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Vous devez être connecté pour mettre à jour un témoignage.");
@@ -53,9 +56,12 @@ export const updateTestimonial = (req, res) => {
     if (err) return res.status(403).json("Vous n'êtes pas autorisé à mettre à jour un témoignage.");
 
     const testimonialId = req.params.id;
-    const { user, testimonial, note } = req.body;
-    const q = 'UPDATE testimonials SET user = ?, testimonial = ?, note = ? WHERE id = ?';
-    const values = [user, testimonial, note, testimonialId];
+
+    const q = 'UPDATE testimonials SET validated = ? WHERE id = ?';
+    const values = [
+        req.body.validated,
+        testimonialId
+    ];
     db.query(q, values, (err, data) => {
       if (err) {
         return res.status(500).send(err);
@@ -65,7 +71,7 @@ export const updateTestimonial = (req, res) => {
   });
 };
 
-// Supprimer un témoignage par son ID
+// supprimer un témoignage 
 export const deleteTestimonial = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Vous devez être connecté pour supprimer un témoignage.");

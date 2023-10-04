@@ -31,9 +31,8 @@ export const getServices = (req, res) => {
     jwt.verify(token, "jwtkey", (err) => {
       if (err) return res.status(403).json("Vous n'êtes pas autorisé à ajouter un service.");
   
-      const { description } = req.body;
       const q = 'INSERT INTO services (service, expertise) VALUES (?, ?)';
-      const values = [description];
+      const values = [req.body.description];
       db.query(q, values, (err, data) => {
         if (err) {
           return res.status(500).send(err);
@@ -52,9 +51,8 @@ export const getServices = (req, res) => {
       if (err) return res.status(403).json("Vous n'êtes pas autorisé à mettre à jour un service.");
   
       const serviceId = req.params.id;
-      const { description } = req.body;
       const q = 'UPDATE services SET service = ?, expertise = ? WHERE id = ?';
-      const values = [description, serviceId];
+      const values = [req.body.description, serviceId];
       db.query(q, values, (err, data) => {
         if (err) {
           return res.status(500).send(err);
