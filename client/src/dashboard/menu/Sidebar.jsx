@@ -9,7 +9,7 @@ import { MdSchedule } from 'react-icons/md';
 import { RiPassValidLine } from 'react-icons/ri';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { AiOutlineEdit } from 'react-icons/ai';
-import { AiOutlineDelete } from 'react-icons/ai';
+
 
 const Sidebar = ({ onSelectMenuItem }) => {
 
@@ -53,12 +53,7 @@ const Sidebar = ({ onSelectMenuItem }) => {
             Modifier une voiture
           </div>
         </li>
-        <li className="mb-2 cursor-pointer" onClick={() => onSelectMenuItem('supprimer-voiture')}>
-          <div className="flex items-center">
-            <AiOutlineDelete className="mr-2" />
-            Effacer une voiture
-          </div>
-        </li>
+
         <div className="mb-4 border-b border-gray-300"></div>
         {currentUser && currentUser.role === 'admin' && (
           <>

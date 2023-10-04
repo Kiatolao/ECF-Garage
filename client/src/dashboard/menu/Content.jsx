@@ -4,6 +4,7 @@ import {CarTable} from '../list/CarTable';
 import {AddCar} from '../cars/AddCar';
 import {Messages} from '../customers/Messages';
 import {ScheduleEditor} from '../admin/ScheduleEditor';
+import {ServiceEditor} from '../admin/ServiceEditor';
 
 const Content = ({ selectedMenuItem }) => {
   const renderContent = () => {
@@ -18,12 +19,11 @@ const Content = ({ selectedMenuItem }) => {
         return <div>Ajouter un témoignage</div>;
       case 'modifier-voiture':
         return <div><CarTable /></div>;
-      case 'supprimer-voiture':
-        return <div>Supprimer </div>;
+
       case 'valider-temoignage':
         return <div>Validation des témoignages</div>;
       case 'modifier-services':
-        return <div>Modifier les services</div>;
+        return <div><ServiceEditor /></div>;
       case 'definir-horaires':
         return <div><ScheduleEditor /></div>;
       default:

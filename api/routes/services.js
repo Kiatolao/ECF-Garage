@@ -4,10 +4,10 @@ import { getServices, getService, addService, deleteService, updateService } fro
 
 const router = express.Router();
 
-router.get("/", verifyToken, getServices);
-router.get("/:id", verifyToken, getService);
-router.post("/", verifyToken, addService);
-router.put("/:id", verifyToken, updateService);
-router.delete("/:id", verifyToken, deleteService);
+router.get("/", getServices);
+router.get("/:id", getService);
+router.post("/", addService);
+router.put("/:id", updateService);
+router.delete("/:id", deleteService);
 
 export default router;
