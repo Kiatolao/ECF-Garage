@@ -20,20 +20,21 @@ export const Services = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Services proposés par le garage</h2>
-      <ul>
-        {services.map((service) => (
-          <li key={service.id}>{service.service}</li>
-        ))}
-      </ul>
-      <h2>Expertises et certifications</h2>
-      <ul>
-        {services.map((service) => (
-          <li key={service.id}>{service.expertise}</li>
-        ))}
-      </ul>
-    </div>
+<div>
+  <h2 className="text-2xl font-bold mb-4">Services proposés par le garage</h2>
+  <ul className="list-disc pl-6">
+    {services.map((service) => (
+      <li key={service.id} className="mb-2">{service.service}</li>
+    ))}
+  </ul>
+  <h2 className="text-2xl font-bold mt-8">Expertises et certifications</h2>
+  <ul className="list-disc pl-6">
+    {services.map((service) => (
+      <li key={service.id} className="mb-2">{service.expertise}</li>
+    ))}
+  </ul>
+</div>
+
   );
 };
 

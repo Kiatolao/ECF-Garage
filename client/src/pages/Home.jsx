@@ -2,6 +2,8 @@ import React from 'react';
 import garageImage from '../assets/garage-2.png';
 import { Schedules } from '../components/Schedules';
 import { Services } from '../components/Services';
+import { Testimonial } from '../components/Testimonial';
+import {TestimonialForm} from '../components/TestimonialForm';
 
 export const Home = () => {
   return (
@@ -16,8 +18,14 @@ export const Home = () => {
       <div>
         <Services />
       </div>
+      <div>
+        <Testimonial />
+      </div>
+      <div>
+        <TestimonialForm />
+      </div>
 
-      <div className="md:col-span-1 lg:col-span-2 z-10 mt-5 ml-5">
+<div className="md:col-span-1 lg:col-span-2 z-10 mt-5 ml-5">
   <div className="max-w-md bg-white shadow-lg  overflow-hidden">
 
     <iframe
@@ -31,7 +39,7 @@ export const Home = () => {
     <Schedules /> 
 
   </div>
-  </div>
+</div>
 
     </>
   );
