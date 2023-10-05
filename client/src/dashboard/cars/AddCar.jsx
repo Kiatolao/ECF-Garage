@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useLocation} from 'react-router-dom';
+
 
 export const AddCar = () => {
 
-  const state = useLocation().state;
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
   const [price, setPrice] = useState("");
@@ -34,33 +33,21 @@ export const AddCar = () => {
     const imgUrl = await upload();
 
     try {
-      state
-        ? await axios.put(`http://localhost:8000/api/cars/${state.id}`, {
-            title,
-            year,
-            price,
-            km,
-            desc,
-            fuel,
-            gearbox,
-            warrant,
-            image: file ? imgUrl : "",
-          })
-        : await axios.post(`http://localhost:8000/api/cars/`, {
-            title,
-            year,
-            price,
-            km,
-            desc,
-            fuel,
-            gearbox,
-            warrant,
-            image: file ? imgUrl : "",
-            }, {
-            withCredentials: true
-          });
+      await axios.post(`http://localhost:8000/api/cars/`, {
+        title,
+        year,
+        price,
+        km,
+        desc,
+        fuel,
+        gearbox,
+        warrant,
+        image: file ? imgUrl : "",
+      }, {
+        withCredentials: true
+      });
     } catch (err) {
-        console.error('Erreur lors de l\'ajout de la voiture :', err.response ? err.response.data : err.message);
+      console.error('Erreur lors de l\'ajout de la voiture :', err.response ? err.response.data : err.message);
     }
   };
 
