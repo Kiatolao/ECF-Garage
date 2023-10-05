@@ -74,14 +74,14 @@ export const TestimonialsValidation = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4">En attente de validation</h2>
+      <h2 className="pt-5 font-bold mb-4">Témoignages en attente de validation</h2>
       <Pending
         testimonials={testimonials}
         validateTestimonial={validateTestimonial}
         deleteTestimonial={deleteTestimonial}
       />
 
-      <h2 className="text-xl font-bold my-4">Archivés</h2>
+      <h2 className=" pt-5 font-bold my-4">Témoignages archivés</h2>
       <Archived
         archivedTestimonials={archivedTestimonials}
         deleteTestimonial={deleteTestimonial}

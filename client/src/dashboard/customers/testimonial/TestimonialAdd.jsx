@@ -46,7 +46,7 @@ export const TestimonialAdd = () => {
   return (
     <>
     <h2 className="text-xl font-bold mb-4">Ajouter un témoignage</h2>
-        <form onSubmit={handleSubmit} className="max-w-md  mt-4 p-4 border rounded-lg shadow-md">
+        <form onSubmit={handleSubmit} className="max-w-md  mt-4 p-4 border  shadow-md">
       <div className="mb-4">
         <label htmlFor="user" className="block text-gray-700">Nom :</label>
         <input

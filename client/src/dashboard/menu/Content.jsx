@@ -1,12 +1,12 @@
 import React from 'react';
 import {Register} from '../admin/Register';
-import {CarTable} from '../list/CarTable';
 import {AddCar} from '../cars/AddCar';
 import {Messages} from '../customers/Messages';
 import {ScheduleEditor} from '../admin/ScheduleEditor';
 import {ServiceEditor} from '../admin/ServiceEditor';
 import {TestimonialsValidation} from '../customers/testimonial/TestimonialsValidation';
 import { TestimonialAdd } from '../customers/testimonial/TestimonialAdd';
+import { UpdateCar } from '../cars/UpdateCar';
 
 const Content = ({ selectedMenuItem }) => {
   const renderContent = () => {
@@ -20,7 +20,7 @@ const Content = ({ selectedMenuItem }) => {
       case 'ajouter-temoignage':
         return <div><TestimonialAdd /></div>;
       case 'modifier-voiture':
-        return <div><CarTable /></div>;
+        return <div><UpdateCar /></div>;
 
       case 'valider-temoignage':
         return <div><TestimonialsValidation /></div>;

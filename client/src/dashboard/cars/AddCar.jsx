@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useLocation} from 'react-router-dom';
-import '../../App.css'
-
 
 export const AddCar = () => {
 
@@ -135,7 +133,7 @@ export const AddCar = () => {
         value={fuel}
         onChange={(e) => setFuel(e.target.value)}
         required
-        className="border border-gray-400 w-full"
+        className="border border-gray-400 w-full p-1"
       >
         <option value="">Sélectionnez un carburant</option>
         <option value="Essence">Essence</option>
@@ -151,7 +149,7 @@ export const AddCar = () => {
         value={gearbox}
         onChange={(e) => setGearbox(e.target.value)}
         required
-        className="border border-gray-400 w-full"
+        className="border border-gray-400 w-full p-1"
       >
         <option value="">Sélectionnez une transmission</option>
         <option value="Manuelle">Manuelle</option>
@@ -173,7 +171,7 @@ export const AddCar = () => {
         type="submit"
         className="bg-blue-500 text-white py-2 mt-5 px-4 rounded hover:bg-blue-600 w-full"
       >
-        Créer la Voiture
+        Ajouter la Voiture
       </button>
     </div>
   </form>
