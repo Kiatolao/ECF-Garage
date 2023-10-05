@@ -5,8 +5,8 @@ import {AddCar} from '../cars/AddCar';
 import {Messages} from '../customers/Messages';
 import {ScheduleEditor} from '../admin/ScheduleEditor';
 import {ServiceEditor} from '../admin/ServiceEditor';
-import {TestimonialsValidation} from '../customers/TestimonialsValidation';
-import { TestimonialAdd } from '../customers/TestimonialAdd';
+import {TestimonialsValidation} from '../customers/testimonial/TestimonialsValidation';
+import { TestimonialAdd } from '../customers/testimonial/TestimonialAdd';
 
 const Content = ({ selectedMenuItem }) => {
   const renderContent = () => {

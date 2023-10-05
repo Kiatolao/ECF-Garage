@@ -140,6 +140,8 @@ export const AddCar = () => {
         <option value="">Sélectionnez un carburant</option>
         <option value="Essence">Essence</option>
         <option value="Diesel">Diesel</option>
+        <option value="Hybride">Hybride</option>
+        <option value="Electrique">Electrique</option>
       </select>
     </div>
     <div>
