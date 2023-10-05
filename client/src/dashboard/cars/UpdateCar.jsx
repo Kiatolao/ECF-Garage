@@ -26,7 +26,6 @@ export const UpdateCar = () => {
     if (confirmDelete) {
       try {
         await axios.delete(`http://localhost:8000/api/cars/${carId}`);
-        // Mettez à jour la liste des voitures après la suppression
         setCars(cars.filter((car) => car.id !== carId));
       } catch (error) {
         console.error('Erreur lors de la suppression de la voiture :', error);
