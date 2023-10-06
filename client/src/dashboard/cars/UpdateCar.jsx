@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineSafetyCertificate, AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
+import { EditCarModal } from './EditCarModal';
 
 export const UpdateCar = () => {
   const [cars, setCars] = useState([]);
+  const [editCar, setEditCar] = useState(null);
   const navigate = useNavigate();
 
   // Récupération des données de l'API
@@ -35,6 +37,27 @@ export const UpdateCar = () => {
     }
   };
 
+  const openEditModal = (car) => {
+    setEditCar(car);
+  };
+
+  // Fonction pour mettre à jour la voiture
+  const updateCar = async (updatedCar) => {
+    try {
+      await axios.put(`http://localhost:8000/api/cars/${updatedCar.id}`, updatedCar, {
+        withCredentials: true,
+      });
+
+      // mise à jour des voiture dans le state
+      const updatedCars = cars.map((car) => (car.id === updatedCar.id ? updatedCar : car));
+      setCars(updatedCars);
+
+      setEditCar(null);
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour de la voiture :', error);
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
       
@@ -45,9 +68,9 @@ export const UpdateCar = () => {
           className="bg-stone-100 shadow-md rounded-md p-4 hover:border-red-500 border border-transparent cursor-pointer">
 
           <div className="flex justify-between items-center">
-          <button
-            onClick={() => navigate(`/Edit_car/${car.id}`)}
-            className="text-blue-600 hover:text-blue-800 flex items-center">
+            <button
+              onClick={() => openEditModal(car)}
+              className="text-blue-600 hover:text-blue-800 flex items-center">
             <AiOutlineEdit className="mr-1" />
             Editer
           </button>
@@ -83,6 +106,13 @@ export const UpdateCar = () => {
         </div>
 
       ))}
+      {editCar && (
+        <EditCarModal
+          car={editCar}
+          isOpen={Boolean(editCar)}
+          onClose={() => setEditCar(null)}
+          onUpdate={updateCar}/>
+      )}
     </div>
   );
 };

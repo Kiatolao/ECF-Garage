@@ -10,7 +10,6 @@ export const CarDetail = () => {
     async function fetchCarDetails() {
       try {
         const response = await axios.get(`http://localhost:8000/api/cars/${id}`);
-        // date.lenght > 0, on verifie si le tableau contient des données
         if (response.data.length > 0) { 
           const carData = response.data[0]; 
           setCar(carData);

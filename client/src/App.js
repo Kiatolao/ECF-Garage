@@ -10,6 +10,7 @@ import {Footer} from './components/Footer';
 import { Cars } from './pages/Cars';
 import { CarDetail } from './pages/CarDetail';
 
+
 function App() {
   return (
       <Router>
@@ -20,12 +21,12 @@ function App() {
                 <Route element={<PrivateRoute roles={['admin', 'staff']} />}>
                   <Route  element={<Dashboard/>} path="/dashboard"/>
                 </Route>
-                <Route element={<Home/>} path="/" exact/>
-                <Route element={<Login/>} path="/login"/>
-                <Route path="/cars" element={<Cars />} />
-                <Route path="/car_detail/:id" element={<CarDetail />} />
-                <Route path="/car_detail/:id" component={CarDetail} />
-                <Route element={<Contact/>} path="/contact"/>
+                <Route element={<Home />} path="/" exact/>
+                <Route element={<Login />} path="/login"/>
+                <Route element={<Cars />} path="/cars" />
+                <Route element={<CarDetail />} path="/car_detail/:id" />
+                <Route component={CarDetail} path="/car_detail/:id" />
+                <Route element={<Contact />} path="/contact"/>
               </Routes>
             </div>
           <Footer />
