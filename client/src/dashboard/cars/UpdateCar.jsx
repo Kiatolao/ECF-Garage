@@ -9,7 +9,7 @@ export const UpdateCar = () => {
   const [editCar, setEditCar] = useState(null);
   const navigate = useNavigate();
 
-  // Récupération des données de l'API
+  // Récupération des données 
   useEffect(() => {
     async function fetchCars() {
       try {
@@ -42,14 +42,14 @@ export const UpdateCar = () => {
   };
 
   // Fonction pour mettre à jour la voiture
-  const updateCar = async (updatedCar) => {
+  const updateCar = async (car) => {
     try {
-      await axios.put(`http://localhost:8000/api/cars/${updatedCar.id}`, updatedCar, {
+      await axios.put(`http://localhost:8000/api/cars/${car.id}`, car, {
         withCredentials: true,
       });
 
       // mise à jour des voiture dans le state
-      const updatedCars = cars.map((car) => (car.id === updatedCar.id ? updatedCar : car));
+      const updatedCars = cars.map((c) => (c.id === car.id ? car : c));
       setCars(updatedCars);
 
       setEditCar(null);

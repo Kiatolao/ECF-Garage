@@ -76,8 +76,9 @@ export const updateCar =  (req, res) => {
     jwt.verify(token, "jwtkey", (err) => {
       if (err) return res.status(403).json("Le token n'est pas valide.");
   
-      const q =
-        "UPDATE INTO cars (`title`, `desc`, `image`, `year`, `price`,`km`, `fuel`, `gearbox`, `warrant`) VALUES (?)";
+      const q = 
+      "UPDATE cars SET `title`=?, `desc`=?, `image`=?, `year`=?, `price`=?, `km`=?, `fuel`=?, `gearbox`=?, `warrant`=? WHERE `id`=?";
+
   
       const values = [
         req.body.title,
@@ -89,9 +90,10 @@ export const updateCar =  (req, res) => {
         req.body.fuel,
         req.body.gearbox,
         req.body.warrant,
+        req.params.id
       ];
   
-      db.query(q, [values], (err, data) => {
+      db.query(q, ...values, (err, data) => {
         if (err) return res.status(500).json(err);
         return res.json("La voiture a été modifiée avec succès.");
       });
