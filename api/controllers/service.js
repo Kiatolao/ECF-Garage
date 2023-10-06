@@ -11,7 +11,7 @@ export const getServices = (req, res) => {
     });
   };
   
-  // Obtenir un service par son ID
+
   export const getService = (req, res) => {
     const serviceId = req.params.id;
     const q = 'SELECT * FROM services WHERE id = ?';
@@ -23,7 +23,7 @@ export const getServices = (req, res) => {
     });
   };
   
-  // Ajouter un nouveau service
+
   export const addService = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Vous devez être connecté pour ajouter un service.");
@@ -42,7 +42,7 @@ export const getServices = (req, res) => {
     });
   };
   
-  // Mettre à jour un service par son ID
+
   export const updateService = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Vous devez être connecté pour mettre à jour un service.");
@@ -62,7 +62,7 @@ export const getServices = (req, res) => {
     });
   };
   
-  // Supprimer un service par son ID
+
   export const deleteService = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Vous devez être connecté pour supprimer un service.");

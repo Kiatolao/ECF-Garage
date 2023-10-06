@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { AiOutlineSafetyCertificate, AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { EditCarModal } from './EditCarModal';
 
 export const UpdateCar = () => {
   const [cars, setCars] = useState([]);
   const [editCar, setEditCar] = useState(null);
-  const navigate = useNavigate();
 
   // Récupération des données 
   useEffect(() => {
@@ -20,7 +18,7 @@ export const UpdateCar = () => {
       }
     }
     fetchCars();
-  }, [cars]);
+  }, []);
 
   // Fonction pour supprimer une voiture
   const deleteCar = async (carId) => {

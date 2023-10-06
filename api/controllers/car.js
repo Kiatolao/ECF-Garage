@@ -93,7 +93,7 @@ export const updateCar =  (req, res) => {
         req.params.id
       ];
   
-      db.query(q, ...values, (err, data) => {
+      db.query(q, values, (err, data) => {
         if (err) return res.status(500).json(err);
         return res.json("La voiture a été modifiée avec succès.");
       });
