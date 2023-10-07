@@ -6,7 +6,7 @@ export const Services = () => {
 
 
   useEffect(() => {
-    // Charger les services depuis l'API
+    // fetch des services 
     async function fetchServices() {
       try {
         const response = await axios.get('http://localhost:8000/api/services');
@@ -20,17 +20,17 @@ export const Services = () => {
   }, []);
 
   return (
-<div>
-  <h2 className="text-2xl font-bold mb-4">Services proposés par le garage</h2>
+<div className="p-5">
+  <h2 className="text-2xl font-bold mb-4">Le garage Parrot vous accompagne</h2>
+  <p className="mb-4">
+    {services.map((service) => (
+      <span key={service.id} className="mb-2">{service.desc}</span>
+    ))}
+  </p>
+  <h2 className="text-xl font-bold mb-4">Services proposés par le garage</h2>
   <ul className="list-disc pl-6">
     {services.map((service) => (
       <li key={service.id} className="mb-2">{service.service}</li>
-    ))}
-  </ul>
-  <h2 className="text-2xl font-bold mt-8">Expertises et certifications</h2>
-  <ul className="list-disc pl-6">
-    {services.map((service) => (
-      <li key={service.id} className="mb-2">{service.expertise}</li>
     ))}
   </ul>
 </div>

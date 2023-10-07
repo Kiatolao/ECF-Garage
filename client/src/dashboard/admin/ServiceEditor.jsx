@@ -1,69 +1,94 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-export const ServiceEditor = () => {
-  const [services, setServices] = useState([]);
-  const [selectedService, setSelectedService] = useState(null);
+export const ServiceEditor = ({ onServiceAdded }) => {
+  const [serviceData, setServiceData] = useState({
+    service: '',
+    desc: '',
+  });
 
-
-    useEffect(() => {
-        // Charger les services depuis l'API
-        async function fetchServices() {
-          try {
-            const response = await axios.get('http://localhost:8000/api/services');
-            setServices(response.data);
-          } catch (error) {
-            console.error('Erreur lors de la récupération des services :', error);
-          }
-        }
-    
-        fetchServices();
-      }, []);
-
-  const handleServiceSelect = (service) => {
-    setSelectedService(service);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setServiceData({
+      ...serviceData,
+      [name]: value,
+    });
   };
 
-  const handleSave = async () => {
-    if (selectedService) {
-      try {
-        await axios.put(`http/localhost:8000/api/services/${selectedService.id}`, selectedService);
-        console.log('Le service a été mis à jour avec succès.');
-      } catch (error) {
-        console.error('Erreur lors de la mise à jour du service :', error);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:8000/api/services', serviceData, {
+        withCredentials: true,
+      });
+      if (response.status === 201) {
+        setServiceData({
+          service: '',
+          description: '',
+        });
+
+        //  mise à jour la liste des services 
+        if (onServiceAdded) {
+          onServiceAdded();
+        }
       }
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout du service :', error);
     }
   };
 
   return (
-    <div className="bg-white shadow-lg p-4 rounded-lg">
-      <h2 className="text-2xl font-semibold mb-4">Édition de Service</h2>
-      <div className="mb-4">
-        <label className="block font-semibold">Sélectionnez un service :</label>
-        <select
-          onChange={(e) => handleServiceSelect(JSON.parse(e.target.value))}
-          className="w-full border p-2 rounded shadow-md"
-        >
-          <option value="">Sélectionnez un service</option>
-          {services.map((service) => (
-            <option key={service.id} value={JSON.stringify(service)}>
-              {service.service}
-            </option>
-          ))}
-        </select>
-      </div>
-      {selectedService && (
-        <div>
+<>
+<div>
+      <h2 className="text-xl font-bold mb-4">Ajouter un service</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label htmlFor="service" className="block mb-2">Nom du service</label>
+          <input
+            type="text"
+            id="service"
+            name="service"
+            value={serviceData.service}
+            onChange={handleChange}
+
+            className="border border-gray-400 w-full"/>
+        </div>
+        <div className="mb-4">
           <button
-            onClick={handleSave}
-            className="bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700"
-          >
-            Enregistrer
+            type="submit"
+            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+            Ajouter le service
           </button>
         </div>
-      )}
+      </form>
     </div>
+    <div>
+      <h2 className="text-xl font-bold mb-4">Changer la description</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label htmlFor="description" className="block mb-2">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            value={serviceData.desc}
+            onChange={handleChange}
+
+            className="border border-gray-400 w-full">
+
+            </textarea>
+        </div>
+        <div className="mb-4">
+          <button
+            type="submit"
+            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+            Modifier la description
+          </button>
+        </div>
+      </form>
+    </div>
+</>
+
   );
 };
-
 

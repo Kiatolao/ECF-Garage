@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
 export const Register = () => {
-  // Mise en place du state pour les champs de formulaire et les messages d'erreur
+  // state des champs de formulaire
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -12,7 +13,7 @@ export const Register = () => {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
 
-  // Gestion des changements dans les champs de formulaire
+  // gestion des changements form
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -23,12 +24,11 @@ export const Register = () => {
     e.preventDefault();
 
     try {
-      // Envoi des données du formulaire 
       const response = await axios.post('http://localhost:8000/api/auth/register', formData, {
       withCredentials: true, 
     });
 
-      // Réinitialisation des champs du formulaire et affichage d'un message de succès
+      // réinitialisation des champs du formulaire et affichage d'un message de succès
       setFormData({
         username: '',
         email: '',
