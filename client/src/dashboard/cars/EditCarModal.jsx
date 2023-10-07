@@ -20,7 +20,7 @@ export const EditCarModal = ({ car, isOpen, onClose, onUpdate }) => {
   };
 
   return (
-    <div className={`fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center ${isOpen ? '' : 'hidden'}`}>
+    <div className={`fixed pt-20 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex overflow-y-auto items-center justify-center ${isOpen ? '' : 'hidden'}`}>
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-xl font-semibold mb-4">Modifier la Voiture</h2>
         <form onSubmit={handleSubmit}>
