@@ -5,7 +5,6 @@ import { ServiceDel } from './ServiceDel';
 export const ServiceEditor = ({ onServiceAdded }) => {
   const [serviceData, setServiceData] = useState({
     service: '',
-    desc: '',
   });
 
   const handleChange = (e) => {
@@ -26,7 +25,6 @@ export const ServiceEditor = ({ onServiceAdded }) => {
       if (response.status === 201) {
         setServiceData({
           service: '',
-          description: '',
         });
 
         //  mise à jour de la liste des services 
@@ -65,30 +63,7 @@ export const ServiceEditor = ({ onServiceAdded }) => {
         </div>
       </form>
     </div>
-    <div>
-      <h2 className="text-xl font-bold mb-4 pt-5">Changer la description</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="description" className="block mb-2">Description</label>
-          <textarea
-            id="description"
-            name="description"
-            value={serviceData.desc}
-            onChange={handleChange}
 
-            className="border border-gray-400 w-full">
-
-            </textarea>
-        </div>
-        <div className="mb-4">
-          <button
-            type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-            Modifier la description
-          </button>
-        </div>
-      </form>
-    </div>
 </>
 
   );
