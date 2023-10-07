@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { ServiceDel } from './ServiceDel';
 
 export const ServiceEditor = ({ onServiceAdded }) => {
   const [serviceData, setServiceData] = useState({
@@ -28,7 +29,7 @@ export const ServiceEditor = ({ onServiceAdded }) => {
           description: '',
         });
 
-        //  mise à jour la liste des services 
+        //  mise à jour de la liste des services 
         if (onServiceAdded) {
           onServiceAdded();
         }
@@ -40,8 +41,9 @@ export const ServiceEditor = ({ onServiceAdded }) => {
 
   return (
 <>
+<ServiceDel />
 <div>
-      <h2 className="text-xl font-bold mb-4">Ajouter un service</h2>
+      <h2 className="text-xl font-bold mb-4 pt-5">Ajouter un service</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="service" className="block mb-2">Nom du service</label>
@@ -64,7 +66,7 @@ export const ServiceEditor = ({ onServiceAdded }) => {
       </form>
     </div>
     <div>
-      <h2 className="text-xl font-bold mb-4">Changer la description</h2>
+      <h2 className="text-xl font-bold mb-4 pt-5">Changer la description</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="description" className="block mb-2">Description</label>
