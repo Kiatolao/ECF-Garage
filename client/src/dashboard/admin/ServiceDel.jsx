@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { MdOutlineCancel } from 'react-icons/md';
 
 export const ServiceDel = () => {
   const [services, setServices] = useState([]);
@@ -37,13 +38,14 @@ export const ServiceDel = () => {
       <h2 className="text-xl font-bold mb-4">Effacer un service</h2>
       <div className="flex flex-wrap">
         {services.map((service) => (
-          <button
-            key={service.id}
-            onClick={() => handleDeleteService(service.id)}
-            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 mr-2 mb-2"
-          >
-            {service.service}
-          </button>
+        <button
+        key={service.id}
+        onClick={() => handleDeleteService(service.id)}
+        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 mr-2 mb-2 flex items-center"
+      >
+        {service.service}
+        <MdOutlineCancel className="ml-2" /> {/* Icône Material Icons */}
+      </button>
         ))}
       </div>
     </div>
