@@ -23,11 +23,26 @@ export const CarDetail = () => {
   }, [id]);
 
   return (
-    <div>
-
-      <h1>{car.title}</h1>
-      <p>lorem250</p>
-
+    <div className="container mx-auto mt-6 p-4">
+      <div className="md:flex md:space-x-4">
+        <div className="md:w-1/2">
+        <img src={`/upload/${car?.image}`} alt={car.title} className="w-full h-auto" />
+        </div>
+        <div className="md:w-1/2">
+          <h1 className="text-3xl font-semibold mb-4">{car.title}</h1>
+          <p className="text-gray-700">{car.desc}</p>
+          <p className="text-lg text-gray-800 mt-4">Année : {car.year}</p>
+          <p className="text-lg text-gray-800">Prix : {car.price} €</p>
+          <p className="text-lg text-gray-800">Kilométrage : {car.km} km</p>
+          <p className="text-lg text-gray-800">Boîte de vitesse : {car.gearbox}</p>
+          <p className="text-lg text-gray-800">Garantie : {car.warrant}</p>
+          <p className="text-lg text-gray-800">Carburant : {car.fuel}</p>
+          <button className="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600">
+            Réserver
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
+
