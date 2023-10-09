@@ -43,7 +43,7 @@ export const CarDetail = () => {
         </div>
         <div className="mb-2 mt-2 border-b border-gray-300"></div>
         <div className="bg-stone-100">
-          <h1 className="text-2xl font-semibold p-2">{car.title}</h1>
+          <h1 className="text-xl font-semibold p-2">{car.title}</h1>
           <div className="mb-2 mt-2 border-b border-gray-300"></div>
           <div className="p-4 rounded space-y-2">
             <p className="bg-stone-200 text-lg text-gray-800">Année : {car.year}</p>
@@ -57,10 +57,10 @@ export const CarDetail = () => {
       </div>
     </div>
   </div>
-{/*   <div className="m-5">
-      <h2 className="bg-stone-100 text-xl">Description</h2>
+   <div className="container mx-auto mt-6 ">
+      <h2 className="bg-stone-100 font-semibold text-xl">Information générales</h2>
       <p className="text-gray-700">{car.desc}</p>
-  </div> */}
+  </div>
 
   </>
   );
