@@ -81,7 +81,9 @@ export const UpdateCar = () => {
 
         </div>
         <div className="mb-4 mt-2 border-b border-gray-300"></div>
-          <img src={`/upload/${car?.image}`} alt={car.title} className="w-full h-auto" />
+        <div className="w-full h-40 overflow-hidden">
+        <img src={`/upload/${car?.image}`} alt={car.title} className="w-full h-full object-cover" />
+      </div>
 
           <h2 className="text-lg font-semibold mt-2">{car.title}</h2>
           <div className="flex justify-between mt-1">

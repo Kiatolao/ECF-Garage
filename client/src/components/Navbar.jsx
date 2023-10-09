@@ -14,7 +14,7 @@ export const Navbar = () => {
     const {currentUser, logout} = useContext(AuthContext)
 
     return (
-      <nav className="bg-white text-dark border-gray-200 shadow-md ">
+      <nav className="bg-white text-dark border-gray-200 shadow-md z-10">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="https://flowbite.com/" className="flex items-center">
             <img

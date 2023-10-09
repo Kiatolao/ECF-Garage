@@ -5,13 +5,13 @@ export const Messages= () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    // Fonction asynchrone pour récupérer les messages depuis la base de données
+
     const fetchMessages = async () => {
       try {
         const response = await axios.get('http://localhost:8000/api/messages', {
-          withCredentials: true, // Ajoutez cette option pour inclure les cookies
+          withCredentials: true,
         });
-        // Triez les messages par date du plus récent au plus ancien
+
         const sortedMessages = response.data.sort((a, b) => {
           return new Date(b.date) - new Date(a.date);
         });
@@ -21,9 +21,8 @@ export const Messages= () => {
       }
     };
 
-    // Appelez la fonction pour récupérer les messages
     fetchMessages();
-  }, []); // Le tableau vide indique que useEffect s'exécute une seule fois lors du montage
+  }, []); 
 
   //conveti iso en date au format français
   const formatDate = (isoDate) => {
@@ -33,7 +32,7 @@ export const Messages= () => {
   };
   
   return (
-    <div className="max-w-xl mt-10">
+    <div className="max-w-xl">
       <h2 className="text-2xl font-bold mb-4">Liste des Messages</h2>
       <ul>
         {messages.map((message) => (

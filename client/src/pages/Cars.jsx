@@ -29,7 +29,7 @@ export const Cars = () =>  {
       className="bg-stone-100 shadow-md rounded-md p-4 hover:border-red-500 border border-transparent cursor-pointer"
       onClick={() => navigate(`/car_detail/${car.id}`)}
     >
-      <div className="w-full h-70 overflow-hidden">
+      <div className="w-full h-60 overflow-hidden">
         <img src={`/upload/${car?.image}`} alt={car.title} className="w-full h-full object-cover" />
       </div>
 
