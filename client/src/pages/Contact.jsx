@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 export function Contact() {
 
   const currentDate = new Date();
+  // récupération de l'objet du message dans l'url
+  const location = useLocation();
+  const objectFromUrl = new URLSearchParams(location.search).get('object');
 
   const [formData, setFormData] = useState({
     lastName: '',
@@ -11,7 +15,8 @@ export function Contact() {
     email: '',
     phone: '',
     message: '',
-    object: '',
+    // recupere l'objet du message dans l'url
+    object: objectFromUrl,
     date: currentDate,
   });
 
@@ -26,7 +31,7 @@ export function Contact() {
 
     try {
       await axios.post('http://localhost:8000/api/messages', formData, {
-        withCredentials: true, // Ajoutez cette option pour inclure les cookies
+        withCredentials: true, 
       });
       // Réinitialisez le formulaire après l'envoi réussi
       setFormData({
@@ -58,8 +63,7 @@ export function Contact() {
             value={formData.lastName}
             onChange={handleChange}
             className="w-full border rounded px-3"
-            required
-          />
+            required />
         </div>
         <div className="mb-4">
           <label htmlFor="firstName" className="block text-gray-600">Prénom :</label>
@@ -70,8 +74,7 @@ export function Contact() {
             value={formData.firstName}
             onChange={handleChange}
             className="w-full border rounded  px-3"
-            required
-          />
+            required/>
         </div>
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-600">Adresse e-mail :</label>
@@ -82,8 +85,7 @@ export function Contact() {
             value={formData.email}
             onChange={handleChange}
             className="w-full border rounded  px-3"
-            required
-          />
+            required/>
         </div>
         <div className="mb-4">
           <label htmlFor="phone" className="block text-gray-600">Numéro de téléphone :</label>
@@ -94,8 +96,7 @@ export function Contact() {
             value={formData.phone}
             onChange={handleChange}
             className="w-full border rounded  px-3"
-            required
-          />
+            required/>
         </div>
         <div className="mb-4">
           <label htmlFor="object" className="block text-gray-600">Objet :</label>
@@ -103,11 +104,9 @@ export function Contact() {
             type="text"
             id="object"
             name="object"
-            value={formData.object}
+            value={objectFromUrl}
             onChange={handleChange}
-            className="w-full border rounded  px-3"
-
-          />
+            className="w-full border rounded  px-3"/>
         </div>
         <div className="mb-4">
           <label htmlFor="message" className="block text-gray-600">Message :</label>
@@ -118,13 +117,12 @@ export function Contact() {
             onChange={handleChange}
             className="w-full border rounded py-2 px-3"
             rows="4"
-            required
-          ></textarea>
+            required>
+            </textarea>
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 mb-4 rounded  hover:bg-blue-600"
-        >
+          className="bg-blue-500 text-white py-2 px-4 mb-4 rounded  hover:bg-blue-600">
           Envoyer
         </button>
       </form>
