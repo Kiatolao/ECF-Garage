@@ -29,7 +29,9 @@ export const Cars = () =>  {
       className="bg-stone-100 shadow-md rounded-md p-4 hover:border-red-500 border border-transparent cursor-pointer"
       onClick={() => navigate(`/car_detail/${car.id}`)}
     >
-      <img src={`/upload/${car?.image}`} alt={car.title} className="w-full h-auto" />
+      <div className="w-full h-70 overflow-hidden">
+        <img src={`/upload/${car?.image}`} alt={car.title} className="w-full h-full object-cover" />
+      </div>
 
       <h2 className="text-lg font-semibold mt-2">{car.title}</h2>
       <div className="flex justify-between mt-1">
