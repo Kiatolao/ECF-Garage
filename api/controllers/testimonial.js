@@ -26,12 +26,6 @@ export const getTestimonial = (req, res) => {
 
 // ajouter un nouveau témoignage
 export const addTestimonial = (req, res) => {
-  const token = req.cookies.access_token;
-  if (!token) return res.status(401).json("Vous devez être connecté pour ajouter un témoignage.");
-
-  jwt.verify(token, "jwtkey", (err) => {
-    if (err) return res.status(403).json("Vous n'êtes pas autorisé à ajouter un témoignage.");
-
     const q = 'INSERT INTO testimonials (user, testimonial, note, validated) VALUES (?, ?, ?, ?)';
     const values = [
         req.body.user, 
@@ -45,31 +39,6 @@ export const addTestimonial = (req, res) => {
       }
       res.status(201).json('Le témoignage a été ajouté avec succès.');
     });
-  });
-};
-
-// mettre à jour un témoignage 
-export const updateTestimonial = (req, res) => {
-  const token = req.cookies.access_token;
-  if (!token) return res.status(401).json("Vous devez être connecté pour mettre à jour un témoignage.");
-
-  jwt.verify(token, "jwtkey", (err) => {
-    if (err) return res.status(403).json("Vous n'êtes pas autorisé à mettre à jour un témoignage.");
-
-    const testimonialId = req.params.id;
-
-    const q = 'UPDATE testimonials SET validated = ? WHERE id = ?';
-    const values = [
-        req.body.validated,
-        testimonialId
-    ];
-    db.query(q, values, (err, data) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
-      res.status(200).json('Le témoignage a été mis à jour avec succès.');
-    });
-  });
 };
 
 // supprimer un témoignage 

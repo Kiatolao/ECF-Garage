@@ -41,13 +41,7 @@ export const deleteMessage = (req, res) => {
 
 // Méthode pour ajouter un nouveau message
 export const addMessage = (req, res) => {
-  const token = req.cookies.access_token;
-  if (!token) return res.status(401).json("Pas de token trouvé.");
 
-  jwt.verify(token, "jwtkey", (err) => {
-    if (err) return res.status(403).json("Le token n'est pas valide.");
-    
-    //pour convertir la date en format ISO
     const date = new Date();
     const dateString = date.toISOString().slice(0, 19).replace('T', ' ');
 
@@ -68,6 +62,5 @@ export const addMessage = (req, res) => {
       if (err) return res.status(500).json(err);
       return res.json("Le message a été ajouté avec succès.");
     });
-  });
 };
 

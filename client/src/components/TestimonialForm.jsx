@@ -15,10 +15,8 @@ export const TestimonialForm = () => {
         user,
         testimonial,
         note: rating,
-        validated: false, 
-      }, {
-        withCredentials: true,
-    });
+        validated: 0, 
+      });
       // réinitialiser le formulaire/ afficher un message de confirmation
       setUser('');
       setTestimonial('');
