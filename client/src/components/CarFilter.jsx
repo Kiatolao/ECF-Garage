@@ -113,9 +113,9 @@ export const CarFilter = ({ onFilterChange }) => {
           <label>
             <input
               type="radio"
-              value="Hybrid"
-              checked={selectedFuel === 'Hybrid'}
-              onChange={() => setSelectedFuel('Hybrid')}/>
+              value="Hybride"
+              checked={selectedFuel === 'Hybride'}
+              onChange={() => setSelectedFuel('Hybride')}/>
             Hybride
           </label>
           <label>
