@@ -7,17 +7,17 @@ export const Cars = () =>  {
 
   const [cars, setCars] = useState([]);
   const navigate = useNavigate();
-  const [filteredCars, setFilteredCars] = useState([]); // Initialisation avec une valeur vide
-
-  // ...
+  const [filteredCars, setFilteredCars] = useState([]); 
 
   const handleFilterChange = (filters) => {
     if (!filters) {
-      // Si les filtres sont indéfinis, utilisez les valeurs par défaut
+
       filters = {
         km: [0, 100000],
         price: [0, 50000],
         year: [2000, 2023],
+        gearbox: 'Manuelle',
+        fuel: 'Essence',
       };
     }
 
@@ -32,7 +32,9 @@ export const Cars = () =>  {
         car.price >= filters.price[0] &&
         car.price <= filters.price[1] &&
         car.year >= filters.year[0] &&
-        car.year <= filters.year[1]
+        car.year <= filters.year[1] &&
+        car.gearbox === filters.gearbox &&
+        car.fuel === filters.fuel 
       );
     });
 
@@ -44,7 +46,7 @@ export const Cars = () =>  {
       try {
         const response = await axios.get('http://localhost:8000/api/cars');
         setCars(response.data);
-        setFilteredCars(response.data); // Initialise filteredCars avec les données reçues
+        setFilteredCars(response.data); 
       } catch (error) {
         console.error('Erreur lors de la récupération des données :', error);
       }
