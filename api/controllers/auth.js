@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => { 
 
-    // Vérification des utilisateurs
+    // création utilisateurs
     const q = "SELECT * FROM users WHERE email = ? OR username = ?";
     db.query(q, [req.body.email, req.body.username], (err, data) => {
         if (err) {

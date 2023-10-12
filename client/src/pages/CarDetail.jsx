@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import { VscWorkspaceTrusted } from 'react-icons/vsc';
+import { Infos } from '../components/Infos';
 
 
 export const CarDetail = () => {
@@ -73,8 +74,7 @@ export const CarDetail = () => {
           Contactez-nous à propos de cette voiture
         </button>
   </div>
-
-
+    <Infos />
   </>
   );
 };

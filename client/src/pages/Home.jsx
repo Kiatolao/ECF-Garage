@@ -1,9 +1,9 @@
 import React from 'react';
 import garageImage from '../assets/garage-2.png';
-import { Schedules } from '../components/Schedules';
 import { Services } from '../components/Services';
 import { Testimonial } from '../components/Testimonial';
 import {TestimonialForm} from '../components/TestimonialForm';
+import { Infos } from '../components/Infos';
 
 export const Home = () => {
   return (
@@ -24,23 +24,7 @@ export const Home = () => {
       <div>
         <TestimonialForm />
       </div>
-
-<div className="md:col-span-1 lg:col-span-2 z-10 mt-5 ml-5">
-  <div className="max-w-md bg-white shadow-lg  overflow-hidden">
-
-    <iframe
-      title="map"
-      src="https://maps.google.com/maps?q=manhattan&t=&z=13&ie=UTF8&iwloc=&output=embed"
-      className="h-64 w-full"
-      frameBorder="0"
-      allowFullScreen
-    ></iframe>
-
-    <Schedules /> 
-
-  </div>
-</div>
-
+    <Infos />
     </>
   );
 }

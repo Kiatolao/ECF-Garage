@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate} from 'react-router-dom';
 import { AiOutlineSafetyCertificate } from 'react-icons/ai';
 import { CarFilter } from '../components/CarFilter';
+import { Infos } from '../components/Infos';
 export const Cars = () =>  {
 
   const [cars, setCars] = useState([]);
@@ -54,6 +55,7 @@ export const Cars = () =>  {
     fetchCars();
   }, []);
   return (
+    <>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
     <div className="mb-4">
       <CarFilter onFilterChange={handleFilterChange} />
@@ -94,7 +96,8 @@ export const Cars = () =>  {
       </div>
     ))}
   </div>
-
+  <Infos />
+  </>
   );
 };
 

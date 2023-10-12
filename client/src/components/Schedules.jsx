@@ -17,20 +17,17 @@ export const Schedules = () => {
   
     fetchSchedules();
   }, []);
-  
+
+
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-semibold mb-2">Horaires :</h2>
-      <div className="grid grid-cols-2 items-center">
-        {schedules.map((schedule) => (
-          <div key={schedule.id}>
-            <p className="font-semibold">{schedule.day} :</p>
-            <p>{schedule.openingM.slice(0, 5)}  {schedule.closingM.slice(0, 5)}</p>
-            <p>{schedule.openingA.slice(0, 5)}  {schedule.closingA.slice(0, 5)}</p>
-          </div>
-        ))}
-      </div>
+    <div className="">
+      {schedules.map((schedule) => (
+        <p key={schedule.id}>
+          <span className="font-semibold">{schedule.day} :</span>  {schedule.openingM.slice(0, 5)}-{schedule.closingM.slice(0, 5)} , {schedule.openingA.slice(0, 5)}-{schedule.closingA.slice(0, 5)}
+        </p>
+      ))}
     </div>
   );
+
 };
