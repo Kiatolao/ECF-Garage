@@ -9,16 +9,18 @@ export function Contact() {
   const location = useLocation();
   const objectFromUrl = new URLSearchParams(location.search).get('object');
 
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     lastName: '',
     firstName: '',
     email: '',
     phone: '',
     message: '',
     // recupere l'objet du message dans l'url
-    object: objectFromUrl,
+    object: objectFromUrl || '',
     date: currentDate,
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -104,7 +106,7 @@ export function Contact() {
             type="text"
             id="object"
             name="object"
-            value={objectFromUrl}
+            value={formData.object || ''}
             onChange={handleChange}
             className="w-full border rounded  px-3"/>
         </div>
