@@ -8,7 +8,7 @@ import { BiDirections } from 'react-icons/bi';
 export const Infos = () => {
   return (
     <>
-    <section className="text-dark p-4 mt-10">
+    <section className="text-dark p-4 mt-10 ">
 
     <div className="relative flex py-3 items-center mb-5">
       <div className="flex-grow border-t border-red-500"></div>

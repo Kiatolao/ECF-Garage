@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useContext } from 'react';
-import garageLogo from '../assets/parrot-logo.png';
+import garageLogo from '../assets/parrot-logo2.png';
 import { Link } from 'react-router-dom';
 import  {AuthContext}  from '../context/authContext';
 
@@ -14,12 +14,12 @@ export const Navbar = () => {
     const {currentUser, logout} = useContext(AuthContext)
 
     return (
-      <nav className="bg-white text-dark border-gray-200 shadow-md z-10 absolute w-full">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="https://flowbite.com/" className="flex items-center">
+      <nav className="bg-stone-800 text-white border-gray-200 shadow-md z-10  w-full ">
+        <div className=" flex flex-wrap items-center justify-between mx-auto p-4">
+          <a href="/" className="flex items-center">
             <img
               src={garageLogo}
-              className="h-8 mr-3"
+              className="h-12 mr-3"
               alt="Flowbite Logo"
             />
           </a>
@@ -60,7 +60,7 @@ export const Navbar = () => {
               isMenuOpen ? 'block' : 'hidden'
             } w-full md:flex md:w-auto md:order-1`}
           >
-            <ul className=" flex flex-col font-semibold  p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
+            <ul className=" flex flex-col font-semibold  p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
               <li>
                 <Link to="/">Accueil</Link>
               </li>
