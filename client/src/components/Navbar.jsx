@@ -14,7 +14,7 @@ export const Navbar = () => {
     const {currentUser, logout} = useContext(AuthContext)
 
     return (
-      <nav className="bg-white text-dark border-gray-200 shadow-md z-10">
+      <nav className="bg-white text-dark border-gray-200 shadow-md z-10 absolute w-full">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="https://flowbite.com/" className="flex items-center">
             <img
@@ -60,7 +60,7 @@ export const Navbar = () => {
               isMenuOpen ? 'block' : 'hidden'
             } w-full md:flex md:w-auto md:order-1`}
           >
-            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
+            <ul className=" flex flex-col font-semibold  p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
               <li>
                 <Link to="/">Accueil</Link>
               </li>

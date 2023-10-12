@@ -22,12 +22,22 @@ export const Schedules = () => {
 
   return (
     <div className="">
-      {schedules.map((schedule) => (
-        <p key={schedule.id}>
-          <span className="font-semibold">{schedule.day} :</span>  {schedule.openingM.slice(0, 5)}-{schedule.closingM.slice(0, 5)} , {schedule.openingA.slice(0, 5)}-{schedule.closingA.slice(0, 5)}
-        </p>
-      ))}
-    </div>
+    <table>
+      <thead>
+
+      </thead>
+      <tbody>
+        {schedules.map((schedule) => (
+          <tr key={schedule.id}>
+            <td className='pr-5'>{schedule.day}</td>
+            <td>
+              {schedule.openingM.slice(0, 5)}-{schedule.closingM.slice(0, 5)} , {schedule.openingA.slice(0, 5)}-{schedule.closingA.slice(0, 5)}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
   );
 
 };
