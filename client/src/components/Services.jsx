@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import tools from '../assets/tools.jpg';
+import { AiOutlineRight } from 'react-icons/ai';
+
 
 export const Services = () => {
   const [services, setServices] = useState([]);
@@ -22,13 +23,13 @@ export const Services = () => {
 
   return (
     <div className="p-5">
-      <div className="bg-white   p-4 flex flex-col md:flex-row">
-        <div className="md:w-2/3 p-4">
-          <h2 className="text-2xl font-bold mb-4">Le garage Parrot vous accompagne</h2>
-          <p className="mb-4">
+      <div className="bg-white flex flex-col md:flex-row">
+        <div className="w-[400px] ">
+          <h2 className="text-2xl font-bold mb-5">Un garage à votre service</h2>
+          <p className="mb-4 text-justify">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet incidunt facere excepturi natus fuga itaque saepe tempora facilis odio sit molestias nesciunt eaque magni, beatae error exercitationem blanditiis molestiae nostrum, maxime quis. Cumque voluptas fugit obcaecati vitae eligendi nostrum, fuga enim placeat necessitatibus praesentium ut architecto vero atque iure modi?
           </p>
-          <button className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600">Bouton Rouge</button>
+          <button className="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 mb-5 mt-5">Bouton Rouge <AiOutlineRight size={17} className="inline-block" /></button>
         </div>
 
       </div>
