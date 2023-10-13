@@ -25,12 +25,6 @@ export const Navbar = () => {
           </a>
           <div className="flex md:order-3">
 
-            <span className='mr-2'>{currentUser?.username}</span>
-              {currentUser ? (
-              <span onClick={logout} className='cursor-pointer'>|  Se deconnecter</span> 
-              ) : (
-              <Link to="/login">Login</Link>
-              )}
             
             <button
               onClick={toggleMenu}
@@ -71,7 +65,16 @@ export const Navbar = () => {
                 <Link to="/contact">Contact</Link>
               </li>
               <li>
-                {currentUser &&<Link to="/dashboard">Dashboard</Link>}
+                {currentUser &&<Link to="/dashboard">Tableau de bord</Link>}
+              </li>
+              <li>
+              
+          {currentUser && (
+            <>
+              <span className="mr-2">{currentUser?.username}</span>
+              <span onClick={logout} className="cursor-pointer">| Se déconnecter</span>
+            </>
+          )}
               </li>
 
             </ul>

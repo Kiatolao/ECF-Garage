@@ -16,7 +16,7 @@ const Sidebar = ({ onSelectMenuItem }) => {
   const {currentUser} = useContext(AuthContext)
 
   return (
-    <div className="w-1/4 h-screen bg-stone-50 p-5 z-0 shadow-xl">
+    <div className="w-1/4 h-auto bg-stone-50 p-5 z-0 shadow-xl">
       <h2 className="text-l font-bold mb-4 text-red-700">
           {currentUser?.username} - {currentUser?.role === 'admin' ? 'Administrateur': 
           currentUser?.role === 'staff' ? 'Employé' : currentUser?.role}</h2>

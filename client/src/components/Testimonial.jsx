@@ -32,12 +32,12 @@ export const Testimonial = () => {
   };
 
   return (
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
   {testimonials.filter((testimonial) => testimonial.validated === 1)
     .map((testimonial) => (
       <div
         key={testimonial.id}
-        className="bg-white shadow-lg rounded-lg p-6 mb-4">
+        className="bg-white shadow-md rounded-lg p-6 mb-4">
             
         <p className="font-semibold text-lg mb-2">{testimonial.user}</p>
         <div className="flex space-x-1 mb-2">{renderStars(testimonial.note)}</div>

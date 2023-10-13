@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { AiOutlineRight } from 'react-icons/ai';
+import working from '../assets/working.jpg';
+import working2 from '../assets/working2.jpg';
+import working3 from '../assets/working3.jpg';
+import working4 from '../assets/working4.jpg';
 
 
 export const Services = () => {
   const [services, setServices] = useState([]);
 
-
   useEffect(() => {
-    // fetch des services 
+    // récuperation des services 
     async function fetchServices() {
       try {
         const response = await axios.get('http://localhost:8000/api/services');
@@ -22,25 +25,39 @@ export const Services = () => {
   }, []);
 
   return (
-    <div className="p-5">
-      <div className="bg-white flex flex-col md:flex-row">
-        <div className="w-[400px] ">
-          <h2 className="text-2xl font-bold mb-5">Un garage à votre service</h2>
-          <p className="mb-4 text-justify">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet incidunt facere excepturi natus fuga itaque saepe tempora facilis odio sit molestias nesciunt eaque magni, beatae error exercitationem blanditiis molestiae nostrum, maxime quis. Cumque voluptas fugit obcaecati vitae eligendi nostrum, fuga enim placeat necessitatibus praesentium ut architecto vero atque iure modi?
-          </p>
-          <button className="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 mb-5 mt-5">Bouton Rouge <AiOutlineRight size={17} className="inline-block" /></button>
-        </div>
-
+    <>
+      <div className="p-5 md:w-1/2 lg:w-1/3 xl:w-1/4">
+        <h2 className="text-xl font-bold mb-4">Services proposés par le garage</h2>
+        <ul className="list-disc pl-6">
+          {services.map((service) => (
+            <li key={service.id} className="mb-2">{service.service}</li>
+          ))}
+        </ul>
       </div>
-      <h2 className="text-xl font-bold mb-4">Services proposés par le garage</h2>
-      <ul className="list-disc pl-6">
-        {services.map((service) => (
-          <li key={service.id} className="mb-2">{service.service}</li>
-        ))}
-      </ul>
+      <div className=" flex flex-col md:flex-row bg-neutral-100 p-5 shadow-xl mb-5">
+        <div class="grid grid-cols-2 gap-2 max-w-[600px] mx-auto">
+          <div>
+              <img class="h-auto max-w-full rounded" src={working3} alt=""/>
+          </div>
+          <div>
+              <img class="h-auto max-w-full rounded" src={working} alt=""/>
+          </div>
+          <div>
+              <img class="h-auto max-w-full rounded" src={working2} alt=""/>
+          </div>
+          <div>
+              <img class="h-auto max-w-full rounded" src={working4} alt=""/>
+          </div>
+      </div>
+      <div className="max-w-[400px] mx-auto">
+          <h2 className="text-2xl font-bold mb-5 text-red-600">Un garage à votre service</h2>
+          <p className="mb-4 text-justify">
+            <p>Depuis 2004, notre équipe de professionnels qualifiés assure des réparations de confiance et propose une sélection soignée de véhicules d'occasion de qualité. <br/>Nous offrons un service complet, de la réparation à l'achat, en mettant l'accent sur la satisfaction du client.</p>  <br/> Chez Garage Parrot, la fiabilité, l'expertise et l'engagement sont au cœur de notre approche. Faites confiance à notre garage pour prendre soin de votre véhicule et vous guider dans le choix de votre prochaine voiture.
+          </p>
+        <button className="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 mb-5 mt-5">Bouton Rouge <AiOutlineRight size={17} className="inline-block" /></button>
+      </div>
     </div>
-
+    </>
   );
 };
 
