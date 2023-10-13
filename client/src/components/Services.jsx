@@ -3,7 +3,7 @@ import axios from 'axios';
 import { AiOutlineRight } from 'react-icons/ai';
 import working from '../assets/working.jpg';
 import working2 from '../assets/working2.jpg';
-import working3 from '../assets/working3.jpg';
+import working5 from '../assets/working5.jpg';
 import working4 from '../assets/working4.jpg';
 
 
@@ -34,10 +34,10 @@ export const Services = () => {
           ))}
         </ul>
       </div>
-      <div className=" flex flex-col md:flex-row bg-neutral-100 p-5 shadow-xl mb-5">
-        <div class="grid grid-cols-2 gap-2 max-w-[600px] mx-auto">
+      <div className=" flex flex-col md:flex-row bg-neutral-200 p-3 shadow-md ">
+        <div class="grid grid-cols-2 gap-1 max-w-[600px] mx-auto pt-1">
           <div>
-              <img class="h-auto max-w-full rounded" src={working3} alt=""/>
+              <img class="h-auto max-w-full rounded" src={working5} alt=""/>
           </div>
           <div>
               <img class="h-auto max-w-full rounded" src={working} alt=""/>
