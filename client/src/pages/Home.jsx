@@ -1,6 +1,6 @@
 import React from 'react';
 import garageImage from '../assets/garage-2.png';
-import { Services } from '../components/Services';
+import { Overview } from '../components/Overview';
 import { Testimonial } from '../components/Testimonial';
 import {TestimonialForm} from '../components/TestimonialForm';
 import { Infos } from '../components/Infos';
@@ -11,7 +11,7 @@ export const Home = () => {
     <>
 <div className="relative">
   <img src={garageImage} alt="Garage" className="w-full h-[500px] object-cover" />
-    <div className="absolute inset-0 flex flex-col justify-center items-start bg-black bg-opacity-30 text-white">
+    <div className="absolute inset-0 flex flex-col justify-center items-start bg-black bg-opacity-20 text-white">
       <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl max-w-[450px] ml-10">
         <span className="font-bold">Garage Parrot</span> réparations automobiles de confiance depuis <span className="font-bold">2004</span>
       </h1>
@@ -21,7 +21,7 @@ export const Home = () => {
   </div>
 </div>
     <div>
-      <Services />
+      <Overview />
     </div>
     <div>
       <Testimonial />

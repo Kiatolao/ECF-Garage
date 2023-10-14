@@ -31,12 +31,9 @@ export const getServices = (req, res) => {
     jwt.verify(token, "jwtkey", (err) => {
       if (err) return res.status(403).json("Vous n'êtes pas autorisé à ajouter un service.");
       // attention desc est un mot réservé en SQL et doit être entouré de backticks
-      const q = 'INSERT INTO services (`service`, `desc`) VALUES (?, ?)';
-      const values = [
-        req.body.service,
+      const q = 'INSERT INTO services (`service`) VALUES (?)';
+      const values =req.body.service;
 
-        req.body.desc
-      ];
       db.query(q, values, (err, data) => {
         if (err) {
           return res.status(500).send(err);
@@ -55,10 +52,9 @@ export const getServices = (req, res) => {
       if (err) return res.status(403).json("Vous n'êtes pas autorisé à mettre à jour un service.");
   
       const serviceId = req.params.id;
-      const q = 'UPDATE services SET service = ?, desc = ? WHERE id = ?';
+      const q = 'UPDATE services SET service = ? WHERE id = ?';
       const values = [
         req.body.service,
-        req.body.desc,
         req.params.id
       ];
       db.query(q, values, (err, data) => {
