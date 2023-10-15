@@ -8,6 +8,7 @@ import { Services } from './Services';
 import { GoGear } from 'react-icons/go';
 import garage from '../assets/back.jpg';
 import { Link } from 'react-router-dom';
+import logo2 from '../assets/parrot-logo.png';  
 
 
 export const Overview = () => {
@@ -18,8 +19,13 @@ export const Overview = () => {
 
   return (
     <>
+    <div className="relative flex py-3 items-center p-5 pt-10">
+      <div className="flex-grow border-t border-red-600"></div>
+        <img src={logo2} className="h-[50px]" alt="logo garage parrot" />
+      <div className="flex-grow border-t border-red-600"></div>
+    </div>
     <div className="p-5">
-      <div className=" flex flex-col md:flex-row pt-10 pb-10 ">
+      <div className=" flex flex-col md:flex-row pb-10 ">
         <div className="grid grid-cols-2 gap-1 max-w-[600px] mx-auto pt-1">
           <div>
               <img className="h-auto max-w-full rounded" src={working5} alt=""/>
