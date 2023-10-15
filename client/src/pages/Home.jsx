@@ -26,9 +26,6 @@ export const Home = () => {
     <div>
       <Testimonial />
     </div>
-    <div>
-      <TestimonialForm />
-    </div>
       <Infos />
     </>
   );

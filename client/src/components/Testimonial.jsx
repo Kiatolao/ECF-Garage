@@ -6,6 +6,11 @@ import { LiaUserEditSolid } from 'react-icons/lia';
 
 export const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  const showMoreComments = () => {
+    setVisibleCount(visibleCount + 3);
+  };
 
   useEffect(() => {
   
@@ -40,23 +45,34 @@ export const Testimonial = () => {
       <LiaUserEditSolid size={30} className="text-red-600 mr-1" /> Vos témoignages
     </h1>
   </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-5">
-      {testimonials.filter((testimonial) => testimonial.validated === 1)
-        .map((testimonial) => (
-          <div
-            key={testimonial.id}
-            className="bg-white shadow-md rounded-lg p-3 mb-4">
-            <div className="flex items-center justify-between mb-2 text-2xl">
-              <div className="flex items-center space-x-1">
-                {renderStars(testimonial.note)}
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-5">
+        {testimonials
+          .filter((testimonial) => testimonial.validated === 1)
+          .slice(0, visibleCount)
+          .map((testimonial) => (
+            <div
+              key={testimonial.id}
+              className="bg-white shadow-md rounded-lg p-3 ">
+              <div className="flex items-center justify-between mb-2 text-2xl">
+                <div className="flex items-center space-x-1">
+                  {renderStars(testimonial.note)}
+                </div>
+                <BiSolidQuoteRight className="text-gray-200" />
               </div>
-              <BiSolidQuoteRight className="text-gray-200" />
+              <p className="mt-4">"{testimonial.testimonial}"</p>
+              <p className="font-semibold text-lg mb-2 pt-3 text-red-500">{testimonial.user}</p>
             </div>
-            <p className="mt-4">"{testimonial.testimonial}"</p>
-            <p className="font-semibold text-lg mb-2 pt-3 text-red-500">{testimonial.user}</p>
-          </div>
-        ))}
-    </div>
+          ))}
+      </div>
+      {visibleCount < testimonials.length && (
+        <div className="flex justify-center mb-5">
+          <p
+            onClick={showMoreComments}
+            className="text-red-600 hover:text-red-700 py-2 px-4 font-semibold">
+            Voir plus de commentaires
+          </p>
+        </div>
+      )}
 </>
   );
 };

@@ -4,7 +4,7 @@ import working from '../assets/working.jpg';
 import working2 from '../assets/working2.jpg';
 import working5 from '../assets/working5.jpg';
 import working4 from '../assets/working4.jpg';
-import { Services } from '../components/services/Services';
+import { Services } from './Services';
 import { GoGear } from 'react-icons/go';
 import garage from '../assets/back.jpg';
 
