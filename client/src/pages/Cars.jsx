@@ -14,7 +14,7 @@ export const Cars = () =>  {
     if (!filters) {
 
       filters = {
-        km: [0, 100000],
+        km: [0, 300000],
         price: [0, 50000],
         year: [2000, 2023],
         gearbox: 'Manuelle',
@@ -54,16 +54,18 @@ export const Cars = () =>  {
     }
     fetchCars();
   }, []);
+
   return (
     <>
+     <div className="mb-4">
+        <CarFilter onFilterChange={handleFilterChange} />
+      </div>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
-    <div className="mb-4">
-      <CarFilter onFilterChange={handleFilterChange} />
-    </div>
+
     {filteredCars.map((car) => (
       <div
         key={car.id}
-        className="bg-stone-100 shadow-md rounded-md p-4 hover:border-red-500 border border-transparent cursor-pointer"
+        className="bg-stone-100 shadow-md rounded-md p-4 hover:border-red-500 border cursor-pointer"
         onClick={() => navigate(`/car_detail/${car.id}`)}
       >
         <div className="w-full h-60 overflow-hidden">
