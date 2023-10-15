@@ -42,7 +42,7 @@ export const TestimonialForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-4 p-4 border rounded-lg shadow-md">
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-4 p-4 border rounded-lg shadow-inner">
       <div className="mb-4">
         <label htmlFor="user" className="block text-gray-700">Nom :</label>
         <input

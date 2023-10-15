@@ -24,7 +24,7 @@ export const Services = () => {
         <div className="p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {services.map((service) => (
             <div key={service.id} className="flex items-center text-lg text-white">
-            <BiChevronsRight size={25} className="" />
+            <BiChevronsRight size={25} className="text-red-500" />
             <span>{service.service}</span>
             </div>
         ))}
