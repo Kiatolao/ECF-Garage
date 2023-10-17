@@ -1,22 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 export const CarFilter = ({ onFilterChange }) => {
-
+  
+    // valeurs par défaut
     const defaultKmRange = [0, 300000];
     const defaultPriceRange = [0, 50000];
     const defaultYearRange = [2000, 2023];
     const defaultGearbox = 'Manuelle';
     const defaultFuel = 'Essence';
 
+    // declaration des states
     const [kmRange, setKmRange] = useState(defaultKmRange);
     const [priceRange, setPriceRange] = useState(defaultPriceRange);
     const [yearRange, setYearRange] = useState(defaultYearRange);
     const [selectedGearbox, setSelectedGearbox] = useState(defaultGearbox);
     const [selectedFuel, setSelectedFuel] = useState(defaultFuel);
 
-    const handleApplyFilter = () => {
+    // ajout de usecallback pour optimiser les performances
+    const handleApplyFilter = useCallback(() => {
         const filters = {
         km: kmRange,
         price: priceRange,
@@ -25,12 +28,26 @@ export const CarFilter = ({ onFilterChange }) => {
         fuel: selectedFuel,
         };
         onFilterChange(filters);
+      }, [kmRange, priceRange, yearRange, selectedGearbox, selectedFuel, onFilterChange]);
+
+    // réinitialisation des filtres
+    const handleResetFilter = () => {
+      setKmRange([0, 300000]);
+      setPriceRange([0, 50000]);
+      setYearRange([2000, 2023]);
+      setSelectedGearbox('Manuelle');
+      setSelectedFuel('Essence');
     };
 
-  return (
-    <div className="p-5">
-      <h3 className="text-lg font-semibold mb-3">Filtrer par :</h3>
+    // application des filtres
+    useEffect(() => {
+      handleApplyFilter();
+    }, [handleApplyFilter]);
 
+  return (
+    <div className="p-5 shadow w-full">
+      <h3 className="text-lg font-semibold mb-3">Filtrer par :</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 ">
       <div className="mb-4">
         <p>Kilomètres</p>
         <Slider
@@ -72,6 +89,9 @@ export const CarFilter = ({ onFilterChange }) => {
           {yearRange[0]} - {yearRange[1]}
         </p>
       </div>
+      </div>
+      <div className="mb-2 mt-2 border-b border-gray-300"></div>
+      <div className="grid grid-cols-1 sm:grid-cols-2">
       <div className="mb-4">
         <p>Boîte de vitesse</p>
         <div>
@@ -138,13 +158,16 @@ export const CarFilter = ({ onFilterChange }) => {
           </label>
         </div>
       </div>
-
+      </div>
+      <div className="mb-4  border-b border-gray-300"></div>
       <button
-        className="bg-blue-500 text-white rounded p-2"
-        onClick={handleApplyFilter}>
-        Appliquer le filtre
-      </button>
-    </div>
+      className="bg-gray-300 text-gray-700 rounded p-2 hover:bg-gray-400 ml-4"
+      onClick={handleResetFilter}
+    >
+      Réinitialiser
+    </button>
+      </div>
+
   );
 };
 
