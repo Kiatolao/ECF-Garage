@@ -9,6 +9,7 @@ export const Cars = () =>  {
   const [cars, setCars] = useState([]);
   const navigate = useNavigate();
   const [filteredCars, setFilteredCars] = useState([]); 
+  const [filterVisible, setFilterVisible] = useState(false);
 
   const handleFilterChange = (filters) => {
     if (!filters) {
@@ -55,12 +56,21 @@ export const Cars = () =>  {
     fetchCars();
   }, []);
 
+  const toggleFilterVisibility = () => {
+    setFilterVisible(!filterVisible);
+  };
+
   return (
     <>
-     <div className="mb-4">
-        <CarFilter onFilterChange={handleFilterChange} />
-      </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
+      <button onClick={toggleFilterVisibility}>Toggle Filter</button>
+
+<div className={`filter-container ${filterVisible ? 'visible' : 'hidden'}`}>
+  <div className="mb-4">
+    <CarFilter onFilterChange={handleFilterChange} />
+  </div>
+</div>
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
 
     {filteredCars.map((car) => (
       <div
