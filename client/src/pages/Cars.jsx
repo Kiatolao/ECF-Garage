@@ -84,14 +84,14 @@ export const Cars = () =>  {
       </div>
     </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4 ">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4 ">
         {filteredCars.map((car) => (
           <div
             key={car.id}
-            className="bg-stone-100 shadow-md rounded-md p-4 hover:border-red-500 border cursor-pointer "
+            className="bg-stone-100 shadow-md rounded-md p-4 hover:border-neutral-400 border cursor-pointer hover:shadow-xl transition duration-300 ease-in-out "
             onClick={() => navigate(`/car_detail/${car.id}`)}
           >
-            <div className="w-full h-48 md:h-60 overflow-hidden">
+            <div className="w-full  h-40 overflow-hidden">
               <img src={`/upload/${car?.image}`} alt={car.title} className="w-full h-full object-cover" />
             </div>
 
