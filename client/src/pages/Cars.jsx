@@ -65,7 +65,7 @@ export const Cars = () =>  {
 
   return (
     <>
-    <div className="relative flex py-3 items-center pl-5 pr-5 pt-5">
+    <div className="relative flex py-3 items-center pl-5 pr-5 mt-20">
       <div className="flex-grow border-t border-red-600"></div>
         <img src={logo2} className="h-[50px]" alt="logo garage parrot" />
       <div className="flex-grow border-t border-red-600"></div>
@@ -88,7 +88,7 @@ export const Cars = () =>  {
         {filteredCars.map((car) => (
           <div
             key={car.id}
-            className="bg-stone-100 shadow-md rounded-md p-4 hover:border-neutral-400 border cursor-pointer hover:shadow-xl transition duration-300 ease-in-out "
+            className=" shadow-md rounded-md p-4 hover:border-neutral-300 border cursor-pointer hover:shadow-2xl transition duration-300 ease-in-out hover:scale-105"
             onClick={() => navigate(`/car_detail/${car.id}`)}
           >
             <div className="w-full  h-40 overflow-hidden">
@@ -110,14 +110,19 @@ export const Cars = () =>  {
             <div className="mb-2 mt-2 border-b border-gray-300"></div>
             <div className="flex justify-between items-center">
               <button
-                className="flex items-center border border-green-600 text-green-600 text-sm rounded-md px-1 focus:outline-none"
+                className="flex items-center border border-red-700 text-red-700 text-sm rounded-md px-1 focus:outline-none"
                 disabled
               >
                 <AiOutlineSafetyCertificate className='mr-1'/> Garantie {car.warrant} mois
               </button>
             </div>
             <div className="mb-4 mt-2 border-b border-gray-300"></div>
-            <p className="text-lg font-semibold mt-2">{car.price} €</p>
+            <div className="flex items-center justify-between">
+              <p className="text-lg font-semibold mt-2">{car.price} €</p>
+              <button className="text-sm  focus:outline border py-2 px-2 border-neutral-300">
+                Voir détails
+              </button>
+            </div>
           </div>
         ))}
       </div>

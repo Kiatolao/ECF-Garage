@@ -42,7 +42,7 @@ export const Testimonial = () => {
   <>
   <div className="mt-10 mb-3">
     <h1 className="text-2xl text-red-600 flex justify-center items-center font-semibold">
-      <LiaUserEditSolid size={30} className="text-red-600 mr-1" /> Vos témoignages
+      <LiaUserEditSolid size={30} className="text-red-700 mr-1" /> Vos témoignages
     </h1>
   </div>
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-5">
@@ -60,7 +60,7 @@ export const Testimonial = () => {
                 <BiSolidQuoteRight className="text-gray-200" />
               </div>
               <p className="mt-4">"{testimonial.testimonial}"</p>
-              <p className="font-semibold text-lg mb-2 pt-3 text-red-500">{testimonial.user}</p>
+              <p className="font-semibold text-lg mb-2 pt-3 text-red-700">{testimonial.user}</p>
             </div>
           ))}
       </div>

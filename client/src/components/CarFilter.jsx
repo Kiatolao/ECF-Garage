@@ -50,7 +50,6 @@ export const CarFilter = ({ onFilterChange }) => {
 
   return (
     <div className="p-5 shadow w-full">
-      <h3 className="text-lg font-semibold mb-3">Filtrer par :</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2">
         <div className="mb-4">
           <p>Kilomètres</p>

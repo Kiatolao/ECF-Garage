@@ -1,6 +1,6 @@
 import React, { useState} from 'react'
-import Sidebar from '../dashboard/menu/Sidebar'
-import Content from '../dashboard/menu/Content'
+import {Sidebar} from '../dashboard/menu/Sidebar'
+import {Content} from '../dashboard/menu/Content'
 
 export const Dashboard = () => {
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
@@ -10,9 +10,9 @@ export const Dashboard = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex mt-20">
       <Sidebar onSelectMenuItem={onSelectMenuItem} />
-      <Content selectedMenuItem={selectedMenuItem} />
+      <Content selectedMenuItem={selectedMenuItem} className="h-full" />
     </div>
   );
 };

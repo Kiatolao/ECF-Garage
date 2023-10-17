@@ -53,7 +53,7 @@ export function Contact() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 ">
+    <div className="max-w-md mx-auto mt-20 ">
       <h2 className="text-2xl font-bold mb-4">Contactez-nous</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

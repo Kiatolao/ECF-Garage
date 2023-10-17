@@ -8,7 +8,7 @@ import {TestimonialsValidation} from '../customers/testimonial/TestimonialsValid
 import { TestimonialAdd } from '../customers/testimonial/TestimonialAdd';
 import { UpdateCar } from '../cars/UpdateCar';
 
-const Content = ({ selectedMenuItem }) => {
+export const Content = ({ selectedMenuItem }) => {
   const renderContent = () => {
     switch (selectedMenuItem) {
       case 'ajouter-employe':
@@ -34,10 +34,10 @@ const Content = ({ selectedMenuItem }) => {
   };
 
   return (
-    <div className="w-3/4 h-screen p-4 bg-white">
+    <div className="w-3/4 h-screen p-4">
       {renderContent()}
     </div>
   );
 };
 
-export default Content;
+

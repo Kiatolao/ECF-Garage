@@ -14,12 +14,12 @@ export const Navbar = () => {
     const {currentUser, logout} = useContext(AuthContext)
 
     return (
-      <nav className="bg-stone-800 text-white border-gray-200 shadow-md z-10  w-full ">
+      <nav className="bg-stone-800 text-white border-gray-200 shadow-xl z-10  w-full fixed opacity-95">
         <div className=" flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center">
             <img
               src={garageLogo}
-              className="h-12 mr-3"
+              className="h-8 mr-3"
               alt="Flowbite Logo"
             />
           </a>

@@ -33,7 +33,7 @@ export const CarDetail = () => {
 
   return (
   <>
-  <div className="bg-stone-100 container mx-auto mt-6 p-4 shadow">
+  <div className="bg-stone container mx-auto p-4 shadow mt-20">
     <div className="md:flex md:space-x-4">
       <div className="md:w-1/2">
         <div className="h-80 mx-auto mb-4">
@@ -47,21 +47,21 @@ export const CarDetail = () => {
       <div className="md:w-1/2">
 
 
-        <div className="bg-stone-100">
+        <div className=" border shadow-inner h-80">
           <h1 className="text-xl font-semibold p-2">{car.title}</h1>
           <div className="mb-2 mt-2 border-b border-gray-300"></div>   
           <div className="p-4 rounded space-y-2">
-            <p className="bg-stone-200 text-lg text-gray-800">Année : {car.year}</p>
+            <p className=" text-lg text-gray-800">Année : {car.year}</p>
             <p className="text-lg text-gray-800">Kilométrage : {car.km} km</p>
-            <p className="bg-stone-200 text-lg text-gray-800">Boîte de vitesse : {car.gearbox}</p>
+            <p className="text-lg text-gray-800">Boîte de vitesse : {car.gearbox}</p>
             <p className="text-lg text-gray-800">Carburant : {car.fuel}</p>
             <div className="mb-2 mt-2 border-b border-gray-300"></div>
             <div className="flex items-center mb-1">
           <VscWorkspaceTrusted size={20} className="mr-2 text-green-500" />
           <p className="text-lg text-gray-800">Garantie : {car.warrant} mois</p>
         </div>
-            <div className="mb-2 mt-2 border-b border-gray-300"></div>
-            <p className="text-xl pt-3 font-bold text-gray-800">Prix : {car.price} €</p>
+            <div className="mb-2  border-b border-gray-300"></div>
+            <p className="text-xl  font-bold text-gray-800">Prix : {car.price} €</p>
           </div>
         </div>
       </div>
