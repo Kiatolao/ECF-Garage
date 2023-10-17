@@ -13,7 +13,7 @@ export const Infos = () => {
 
     <div className="relative flex py-3 items-center mb-5">
       <div className="flex-grow border-t border-red-600"></div>
-      <Link to="/contact" className="flex-shrink mx-4 text-gray-400 bg-red-600 text-white py-2 px-4 inline-block rounded-md">
+      <Link to="/contact" className="flex-shrink mx-4 bg-red-600 text-white py-2 px-4 inline-block rounded-md">
           Contactez-nous
       </Link>
       <div className="flex-grow border-t border-red-600"></div>

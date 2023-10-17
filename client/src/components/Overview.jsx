@@ -57,7 +57,8 @@ export const Overview = () => {
     </div>
     </div>
     <div style={divStyle} className="p-5 bg-no-repeat bg-center bg-cover">
-    <h1 className=" flex justify-center items-center font-bold mt-5 mx-auto text-2xl text-white"><GoGear className="mr-2" /> Nos services</h1>
+    <h1 className=" flex justify-center items-center font-bold mt-5 mx-auto text-2xl text-white">
+      <GoGear className="mr-2" /> Nos services</h1>
       <div className="flex flex-wrap justify-center mb-5 mx-auto">
         <Services className="" />
       </div>

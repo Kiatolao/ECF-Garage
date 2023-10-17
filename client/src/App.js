@@ -6,7 +6,7 @@ import {Login} from './pages/Login'
 import PrivateRoute from './components/PrivateRoute'
 import { Dashboard } from './pages/Dashboard';
 import {Navbar} from './components/Navbar';
-import {Footer} from './components/Footer';
+
 import { Cars } from './pages/Cars';
 import { CarDetail } from './pages/CarDetail';
 
@@ -29,7 +29,7 @@ function App() {
                 <Route element={<Contact />} path="/contact"/>
               </Routes>
             </div>
-          <Footer />
+
         </div>
       </Router>
   );
