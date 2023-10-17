@@ -28,12 +28,13 @@ export const CarFilter = ({ onFilterChange }) => {
     };
 
   return (
-    <div>
+    <div className="p-5">
       <h3 className="text-lg font-semibold mb-3">Filtrer par :</h3>
 
       <div className="mb-4">
         <p>Kilomètres</p>
         <Slider
+          className="max-w-sm"
           range
           min={0}
           max={300000}
@@ -47,6 +48,7 @@ export const CarFilter = ({ onFilterChange }) => {
       <div className="mb-4">
         <p>Prix (en euros)</p>
         <Slider
+          className="max-w-sm"
           range
           min={0}
           max={50000}
@@ -60,6 +62,7 @@ export const CarFilter = ({ onFilterChange }) => {
       <div className="mb-4">
         <p>Année</p>
         <Slider
+          className="max-w-sm"
           range
           min={2000}
           max={2023}
@@ -74,6 +77,7 @@ export const CarFilter = ({ onFilterChange }) => {
         <div>
         <label>
             <input
+              className="mr-2"
               type="radio"
               value="Manuelle"
               checked={selectedGearbox === 'Manuelle'}
@@ -82,6 +86,7 @@ export const CarFilter = ({ onFilterChange }) => {
           </label>
           <label>
             <input
+              className="mr-2 ml-2"
               type="radio"
               value="Automatique"
               checked={selectedGearbox === 'Automatique'}
@@ -96,6 +101,7 @@ export const CarFilter = ({ onFilterChange }) => {
         <div>
           <label>
             <input
+              className="mr-2 ml-2"
               type="radio"
               value="Essence"
               checked={selectedFuel === 'Essence'}
@@ -104,6 +110,7 @@ export const CarFilter = ({ onFilterChange }) => {
           </label>
           <label>
             <input
+              className="mr-2 ml-2"
               type="radio"
               value="Diesel"
               checked={selectedFuel === 'Diesel'}
@@ -112,6 +119,7 @@ export const CarFilter = ({ onFilterChange }) => {
           </label>
           <label>
             <input
+              className="mr-2 ml-2"
               type="radio"
               value="Hybride"
               checked={selectedFuel === 'Hybride'}
@@ -120,6 +128,7 @@ export const CarFilter = ({ onFilterChange }) => {
           </label>
           <label>
             <input
+              className="mr-2 ml-2"
               type="radio"
               value="Electrique"
               checked={selectedFuel === 'Electrique'}

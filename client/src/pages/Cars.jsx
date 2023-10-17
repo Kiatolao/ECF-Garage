@@ -62,7 +62,7 @@ export const Cars = () =>  {
 
   return (
     <>
-      <button onClick={toggleFilterVisibility}>Toggle Filter</button>
+<button onClick={toggleFilterVisibility}>Filtrer</button>
 
 <div className={`filter-container ${filterVisible ? 'visible' : 'hidden'}`}>
   <div className="mb-4">
