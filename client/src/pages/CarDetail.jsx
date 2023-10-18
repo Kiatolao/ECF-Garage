@@ -33,10 +33,10 @@ export const CarDetail = () => {
 
   return (
   <>
-  <div className="bg-stone container mx-auto p-4 shadow mt-20">
+  <div className="bg-stone container mx-auto mt-20">
     <div className="md:flex md:space-x-4">
       <div className="md:w-1/2">
-        <div className="h-80 mx-auto mb-4">
+        <div className="h-80 mx-auto mb-4 shadow-lg">
           <img
             src={`/upload/${car?.image}`}
             alt={car.title}
@@ -47,9 +47,9 @@ export const CarDetail = () => {
       <div className="md:w-1/2">
 
 
-        <div className=" border shadow-inner h-80">
-          <h1 className="text-xl font-semibold p-2">{car.title}</h1>
-          <div className="mb-2 mt-2 border-b border-gray-300"></div>   
+        <div className=" border  h-80 shadow">
+          <h1 className="text-xl font-semibold p-3 bg-neutral-200">{car.title}</h1>
+          <div className="mb-2  border-b border-gray-300"></div>   
           <div className="p-4 rounded space-y-2">
             <p className=" text-lg text-gray-800">Année : {car.year}</p>
             <p className="text-lg text-gray-800">Kilométrage : {car.km} km</p>
@@ -67,8 +67,8 @@ export const CarDetail = () => {
       </div>
     </div>
   </div>
-   <div className="container mx-auto mt-6">
-      <h2 className="p-2 bg-stone-100 font-semibold text-xl shadow">Information générales</h2>
+   <div className="container mx-auto mt-4">
+      <h2 className="p-2 bg-neutral-200 font-semibold text-xl shadow">Information générales</h2>
       <p className="text-gray-700 mt-5">{car.desc}</p>
       <button onClick={handleContactClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
           Contactez-nous à propos de cette voiture

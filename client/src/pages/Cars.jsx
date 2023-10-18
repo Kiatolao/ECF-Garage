@@ -5,7 +5,7 @@ import { AiOutlineSafetyCertificate } from 'react-icons/ai';
 import { BsFilter } from 'react-icons/bs';
 import { CarFilter } from '../components/CarFilter';
 import { Infos } from '../components/Infos';
-import logo2 from '../assets/parrot-logo.png';
+
 
 export const Cars = () =>  {
 
@@ -65,13 +65,8 @@ export const Cars = () =>  {
 
   return (
     <>
-    <div className="relative flex py-3 items-center pl-5 pr-5 mt-20">
-      <div className="flex-grow border-t border-red-600"></div>
-        <img src={logo2} className="h-[50px]" alt="logo garage parrot" />
-      <div className="flex-grow border-t border-red-600"></div>
-    </div>
 
-    <div className="pl-5 pr-5">
+    <div className="pl-5 pr-5 mt-20">
     <button 
       className="font-bold py-1 px-4 rounded flex items-center border-neutral-700 border focus:outline-none"
       onClick={toggleFilterVisibility}>  Filtrer <BsFilter size={25} className="ml-2" />
