@@ -5,6 +5,7 @@ import { AiOutlineSafetyCertificate } from 'react-icons/ai';
 import { BsFilter } from 'react-icons/bs';
 import { CarFilter } from '../components/CarFilter';
 import { Infos } from '../components/Infos';
+import layer from '../assets/layer.jpg';
 
 
 export const Cars = () =>  {
@@ -65,8 +66,8 @@ export const Cars = () =>  {
 
   return (
     <>
-
-    <div className="pl-5 pr-5 mt-20">
+  <img src={layer} alt="Moteur" className="h-[100px] w-full bg-cover shadow-xl"/>
+    <div className="pl-5 pr-5 mt-5">
     <button 
       className="font-bold py-1 px-4 rounded flex items-center border-neutral-700 border focus:outline-none"
       onClick={toggleFilterVisibility}>  Filtrer <BsFilter size={25} className="ml-2" />

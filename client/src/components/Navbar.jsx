@@ -1,27 +1,46 @@
 import React from 'react'
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import garageLogo from '../assets/parrot-logo2.png';
 import { Link } from 'react-router-dom';
 import  {AuthContext}  from '../context/authContext';
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isOnTop, setIsOnTop] = useState(true);
 
     const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
     };
     
-    const {currentUser, logout} = useContext(AuthContext)
+    const { currentUser, logout } = useContext(AuthContext);
+
+    useEffect(() => {
+      const handleScroll = () => {
+        const isScrolledToTop = window.scrollY === 0;
+        setIsOnTop(isScrolledToTop);
+      };
+  
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, []);
 
     return (
-      <nav className="bg-stone-800 text-white border-gray-200 shadow-xl z-10  w-full fixed opacity-95">
+      <nav
+      className={`${
+      isOnTop ? 'bg-transparent' : 'bg-stone-800 opacity-90'
+      } text-white border-gray-200  z-10 w-full fixed transition-all duration-300`}
+    >
         <div className=" flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center">
-            <img
-              src={garageLogo}
-              className="h-8 mr-3"
-              alt="Flowbite Logo"
-            />
+          <img
+            src={garageLogo}
+            className={`h-8 ml-5 transition-all duration-500 ${
+              isOnTop ? 'scale-150' : 'scale-100'
+            }`}
+            alt="Parrot Logo"
+          />
           </a>
           <div className="flex md:order-3">
 

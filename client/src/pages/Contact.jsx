@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import layer from '../assets/layer.jpg';
 
 export function Contact() {
 
@@ -53,6 +54,8 @@ export function Contact() {
   };
 
   return (
+    <>
+    <img src={layer} alt="Moteur" className="h-[140px] w-full bg-cover shadow-xl"/>
     <div className="max-w-md mx-auto mt-20 ">
       <h2 className="text-2xl font-bold mb-4">Contactez-nous</h2>
       <form onSubmit={handleSubmit}>
@@ -129,6 +132,7 @@ export function Contact() {
         </button>
       </form>
     </div>
+    </>
   );
 }
 

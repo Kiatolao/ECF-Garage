@@ -7,12 +7,16 @@ import { AiOutlineRight } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
 export const Home = () => {
+  const divStyle = {
+    backgroundImage: `url(${garageImage})`,
+    backgroundAttachment: 'fixed', 
+  };
   return (
     <>
-<div className="relative">
-  <img src={garageImage} alt="Garage" className="w-full h-[500px] object-cover" />
+<div style={divStyle} className="p-5 bg-no-repeat bg-center bg-cover h-screen">
+
     <div className="absolute inset-0 flex flex-col justify-center items-start bg-black bg-opacity-20 text-white">
-      <div className="max-w-[500px] ml-10">
+      <div className="max-w-[500px] ml-10 mt-20">
       <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl  ">
         <span className="font-bold">Garage Parrot</span> réparations automobiles de confiance depuis <span className="font-bold">2004</span>
       </h1>
