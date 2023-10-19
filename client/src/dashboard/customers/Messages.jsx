@@ -33,7 +33,7 @@ export const Messages= () => {
   
   return (
     <div className="max-w-xl">
-      <h2 className="text-2xl font-bold mb-4">Liste des Messages</h2>
+      <h2 className="text-xl font-bold mb-4">Liste des Messages</h2>
       <ul>
         {messages.map((message) => (
           <li key={message.id} className="mb-4 p-4 border rounded shadow">

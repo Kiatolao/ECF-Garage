@@ -55,7 +55,7 @@ export const ScheduleEditor = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Liste des horaires</h2>
+      <h2 className="text-xl font-bold mb-4">Liste des horaires</h2>
       <table className="min-w-full border-collapse">
         <thead>
           <tr className="bg-gray-100">
