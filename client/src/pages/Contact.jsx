@@ -55,8 +55,11 @@ export function Contact() {
 
   return (
     <>
-    <img src={layer} alt="Moteur" className="h-[140px] w-full bg-cover shadow-xl"/>
-    <div className="max-w-md mx-auto mt-20 ">
+    <div>
+      <img src={layer} alt="Moteur" className="h-[80px] w-full bg-cover shadow-xl bg-opacity-80"/>
+      <div className="flex-grow border-t border-black"></div>
+    </div>
+    <div className="max-w-md mx-auto mt-5 ">
       <h2 className="text-2xl font-bold mb-4">Contactez-nous</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

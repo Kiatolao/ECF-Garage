@@ -34,8 +34,12 @@ export const CarDetail = () => {
 
   return (
   <>
-  <img src={layer} alt="Moteur" className="h-[100px] w-full bg-cover shadow-xl"/>
-  <div className="bg-stone container mx-auto mt-20">
+  <div>
+    <img src={layer} alt="Moteur" className="h-[80px] w-full bg-cover shadow-xl bg-opacity-80"/>
+    <div className="flex-grow border-t border-black"></div>
+  </div>
+
+  <div className="bg-stone container mx-auto mt-5">
     <div className="md:flex md:space-x-4">
       <div className="md:w-1/2">
         <div className="h-80 mx-auto mb-4 shadow-lg">

@@ -66,7 +66,11 @@ export const Cars = () =>  {
 
   return (
     <>
-  <img src={layer} alt="Moteur" className="h-[100px] w-full bg-cover shadow-xl"/>
+    <div>
+      <img src={layer} alt="Moteur" className="h-[80px] w-full bg-cover shadow-xl bg-opacity-80"/>
+      <div className="flex-grow border-t border-black"></div>
+    </div>
+
     <div className="pl-5 pr-5 mt-5">
     <button 
       className="font-bold py-1 px-4 rounded flex items-center border-neutral-700 border focus:outline-none"

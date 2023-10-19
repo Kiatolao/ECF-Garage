@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from 'react';
 import garageLogo from '../assets/parrot-logo2.png';
 import { Link } from 'react-router-dom';
 import  {AuthContext}  from '../context/authContext';
+import '../index.css';
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,7 +38,7 @@ export const Navbar = () => {
           <img
             src={garageLogo}
             className={`h-8 ml-5 transition-all duration-500 ${
-              isOnTop ? 'scale-150' : 'scale-100'
+              isOnTop ? 'scale-150 mt-2' : 'scale-100'
             }`}
             alt="Parrot Logo"
           />
@@ -73,18 +74,18 @@ export const Navbar = () => {
               isMenuOpen ? 'block' : 'hidden'
             } w-full md:flex md:w-auto md:order-1`}
           >
-            <ul className=" flex flex-col font-semibold  p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
+            <ul className=" flex flex-col  p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
               <li>
-                <Link to="/">Accueil</Link>
+                <Link className="font-semibold" to="/">Accueil</Link>
               </li>
               <li>
-                <Link to="/cars">Occasions</Link>
+                <Link className="font-semibold" to="/cars">Occasions</Link>
               </li>
               <li>
-                <Link to="/contact">Contact</Link>
+                <Link className="font-semibold" to="/contact">Contact</Link>
               </li>
               <li>
-                {currentUser &&<Link to="/dashboard">Tableau de bord</Link>}
+                {currentUser &&<Link className="font-bold"  to="/dashboard">Tableau de bord</Link>}
               </li>
               <li>
               

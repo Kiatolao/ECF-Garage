@@ -12,8 +12,11 @@ export const Dashboard = () => {
 
   return (
     <>
-  <img src={layer} alt="Moteur" className="h-[140px] w-full bg-cover shadow-xl"/>
-    <div className="flex mt-20">
+    <div>
+      <img src={layer} alt="Moteur" className="h-[80px] w-full bg-cover shadow-xl bg-opacity-80"/>
+      <div className="flex-grow border-t border-black"></div>
+    </div>
+    <div className="flex mt-5">
       <Sidebar onSelectMenuItem={onSelectMenuItem} />
       <Content selectedMenuItem={selectedMenuItem} className="h-full" />
     </div>
