@@ -14,7 +14,6 @@ export const Home = () => {
   return (
     <>
 <div style={divStyle} className="p-5 bg-no-repeat bg-center bg-cover h-screen">
-
     <div className="absolute inset-0 flex flex-col justify-center items-start bg-black bg-opacity-20 text-white">
       <div className="max-w-[500px] ml-10 mt-20">
       <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl  ">
