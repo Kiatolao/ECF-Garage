@@ -20,11 +20,11 @@ export const EditCarModal = ({ car, isOpen, onClose, onUpdate }) => {
   };
 
   return (
-    <div className={`fixed mt-20 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex overflow-y-auto items-center justify-center ${isOpen ? '' : 'hidden'} z-100`}>
-      <div className="bg-white p-6 rounded-lg shadow-lg ">
+    <div className={`modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex overflow-y-auto items-center justify-center ${isOpen ? '' : 'hidden'} modal-scroll`}>
+      <div className="modal-content bg-white p-6 rounded-lg shadow-lg"> 
         <h2 className="text-xl font-semibold mb-4">Modifier la Voiture</h2>
         <form onSubmit={handleSubmit}>
-
+          <div className="modal-body max-h-80vh">
           <div className="mb-4">
           <label htmlFor="file" className="block mb-2">Image de la Voiture</label>
           <input
@@ -138,7 +138,7 @@ export const EditCarModal = ({ car, isOpen, onClose, onUpdate }) => {
             className="border border-gray-400 w-full"
           />
         </div>
-
+      </div>
           <div className="mb-4">
             <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
               Enregistrer les modifications

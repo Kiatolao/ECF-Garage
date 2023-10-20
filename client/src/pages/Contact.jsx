@@ -3,11 +3,12 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import layer from '../assets/layer.jpg';
 import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import logo2 from '../assets/parrot-logo.png';
 
 export function Contact() {
 
   const currentDate = new Date();
-  // récupération de l'objet du message dans l'url
+  // récupération de l'objet du message dans l'url (depuis cardetail)
   const location = useLocation();
   const objectFromUrl = new URLSearchParams(location.search).get('object');
 
@@ -56,9 +57,14 @@ export function Contact() {
 
   return (
     <>
-        <div>
+    <div>
     <img src={layer} alt="Moteur" className="h-[80px] w-full bg-cover shadow-xl bg-opacity-80"/>
       <div className="flex-grow border-t border-black"></div>
+    </div>
+    <div className="relative flex py-3 items-center p-5 pt-5">
+      <div className="flex-grow border-t border-red-700"></div>
+        <img src={logo2} className="h-[50px]" alt="logo garage parrot" />
+      <div className="flex-grow border-t border-red-700"></div>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-5 p-5">
       <div>
@@ -132,7 +138,7 @@ export function Contact() {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 mb-4 rounded  hover:bg-blue-600">
+          className="bg-red-700 text-white py-2 px-4 mb-4 rounded  hover:bg-red-800 w-full">
           Envoyer
         </button>
       </form>

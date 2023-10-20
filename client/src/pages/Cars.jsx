@@ -6,6 +6,7 @@ import { BsFilter } from 'react-icons/bs';
 import { CarFilter } from '../components/CarFilter';
 import { Infos } from '../components/Infos';
 import layer from '../assets/layer.jpg';
+import logo2 from '../assets/parrot-logo.png';
 
 
 export const Cars = () =>  {
@@ -70,8 +71,12 @@ export const Cars = () =>  {
       <img src={layer} alt="Moteur" className="h-[80px] w-full bg-cover shadow-xl bg-opacity-80"/>
       <div className="flex-grow border-t border-black"></div>
     </div>
-
-    <div className="pl-5 pr-5 mt-5">
+    <div className="relative flex py-3 items-center p-5 pt-5">
+      <div className="flex-grow border-t border-red-700"></div>
+        <img src={logo2} className="h-[50px]" alt="logo garage parrot" />
+      <div className="flex-grow border-t border-red-700"></div>
+    </div>
+    <div className="pl-5 pr-5 ">
     <button 
       className="font-bold py-1 px-4 rounded flex items-center border-neutral-700 border focus:outline-none"
       onClick={toggleFilterVisibility}>  Filtrer <BsFilter size={25} className="ml-2" />

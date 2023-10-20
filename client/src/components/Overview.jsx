@@ -50,7 +50,7 @@ export const Overview = () => {
             Chez Garage Parrot, la fiabilité, l'expertise et l'engagement sont au cœur de notre approche. Faites confiance à notre garage pour prendre soin de votre véhicule et vous guider dans le choix de votre prochaine voiture.
           </p>
         <Link to="/contact">
-        <button className="bg-red-700 text-white py-2 px-4 rounded hover:bg-red-800 mb-5 mt-5">Prendre rendez-vous <AiOutlineRight size={17} className="inline-block" />
+        <button className="bg-red-700 text-white py-2 px-4 rounded hover:bg-red-800 mb-5 mt-5 shadow-md">Prendre rendez-vous <AiOutlineRight size={17} className="inline-block" />
         </button>
         </Link>
       </div>

@@ -32,11 +32,11 @@ export const Messages= () => {
   };
   
   return (
-    <div className="max-w-xl">
+    <div className="">
       <h2 className="text-xl font-bold mb-4">Liste des Messages</h2>
       <ul>
         {messages.map((message) => (
-          <li key={message.id} className="mb-4 p-4 border rounded shadow">
+          <li key={message.id} className="mb-4 p-4 border rounded shadow w-full">
             <div>{message.firstName} - {message.lastName}</div>
             <div>{message.email}</div>
             <div className="font-semibold text-lg">{message.object}</div>

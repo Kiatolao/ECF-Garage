@@ -34,9 +34,9 @@ export const Content = ({ selectedMenuItem }) => {
   };
 
   return (
-    <div className="w-3/4 h-screen p-4">
+    <>
       {renderContent()}
-    </div>
+      </>
   );
 };
 

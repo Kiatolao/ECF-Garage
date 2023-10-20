@@ -39,10 +39,10 @@ export const Login = () => {
   <>  
     <div>
       <img src={layer} alt="Moteur" className="h-[80px] w-full bg-cover shadow-xl bg-opacity-80"/>
-      <div className="flex-grow border-t border-black"></div>
+      <div className="border-t border-black"></div>
     </div>
 
-    <div className="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8">
+    <div className="flex  flex-col justify-center px-6 py-6 lg:px-8 mt-10">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img className="mx-auto h-10 w-auto" src={garageLogo} alt="Your Company"/>
         <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Connexion au compte</h2>
