@@ -50,9 +50,9 @@ export const CarDetail = () => {
           />
         </div>
       </div>
-      <div className="md:w-1/4">
-        <div className=" border border-neutral-300 h-80 shadow rounded-md">
-          <h1 className="text-xl font-semibold p-3 bg-neutral-100">{car.title}</h1>
+      <div className="md:w-1/4 ">
+        <div className=" border border-neutral-300 h-80 shadow rounded-md bg-white">
+          <h1 className="text-xl font-semibold p-3 ">{car.title}</h1>
           <div className="mb-2  border-b border-gray-300"></div>   
           <div className="px-4 rounded space-y-2">
             <p className=" text-lg text-gray-800"><b>Année :</b> {car.year}</p>
@@ -70,15 +70,16 @@ export const CarDetail = () => {
         </div>
       </div>
       <div className="md:w-1/4">
-        <div className=" border border-neutral-300 h-80 shadow rounded-md">
-          <h2 className="text-xl font-semibold p-3 bg-neutral-100">Information</h2>
+        <div className=" border border-neutral-300 h-80 shadow rounded-md bg-white">
+          <h2 className="text-xl font-semibold p-3 ">Information</h2>
           <div className="mb-4 border-b border-gray-300"></div>
           <p className="text-gray-700  p-3 text-justify">{car.desc}</p>
         </div>
-        {car.title && <CarContactForm carTitle={car.title} />}
      </div>
     </div>
+    {car.title && <CarContactForm carTitle={car.title} />}
   </div>
+
   <Infos />
   </>
   );

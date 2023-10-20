@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+
 
 export const CarContactForm = ({ carTitle }) => {
   const [formData, setFormData] = useState({
@@ -36,48 +38,53 @@ export const CarContactForm = ({ carTitle }) => {
   };
 
   return (
-    <div className="p-4 border">
-      <h2 className="text-2xl mb-4">Formulaire de contact</h2>
+    <div className="p-4 border border-neutral-300 bg-white shadow rounded-md grid grid-cols-2 gap-4">
+        <div className="">
+      <h2 className="text-2xl mb-4">Contactez nous à propos de ce véhicule</h2>
       <form onSubmit={handleSubmit} className="space-y-2">
-        <div>
-          <label htmlFor="firstName" className="block">Prénom :</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            className="border border-gray-300 p-1 w-full"/>
-        </div>
-        <div>
-          <label htmlFor="lastName" className="block">Nom :</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            className="border border-gray-300 p-1 w-full"/>
-        </div>
-        <div>
-          <label htmlFor="email" className="block">Email :</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="border border-gray-300 p-1 w-full"/>
-        </div>
-        <div>
-          <label htmlFor="phone" className="block">Téléphone :</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            className="border border-gray-300 p-21w-full"/>
+      <div className="flex space-x-4">
+            <div>
+                <label htmlFor="firstName" className="block">Prénom :</label>
+                <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    className="border border-gray-300 p-1 w-full"/>
+                </div>
+                <div>
+                <label htmlFor="lastName" className="block">Nom :</label>
+                <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    className="border border-gray-300 p-1 w-full"/>
+                </div>
+            </div>
+        <div className="flex space-x-4">   
+            <div>
+            <label htmlFor="email" className="block">Email :</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="border border-gray-300 p-1 w-full"/>
+            </div>
+            <div>
+            <label htmlFor="phone" className="block">Téléphone :</label>
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className="border border-gray-300 p-1 w-full"/>
+            </div>
         </div>
         <div>
           <label htmlFor="object" className="block">Objet :</label>
@@ -101,6 +108,41 @@ export const CarContactForm = ({ carTitle }) => {
         </div>
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Envoyer</button>
       </form>
+      </div>
+      <div className="">
+      <div>
+        <div className="border rounded p-4 mb-4 text-neutral-700">
+          <div className="flex items-center mb-2">
+            <FaPhone className="mr-2" size={20} />
+            <h2 className="text-xl font-bold ">Par téléphone</h2>
+          </div>
+          <p>010203040506</p>
+        </div>
+        <div className="border rounded p-4 text-neutral-700 mb-4">
+          <div className="flex items-center mb-2">
+            <FaMapMarkerAlt className="mr-2" size={20} />
+            <h2 className="text-xl font-bold">Nos locaux</h2>
+          </div>
+          <p>
+            17 rue Nowhere<br />
+            Fougères
+            35300
+          </p>
+        </div>
+        <div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42423.72584773053!2d-1.1953339499999998!3d48.35124450000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48093778fd795953%3A0x6531938abaecd607!2s35133%20Foug%C3%A8res!5e0!3m2!1sfr!2sfr!4v1697717732880!5m2!1sfr!2sfr"
+          title="Google Maps"
+          width="100%"
+          height="265"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade">        
+          </iframe>
+        </div>
+      </div>
+      </div>
     </div>
   );
 };

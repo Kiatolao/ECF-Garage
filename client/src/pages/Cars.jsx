@@ -67,8 +67,8 @@ export const Cars = () =>  {
 
   return (
     <>
-    <div>
-      <img src={layer} alt="Moteur" className="h-[80px] w-full bg-cover shadow-xl bg-opacity-80"/>
+    <div className="">
+      <img src={layer} alt="fond navbar" className="h-[80px] w-full bg-cover shadow-xl bg-opacity-80"/>
       <div className="flex-grow border-t border-black"></div>
     </div>
     <div className="relative flex py-3 items-center p-5 pt-5">
@@ -93,7 +93,7 @@ export const Cars = () =>  {
         {filteredCars.map((car) => (
           <div
             key={car.id}
-            className=" shadow-md rounded-md p-4 hover:border-neutral-300 border cursor-pointer hover:shadow-2xl transition duration-300 ease-in-out hover:scale-105"
+            className="bg-white shadow-md rounded-md p-4 hover:border-neutral-300 border cursor-pointer hover:shadow-2xl transition duration-300 ease-in-out hover:scale-105"
             onClick={() => navigate(`/car_detail/${car.id}`)}
           >
             <div className="w-full  h-40 overflow-hidden">
