@@ -58,7 +58,7 @@ export const ScheduleEditor = () => {
       <h2 className="text-xl font-bold mb-4">Liste des horaires</h2>
       <table className="min-w-full border-collapse">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-neutral-200">
             <th className="border border-gray-300 px-4 py-2">Jour</th>
             <th className="border border-gray-300 px-4 py-2">Ouverture Matin</th>
             <th className="border border-gray-300 px-4 py-2">Fermeture Matin</th>
@@ -67,7 +67,7 @@ export const ScheduleEditor = () => {
             <th className="border border-gray-300 px-4 py-2">Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="bg-white">
           {schedules.map((schedule) => (
             <tr key={schedule.id} className="border border-gray-300">
               <td className="border border-gray-300 px-4 py-2">{schedule.day}</td>

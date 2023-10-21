@@ -4,14 +4,14 @@ export const Archived = ({ archivedTestimonials, deleteTestimonial }) => {
   return (
     <table className="min-w-full border-collapse shadow">
       <thead>
-        <tr className="bg-gray-100">
+        <tr className="bg-neutral-200">
           <th className="border border-gray-300 px-4 py-2">Nom</th>
           <th className="border border-gray-300 px-4 py-2">Commentaire</th>
           <th className="border border-gray-300 px-4 py-2">Note</th>
           <th className="border border-gray-300 px-4 py-2">Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="bg-white">
         {archivedTestimonials.map((testimonial) => (
           <tr key={testimonial.id} className="border border-gray-300">
             <td className="border border-gray-300 px-4 py-2">{testimonial.user}</td>

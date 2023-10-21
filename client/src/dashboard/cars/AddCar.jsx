@@ -164,7 +164,7 @@ export const AddCar = () => {
         <div className="mb-4">
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full"
+            className="bg-red-700 text-white py-2 px-4 rounded hover:bg-re-800 w-full"
           >
             Ajouter la Voiture
           </button>
