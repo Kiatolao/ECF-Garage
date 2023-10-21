@@ -7,6 +7,7 @@ export const TestimonialAdd = () => {
   const [user, setUser] = useState('');
   const [testimonial, setTestimonial] = useState('');
   const [rating, setRating] = useState(0);
+  const [submissionStatus, setSubmissionStatus] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,9 +23,11 @@ export const TestimonialAdd = () => {
       setUser('');
       setTestimonial('');
       setRating(0);
+      setSubmissionStatus('Le témoignage a été envoyé avec succès!');
       console.log(response.data);
     } catch (error) {
       console.error('Erreur lors de la soumission du témoignage :', error);
+      setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
     }
   };
 
@@ -79,6 +82,7 @@ export const TestimonialAdd = () => {
           <button type="submit" className="bg-red-700 hover:bg-red-800 text-white py-2 px-4 rounded-md">
             Soumettre
           </button>
+          {submissionStatus && <p className="text-green-500 mt-2">{submissionStatus}</p>}
         </form>
       </div>
     </div>
