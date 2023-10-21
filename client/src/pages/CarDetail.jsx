@@ -6,6 +6,7 @@ import { Infos } from '../components/Infos';
 import layer from '../assets/layer.jpg';
 import logo2 from '../assets/parrot-logo.png';
 import { CarContactForm } from '../components/CarContactForm';
+import { AiOutlineCheck } from 'react-icons/ai';
 
 export const CarDetail = () => {
   const { id } = useParams();
@@ -70,11 +71,28 @@ export const CarDetail = () => {
         </div>
       </div>
       <div className="md:w-1/4">
-        <div className=" border border-neutral-300 h-80 shadow rounded-md bg-white">
-          <h2 className="text-xl font-semibold p-3 ">Information</h2>
-          <div className="mb-4 border-b border-gray-300"></div>
-          <p className="text-gray-700  p-3 text-justify">{car.desc}</p>
-        </div>
+      <div className="border border-neutral-300 h-80 shadow rounded-md bg-white">
+  <h2 className="text-xl font-semibold p-3">Information</h2>
+    <div className="mb-4 border-b border-gray-300"></div>
+        <ul className="list-disc pl-5">
+          <li className="flex items-start">
+            <AiOutlineCheck className="h-5 w-5 text-green-500 mt-1 mr-2" />
+            <span>Véhicule révisé et contrôlé</span>
+          </li>
+          <li className="flex items-start">
+            <AiOutlineCheck className="h-5 w-5 text-green-500 mt-1 mr-2" />
+            <span>Satisfait ou remboursé</span>
+          </li>
+          <li className="flex items-start">
+            <AiOutlineCheck className="h-5 w-5 text-green-500 mt-1 mr-2" />
+            <span>Offre de reprise</span>
+          </li>
+          <li className="flex items-start">
+            <AiOutlineCheck className="h-5 w-5 text-green-500 mt-1 mr-2" />
+            <span>Possibilité d'essai avant l'achat</span>
+          </li>
+        </ul>
+      </div>
      </div>
     </div>
     {car.title && <CarContactForm carTitle={car.title} />}

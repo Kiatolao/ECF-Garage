@@ -38,12 +38,12 @@ export const CarContactForm = ({ carTitle }) => {
   };
 
   return (
-    <div className="p-4 border border-neutral-300 bg-white shadow rounded-md grid grid-cols-2 gap-4">
-        <div className="">
-      <h2 className="text-2xl mb-4">Contactez nous à propos de ce véhicule</h2>
+    <div className="p-4 border border-neutral-300 bg-white shadow rounded-md grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="">
       <form onSubmit={handleSubmit} className="space-y-2">
-      <div className="flex space-x-4">
-            <div>
+      <h2 className="text-2xl mb-4">Contactez nous à propos de ce véhicule</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="">
                 <label htmlFor="firstName" className="block">Prénom :</label>
                 <input
                     type="text"
@@ -64,7 +64,7 @@ export const CarContactForm = ({ carTitle }) => {
                     className="border border-gray-300 p-1 w-full"/>
                 </div>
             </div>
-        <div className="flex space-x-4">   
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
             <label htmlFor="email" className="block">Email :</label>
             <input
@@ -75,7 +75,7 @@ export const CarContactForm = ({ carTitle }) => {
                 onChange={handleChange}
                 className="border border-gray-300 p-1 w-full"/>
             </div>
-            <div>
+            <div className="">
             <label htmlFor="phone" className="block">Téléphone :</label>
             <input
                 type="tel"
@@ -85,7 +85,7 @@ export const CarContactForm = ({ carTitle }) => {
                 onChange={handleChange}
                 className="border border-gray-300 p-1 w-full"/>
             </div>
-        </div>
+            </div>
         <div>
           <label htmlFor="object" className="block">Objet :</label>
           <input
@@ -104,9 +104,9 @@ export const CarContactForm = ({ carTitle }) => {
             rows="4"
             value={formData.message}
             onChange={handleChange}
-            className="border border-gray-300 p-1 w-full"/>
+            className="border border-gray-300 p-1 w-full h-[175px]"/>
         </div>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Envoyer</button>
+        <button type="submit" className="bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded w-full">Envoyer</button>
       </form>
       </div>
       <div className="">
