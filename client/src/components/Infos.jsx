@@ -37,8 +37,8 @@ export const Infos = () => {
                 </div>
             </h3>
           <address>
-            123 Rue de l'Exemple<br />
-            12345 Ville Exemple<br />
+            17 Rue Nowhere<br />
+            35300 Fougères<br />
           </address><br />
           <p>Téléphone : +33 1 23 45 67 89</p>
           <p>Email : contact@example.com</p>
