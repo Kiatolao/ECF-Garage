@@ -4,6 +4,8 @@ import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
 
 export const CarContactForm = ({ carTitle }) => {
+
+  const [submissionStatus, setSubmissionStatus] = useState('');  
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -32,8 +34,10 @@ export const CarContactForm = ({ carTitle }) => {
         message: '',
         object: carTitle,
       });
+      setSubmissionStatus('Le témoignage a été envoyé avec succès!');
     } catch (error) {
       console.error('Erreur lors de l\'envoi du formulaire :', error);
+      setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
     }
   };
 
@@ -106,6 +110,7 @@ export const CarContactForm = ({ carTitle }) => {
             onChange={handleChange}
             className="border border-gray-300 p-1 w-full h-[175px]"/>
         </div>
+        {submissionStatus && <p className="text-green-500 mt-2 mb-2">{submissionStatus}</p>}
         <button type="submit" className="bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded w-full">Envoyer</button>
       </form>
       </div>

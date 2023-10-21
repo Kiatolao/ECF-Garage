@@ -73,7 +73,7 @@ export const TestimonialAdd = () => {
               className="w-full h-50 px-3 py-1 border focus:outline-none focus:ring focus:border-blue-300"
             />
           </div>
-          {submissionStatus && <p className="text-green-500 mt-2">{submissionStatus}</p>}
+          {submissionStatus && <p className="text-green-500 mt-2 mb-2">{submissionStatus}</p>}
           <div className="mb-4">
             <label htmlFor="rating" className="block text-gray-700">Note :</label>
             <div className="flex space-x-2">

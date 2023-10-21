@@ -8,6 +8,7 @@ import logo2 from '../assets/parrot-logo.png';
 export function Contact() {
 
   const currentDate = new Date();
+  const [submissionStatus, setSubmissionStatus] = useState('');
   // récupération de l'objet du message dans l'url (depuis cardetail)
   const location = useLocation();
   const objectFromUrl = new URLSearchParams(location.search).get('object');
@@ -48,10 +49,11 @@ export function Contact() {
         object: '',
         date: '',
       });
-      alert('Message envoyé avec succès!');
+      setSubmissionStatus('Le message a été envoyé avec succès!');
     } catch (err) {
       console.error('Erreur lors de l\'ajout de la voiture :', err.response ? err.response.data : err.message);
       alert('Une erreur s\'est produite lors de l\'envoi du message.');
+      setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
     }
   };
 
@@ -136,6 +138,7 @@ export function Contact() {
             required>
             </textarea>
         </div>
+        {submissionStatus && <p className="text-green-500 mt-2 mb-2">{submissionStatus}</p>}
         <button
           type="submit"
           className="bg-red-700 text-white py-2 px-4 mb-4 rounded  hover:bg-red-800 w-full">
