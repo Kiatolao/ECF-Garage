@@ -8,6 +8,7 @@ import {TestimonialsValidation} from '../customers/testimonial/TestimonialsValid
 import { TestimonialAdd } from '../customers/testimonial/TestimonialAdd';
 import { UpdateCar } from '../cars/UpdateCar';
 
+
 export const Content = ({ selectedMenuItem }) => {
   const renderContent = () => {
     switch (selectedMenuItem) {
@@ -21,7 +22,6 @@ export const Content = ({ selectedMenuItem }) => {
         return <div><TestimonialAdd /></div>;
       case 'modifier-voiture':
         return <div><UpdateCar /></div>;
-
       case 'valider-temoignage':
         return <div><TestimonialsValidation /></div>;
       case 'modifier-services':

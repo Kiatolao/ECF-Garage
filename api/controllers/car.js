@@ -48,11 +48,10 @@ export const deleteCar = (req, res) => {
       if (err) return res.status(403).json("Le token n'est pas valide.");
   
       const q =
-        "INSERT INTO cars (`title`, `desc`, `image`, `year`, `price`,`km`, `fuel`, `gearbox`, `warrant`) VALUES (?)";
+        "INSERT INTO cars (`title`, `image`, `year`, `price`,`km`, `fuel`, `gearbox`, `warrant`) VALUES (?)";
   
       const values = [
         req.body.title,
-        req.body.desc,
         req.body.image,
         req.body.year,
         req.body.price,
@@ -77,12 +76,11 @@ export const updateCar =  (req, res) => {
       if (err) return res.status(403).json("Le token n'est pas valide.");
   
       const q = 
-      "UPDATE cars SET `title`=?, `desc`=?, `image`=?, `year`=?, `price`=?, `km`=?, `fuel`=?, `gearbox`=?, `warrant`=? WHERE `id`=?";
+      "UPDATE cars SET `title`=?, `image`=?, `year`=?, `price`=?, `km`=?, `fuel`=?, `gearbox`=?, `warrant`=? WHERE `id`=?";
 
   
       const values = [
         req.body.title,
-        req.body.desc,
         req.body.image,
         req.body.year,
         req.body.price,

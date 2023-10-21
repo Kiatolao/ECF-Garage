@@ -30,7 +30,7 @@ export const Navbar = () => {
     return (
       <nav
       className={`${
-      isOnTop ? 'bg-transparent' : 'bg-stone-800 opacity-95'
+      isOnTop  ? 'bg-transparent' : 'bg-stone-800 opacity-95'
       } text-white text-lg border-gray-200  z-20 w-full fixed transition-all duration-300`}
     >
         <div className=" flex flex-wrap items-center justify-between mx-auto p-4">

@@ -9,7 +9,6 @@ export const AddCar = () => {
     year: '',
     price: '',
     km: '',
-    desc: '',
     fuel: '',
     gearbox: '',
     warrant: '',
@@ -117,17 +116,6 @@ export const AddCar = () => {
             required
             className="border border-gray-400 w-full"
           />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="desc" className="block mb-2">Description</label>
-          <textarea
-            id="desc"
-            name="desc"
-            value={formData.desc}
-            onChange={handleChange}
-            required
-            className="border border-gray-400 w-full"
-          ></textarea>
         </div>
         <div className="mb-4">
           <label htmlFor="fuel" className="block mb-2">Type de Carburant</label>

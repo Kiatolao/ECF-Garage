@@ -36,7 +36,7 @@ export const Messages= () => {
       <h2 className="text-xl font-bold mb-4">Liste des Messages</h2>
       <ul>
         {messages.map((message) => (
-          <div className="bg-white p-4 mb-4 border rounded shadow w-full">
+          <div key={message.id} className="bg-white p-4 mb-4 border rounded shadow w-full">
             <div className="flex justify-between">
               <div>
                 {message.firstName} {message.lastName}
