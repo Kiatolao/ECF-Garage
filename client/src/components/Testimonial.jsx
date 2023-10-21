@@ -3,6 +3,7 @@ import { AiFillStar } from 'react-icons/ai';
 import axios from 'axios';
 import { BiSolidQuoteRight } from 'react-icons/bi';
 import { LiaUserEditSolid } from 'react-icons/lia';
+import { TestimonialButton } from './TestimonialAdd';
 
 export const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -70,6 +71,9 @@ export const Testimonial = () => {
             onClick={showMoreComments}
             className="text-red-600 hover:text-red-700 py-2 px-4 font-semibold cursor-pointer">
             Voir plus de commentaires
+          </p>
+          <p>
+            <TestimonialButton />
           </p>
         </div>
       )}

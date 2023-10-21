@@ -9,9 +9,9 @@ import { BiDirections } from 'react-icons/bi';
 export const Infos = () => {
   return (
     <>
-    <section className="text-dark p-4 mt-10">
+    <section className="text-dark p-4 mt-10 z-10">
 
-    <div className="relative flex py-3 items-center mb-5">
+    <div className=" flex py-3 items-center mb-5">
       <div className="flex-grow border-t border-red-700"></div>
       <Link to="/contact" className="flex-shrink mx-4 bg-red-700 text-white py-2 px-4 inline-block rounded-md">
           Contactez-nous

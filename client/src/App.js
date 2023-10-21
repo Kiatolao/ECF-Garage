@@ -6,10 +6,8 @@ import {Login} from './pages/Login'
 import PrivateRoute from './components/PrivateRoute'
 import { Dashboard } from './pages/Dashboard';
 import {Navbar} from './components/Navbar';
-
 import { Cars } from './pages/Cars';
 import { CarDetail } from './pages/CarDetail';
-
 
 function App() {
   return (
@@ -29,7 +27,6 @@ function App() {
                 <Route element={<Contact />} path="/contact"/>
               </Routes>
             </div>
-
         </div>
       </Router>
   );
