@@ -73,6 +73,7 @@ export const TestimonialAdd = () => {
               className="w-full h-50 px-3 py-1 border focus:outline-none focus:ring focus:border-blue-300"
             />
           </div>
+          {submissionStatus && <p className="text-green-500 mt-2">{submissionStatus}</p>}
           <div className="mb-4">
             <label htmlFor="rating" className="block text-gray-700">Note :</label>
             <div className="flex space-x-2">
@@ -82,7 +83,6 @@ export const TestimonialAdd = () => {
           <button type="submit" className="bg-red-700 hover:bg-red-800 text-white py-2 px-4 rounded-md">
             Soumettre
           </button>
-          {submissionStatus && <p className="text-green-500 mt-2">{submissionStatus}</p>}
         </form>
       </div>
     </div>
