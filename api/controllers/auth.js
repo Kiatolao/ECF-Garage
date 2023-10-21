@@ -1,6 +1,7 @@
 import { db } from "../db.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { secretKey } from "../controllers/crypto.js";
 
 export const register = async (req, res) => { 
 
@@ -55,8 +56,8 @@ export const login = async (req, res) => {
         if (!isPasswordValid)
         return res.status(400).json("Email ou mot de passe incorrect");
 
-        // Création du token    
-        const token = jwt.sign({ id: data[0].id }, "jwtkey");
+        // Création du token aleatoire avec crypto-js  
+        const token = jwt.sign({ id: data[0].id }, secretKey);
         //separer le mot de passe de data
         const { password, ...other } = data[0];
   

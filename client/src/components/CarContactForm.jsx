@@ -110,7 +110,7 @@ export const CarContactForm = ({ carTitle }) => {
             onChange={handleChange}
             className="border border-gray-300 p-1 w-full h-[175px]"/>
         </div>
-        {submissionStatus && <p className="text-green-500 mt-2 mb-2">{submissionStatus}</p>}
+        {submissionStatus && <p className="text-green-500  mb-2">{submissionStatus}</p>}
         <button type="submit" className="bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded w-full">Envoyer</button>
       </form>
       </div>

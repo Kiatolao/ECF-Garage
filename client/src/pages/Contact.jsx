@@ -138,7 +138,7 @@ export function Contact() {
             required>
             </textarea>
         </div>
-        {submissionStatus && <p className="text-green-500 mt-2 mb-2">{submissionStatus}</p>}
+        {submissionStatus && <p className="text-green-500  mb-2">{submissionStatus}</p>}
         <button
           type="submit"
           className="bg-red-700 text-white py-2 px-4 mb-4 rounded  hover:bg-red-800 w-full">
