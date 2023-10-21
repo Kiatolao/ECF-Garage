@@ -34,17 +34,29 @@ export const Messages= () => {
   return (
     <div className="">
       <h2 className="text-xl font-bold mb-4">Liste des Messages</h2>
-      <ul>
+
+      <ul class>
         {messages.map((message) => (
-          <li key={message.id} className="mb-4 p-4 border rounded shadow w-full">
-            <div>{message.firstName} - {message.lastName}</div>
-            <div>{message.email}</div>
-            <div className="font-semibold text-lg">{message.object}</div>
-            <div className="text-gray-600">{message.message}</div>
-            <div className="text-gray-400 mt-2">{formatDate(message.date)}</div>
-          </li>
+          <div className="bg-white p-4 mb-4 border rounded shadow w-full">
+  <div className="flex justify-between">
+    <div>
+      {message.firstName}  {message.lastName}
+    </div>
+    <div className="text-gray-400">{formatDate(message.date)}</div>
+  </div>
+  <div className="mt-2 border-b border-gray-300"></div>
+  <div className="flex justify-between mt-2">
+    <div>
+      {message.email} - {message.phone}
+    </div>
+    <div className="text-gray-600">{message.object}</div>
+  </div>
+  <div className="mt-2 border-b border-gray-300"></div>
+  <div className="text-gray-600 mt-2">{message.message}</div>
+</div>
         ))}
       </ul>
+
     </div>
   );
 };
