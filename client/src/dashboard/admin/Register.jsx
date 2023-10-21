@@ -46,7 +46,7 @@ export const Register = () => {
   };
 
   return (
-    <div className="max-w-md  ">
+    <div className="max-w-xl  ">
       <h2 className="text-xl font-bold mb-4">Ajouter un employé</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -59,7 +59,7 @@ export const Register = () => {
             name="username"
             value={formData.username}
             onChange={handleChange}
-            className="w-full border rounded px-3"
+            className="border border-gray-400 w-full"
             autoComplete='new-username'
             required
           />
@@ -74,7 +74,7 @@ export const Register = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full border rounded px-3"
+            className="border border-gray-400 w-full"
             autoComplete='new-email'
             required
           />
@@ -89,7 +89,7 @@ export const Register = () => {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className="w-full border rounded px-3"
+            className="border border-gray-400 w-full"
             autoComplete='new-password'
             required
           />
