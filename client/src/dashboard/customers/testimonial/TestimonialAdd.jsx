@@ -45,8 +45,11 @@ export const TestimonialAdd = () => {
 
   return (
     <> 
+    <div>
     <h2 className="text-xl font-bold mb-4">Ajouter un témoignage</h2>
-        <form onSubmit={handleSubmit} className=" mt-4 p-4 border  shadow-md w-full">
+
+    <div className="w-full">
+    <form onSubmit={handleSubmit} className="mt-4 p-2 w-full">
       <div className="mb-4">
         <label htmlFor="user" className="block text-gray-700">Nom :</label>
         <input
@@ -55,7 +58,7 @@ export const TestimonialAdd = () => {
           value={user}
           onChange={(e) => setUser(e.target.value)}
           required
-          className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          className="w-full px-3 py-1 border  focus:outline-none focus:ring focus:border-blue-300"
         />
       </div>
       <div className="mb-4">
@@ -65,7 +68,7 @@ export const TestimonialAdd = () => {
           value={testimonial}
           onChange={(e) => setTestimonial(e.target.value)}
           required
-          className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+          className="w-full px-3 py-1 border focus:outline-none focus:ring focus:border-blue-300"
         />
       </div>
       <div className="mb-4">
@@ -78,6 +81,8 @@ export const TestimonialAdd = () => {
         Soumettre
       </button>
     </form>
+    </div>
+    </div>
     </>
 
   );

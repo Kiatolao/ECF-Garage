@@ -34,26 +34,26 @@ export const Messages= () => {
   return (
     <div className="">
       <h2 className="text-xl font-bold mb-4">Liste des Messages</h2>
-
-      <ul class>
+      <ul>
         {messages.map((message) => (
           <div className="bg-white p-4 mb-4 border rounded shadow w-full">
-  <div className="flex justify-between">
-    <div>
-      {message.firstName}  {message.lastName}
-    </div>
-    <div className="text-gray-400">{formatDate(message.date)}</div>
-  </div>
-  <div className="mt-2 border-b border-gray-300"></div>
-  <div className="flex justify-between mt-2">
-    <div>
-      {message.email} - {message.phone}
-    </div>
-    <div className="text-gray-600">{message.object}</div>
-  </div>
-  <div className="mt-2 border-b border-gray-300"></div>
-  <div className="text-gray-600 mt-2">{message.message}</div>
-</div>
+            <div className="flex justify-between">
+              <div>
+                {message.firstName} {message.lastName}
+              </div>
+              <div className="text-gray-400">{formatDate(message.date)}</div>
+            </div>
+            <div className="mt-2 border-b border-gray-300"></div>
+            <div className="flex justify-between mt-2">
+              <div>
+                {message.email} <br/> 
+              </div>
+              <div className="text-gray-600">{message.phone}</div>
+            </div>
+            <div className="mt-2 border-b border-gray-300"></div>
+            <h2 className="mt-2 font-semibold">{message.object}</h2>
+            <div className="text-gray-600 mt-2">{message.message}</div>
+          </div>
         ))}
       </ul>
 

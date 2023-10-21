@@ -98,7 +98,7 @@ export const Register = () => {
           type="submit"
           className="bg-blue-500 text-white py-2 px-4 mb-4 rounded hover:bg-blue-600"
         >
-          S'inscrire
+          Enregistrer un employé
         </button>
         {error && <p className="text-red-500">{error}</p>}
         {successMessage && <p className="text-green-500">{successMessage}</p>}
