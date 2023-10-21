@@ -29,7 +29,7 @@ export const Content = ({ selectedMenuItem }) => {
       case 'definir-horaires':
         return <div><ScheduleEditor /></div>;
       default:
-        return <div>Sélectionnez une option du menu</div>;
+        return <div><Messages /></div>;
     }
   };
 

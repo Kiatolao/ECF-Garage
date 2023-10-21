@@ -42,49 +42,46 @@ export const TestimonialAdd = () => {
     }
     return stars;
   };
-
   return (
-    <> 
-    <div>
-    <h2 className="text-xl font-bold mb-4">Ajouter un témoignage</h2>
 
-    <div className="w-full">
-    <form onSubmit={handleSubmit} className="mt-4 p-2 w-full">
-      <div className="mb-4">
-        <label htmlFor="user" className="block text-gray-700">Nom :</label>
-        <input
-          type="text"
-          id="user"
-          value={user}
-          onChange={(e) => setUser(e.target.value)}
-          required
-          className="w-full px-3 py-1 border  focus:outline-none focus:ring focus:border-blue-300"
-        />
-      </div>
-      <div className="mb-4">
-        <label htmlFor="testimonial" className="block text-gray-700">Témoignage :</label>
-        <textarea
-          id="testimonial"
-          value={testimonial}
-          onChange={(e) => setTestimonial(e.target.value)}
-          required
-          className="w-full px-3 py-1 border focus:outline-none focus:ring focus:border-blue-300"
-        />
-      </div>
-      <div className="mb-4">
-        <label htmlFor="rating" className="block text-gray-700">Note :</label>
-        <div className="flex space-x-2">
-          {renderStars()}
+    <div className="w-[350px]">
+      <h2 className="text-xl font-bold mb-4">Ajouter un témoignage</h2>
+
+      <div className="w-full">
+      <form onSubmit={handleSubmit} className="mt-4 p-2 w-full">
+        <div className="mb-4">
+          <label htmlFor="user" className="block text-gray-700">Nom :</label>
+          <input
+            type="text"
+            id="user"
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+            required
+            className="w-full px-3 py-1 border  focus:outline-none focus:ring focus:border-blue-300"
+          />
         </div>
+        <div className="mb-4">
+          <label htmlFor="testimonial" className="block text-gray-700">Témoignage :</label>
+          <textarea
+            id="testimonial"
+            value={testimonial}
+            onChange={(e) => setTestimonial(e.target.value)}
+            required
+            className="w-full h-50 px-3 py-1 border focus:outline-none focus:ring focus:border-blue-300"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="rating" className="block text-gray-700">Note :</label>
+          <div className="flex space-x-2">
+            {renderStars()}
+          </div>
+        </div>
+        <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md">
+          Soumettre
+        </button>
+      </form>
       </div>
-      <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md">
-        Soumettre
-      </button>
-    </form>
     </div>
-    </div>
-    </>
-
   );
 };
 

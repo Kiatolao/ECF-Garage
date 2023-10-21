@@ -46,7 +46,7 @@ export const Register = () => {
   };
 
   return (
-    <div className="max-w-xl  ">
+    <div className="w-[350px] ">
       <h2 className="text-xl font-bold mb-4">Ajouter un employé</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

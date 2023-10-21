@@ -21,7 +21,7 @@ export const Infos = () => {
 
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mt-15 ">
 
-        <div className="md:col-span-1 mx-auto ">
+        <div className="md:col-span-1 md:mx-auto ">
             <h3 className="text-xl font-semibold mb-2">
                 <div className="flex items-center text-red-700 font-semibold">
                     <MdOutlineSchedule className="mr-2" />Horaires
@@ -30,7 +30,7 @@ export const Infos = () => {
           <Schedules />
         </div>
 
-        <div className="md:col-span-1 mx-auto">
+        <div className="md:col-span-1 md:mx-auto">
             <h3 className="text-xl font-semibold mb-2">
                 <div className="flex items-center text-red-700 font-semibold">
                     <MdOutlineContactPhone className="mr-2" />Contact
@@ -43,7 +43,7 @@ export const Infos = () => {
           <p>Téléphone : +33 1 23 45 67 89</p>
           <p>Email : contact@example.com</p>
         </div>
-        <div className="md:col-span-1 mx-auto">
+        <div className="md:col-span-1 md:mx-auto">
             <h3 className="text-xl font-semibold mb-2">
                 <div className="flex items-center text-red-700 font-semibold">
                     <BiDirections className="mr-2" />Accès rapide
