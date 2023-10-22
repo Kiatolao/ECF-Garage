@@ -15,9 +15,8 @@ export const getTestimonials = (req, res) => {
 
 // récupérer un témoignage par son ID
 export const getTestimonial = (req, res) => {
-  const testimonialId = req.params.id;
   const q = 'SELECT * FROM testimonials WHERE id = ?';
-  db.query(q, [testimonialId], (err, result) => {
+  db.query(q, [req.params.id], (err, result) => {
     if (err) {
       return res.status(500).send(err);
     }
@@ -33,7 +32,7 @@ export const addTestimonial = (req, res) => {
         DOMPurify.sanitize(req.body.user),
         DOMPurify.sanitize(req.body.testimonial),
         DOMPurify.sanitize(req.body.note),
-        DOMPurify.sanitize(req.body.validated)
+        req.body.validated,
     ];
     db.query(q, values, (err, data) => {
       if (err) {
@@ -51,9 +50,8 @@ export const deleteTestimonial = (req, res) => {
   jwt.verify(token, "jwtkey", (err) => {
     if (err) return res.status(403).json("Vous n'êtes pas autorisé à supprimer un témoignage.");
 
-    const testimonialId = req.params.id;
     const q = 'DELETE FROM testimonials WHERE id = ?';
-    db.query(q, [testimonialId], (err, data) => {
+    db.query(q, [req.params.id], (err, data) => {
       if (err) {
         return res.status(500).send(err);
       }
