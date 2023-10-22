@@ -120,7 +120,7 @@ export const TestimonialButton = () => {
             >
               <IoMdClose size={30} />
             </button>
-            <TestimonialAdd />
+              <TestimonialAdd />
           </div>
         </div>
       )}

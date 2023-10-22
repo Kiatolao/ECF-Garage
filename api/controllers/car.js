@@ -1,6 +1,6 @@
 import {db} from '../db.js';
 import jwt from 'jsonwebtoken';
-
+import  DOMPurify from 'isomorphic-dompurify'
 
   
 export const getCars =  (req, res) => {
@@ -51,14 +51,14 @@ export const deleteCar = (req, res) => {
         "INSERT INTO cars (`title`, `image`, `year`, `price`,`km`, `fuel`, `gearbox`, `warrant`) VALUES (?)";
   
       const values = [
-        req.body.title,
-        req.body.image,
-        req.body.year,
-        req.body.price,
-        req.body.km,
-        req.body.fuel,
-        req.body.gearbox,
-        req.body.warrant,
+        DOMPurify.sanitize(req.body.title),
+        DOMPurify.sanitize(req.body.image),
+        DOMPurify.sanitize(req.body.year),
+        DOMPurify.sanitize(req.body.price),
+        DOMPurify.sanitize(req.body.km),
+        DOMPurify.sanitize(req.body.fuel),
+        DOMPurify.sanitize(req.body.gearbox),
+        DOMPurify.sanitize(req.body.warrant)
       ];
   
       db.query(q, [values], (err, data) => {
@@ -79,14 +79,14 @@ export const updateCar =  (req, res) => {
       "UPDATE cars SET `title`=?, `image`=?, `year`=?, `price`=?, `km`=?, `fuel`=?, `gearbox`=?, `warrant`=? WHERE `id`=?";
 
       const values = [
-        req.body.title,
-        req.body.image,
-        req.body.year,
-        req.body.price,
-        req.body.km,
-        req.body.fuel,
-        req.body.gearbox,
-        req.body.warrant,
+        DOMPurify.sanitize(req.body.title),
+        DOMPurify.sanitize(req.body.image),
+        DOMPurify.sanitize(req.body.year),
+        DOMPurify.sanitize(req.body.price),
+        DOMPurify.sanitize(req.body.km),
+        DOMPurify.sanitize(req.body.fuel),
+        DOMPurify.sanitize(req.body.gearbox),
+        DOMPurify.sanitize(req.body.warrant),
         req.params.id
       ];
   

@@ -1,7 +1,7 @@
 import React from 'react';
 import garageImage from '../assets/garage-3.jpg';
 import { Overview } from '../components/Overview';
-import { Testimonial } from '../components/Testimonial';
+import { Testimonial } from '../components/TestimonialGR/Testimonial';
 import { Infos } from '../components/Infos';
 import { AiOutlineRight } from 'react-icons/ai';
 import { Link } from 'react-router-dom';

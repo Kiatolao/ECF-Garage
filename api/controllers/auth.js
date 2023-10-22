@@ -1,12 +1,13 @@
 import { db } from "../db.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import DOMPurify from "isomorphic-dompurify";
 
 export const register = async (req, res) => { 
 
     // création utilisateurs
     const q = "SELECT * FROM users WHERE email = ? OR username = ?";
-    db.query(q, [req.body.email, req.body.username], (err, data) => {
+    db.query(q, [DOMPurify.sanitize(req.body.email), DOMPurify.sanitize(req.body.username)], (err, data) => {
         if (err) {
             return res.status(500).json(err); 
         }
@@ -20,9 +21,9 @@ export const register = async (req, res) => {
 
         const q = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
         const values = [
-            req.body.username,
-            req.body.email,
-            hash
+            DOMPurify.sanitize(req.body.username),
+            DOMPurify.sanitize(req.body.email),
+            DOMPurify.sanitize(hash)
         ]
 
         db.query(q, values, (err, data) => {
@@ -40,7 +41,7 @@ export const login = async (req, res) => {
     // Si l'utilisateur existe
     const q = "SELECT * FROM users WHERE email = ?";
     
-    db.query(q, [req.body.email], (err, data) => {
+    db.query(q, [DOMPurify.sanitize(req.body.email)], (err, data) => {
         if (err) return res.json(err);
         if (data.length === 0) {
             return res.status(401).json("Donnée incorrecte!");
@@ -48,7 +49,7 @@ export const login = async (req, res) => {
 
         // Si le mot de passe est correct
         const isPasswordValid = bcrypt.compareSync(
-            req.body.password, 
+            DOMPurify.sanitize(req.body.password), 
             data[0].password
         );
         

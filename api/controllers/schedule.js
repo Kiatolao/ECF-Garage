@@ -1,5 +1,6 @@
 import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
+import DOMPurify from 'isomorphic-dompurify';
 
 export const getSchedules = (req, res) => {
   const q = 'SELECT * FROM schedules';
@@ -29,11 +30,11 @@ export const updateSchedule = (req, res) => {
       "UPDATE schedules SET `day` = ?, `openingM` = ?, `closingM` = ?, `openingA` = ?, `closingA` = ? WHERE `id` = ?";
 
       const values = [
-        req.body.day,
-        req.body.openingM, 
-        req.body.closingM, 
-        req.body.openingA, 
-        req.body.closingA,
+        DOMPurify.sanitize(req.body.day),
+        DOMPurify.sanitize(req.body.openingM),
+        DOMPurify.sanitize(req.body.closingM),
+        DOMPurify.sanitize(req.body.openingA),
+        DOMPurify.sanitize(req.body.closingA),
         req.params.id
       ];
     db.query(q, values, (err, data) => {

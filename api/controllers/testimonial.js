@@ -32,8 +32,8 @@ export const addTestimonial = (req, res) => {
     const values = [
         DOMPurify.sanitize(req.body.user),
         DOMPurify.sanitize(req.body.testimonial),
-        req.body.note,
-        req.body.validated
+        DOMPurify.sanitize(req.body.note),
+        DOMPurify.sanitize(req.body.validated)
     ];
     db.query(q, values, (err, data) => {
       if (err) {
@@ -69,18 +69,15 @@ if (!token) return res.status(401).json("Pas de token trouvé.");
 jwt.verify(token, "jwtkey", (err) => {
  if (err) return res.status(403).json("Le token n'est pas valide.");
 
- const testimonialId = req.params.id;
  const q = "UPDATE testimonials SET `validated`=? WHERE `id`=?";
 
  const values = [
-  req.body.validated,
-  testimonialId
+  DOMPurify.sanitize(req.body.validated),
+  req.params.id
  ];
 
  db.query(q, values, (err, data) => {
-   if (err) return   console.log('User:', req.body.user);
-console.log('Testimonial:', req.body.testimonial);
-console.log('Note:', req.body.note);
+   if (err) return res.status(500).send(err);
 
    return res.json("La voiture a été modifiée avec succès.");
  });

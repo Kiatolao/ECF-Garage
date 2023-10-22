@@ -1,5 +1,6 @@
 import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
+import DOMPurify from 'isomorphic-dompurify';
 
 export const getServices = (req, res) => {
     const q = 'SELECT * FROM services';
@@ -32,7 +33,8 @@ export const getServices = (req, res) => {
       if (err) return res.status(403).json("Vous n'êtes pas autorisé à ajouter un service.");
       // attention desc est un mot réservé en SQL et doit être entouré de backticks
       const q = 'INSERT INTO services (`service`) VALUES (?)';
-      const values =req.body.service;
+      const values =
+        DOMPurify.sanitize(req.body.service);
 
       db.query(q, values, (err, data) => {
         if (err) {
@@ -43,30 +45,6 @@ export const getServices = (req, res) => {
     });
   };
   
-
-  export const updateService = (req, res) => {
-    const token = req.cookies.access_token;
-    if (!token) return res.status(401).json("Vous devez être connecté pour mettre à jour un service.");
-  
-    jwt.verify(token, "jwtkey", (err) => {
-      if (err) return res.status(403).json("Vous n'êtes pas autorisé à mettre à jour un service.");
-  
-      const serviceId = req.params.id;
-      const q = 'UPDATE services SET service = ? WHERE id = ?';
-      const values = [
-        req.body.service,
-        req.params.id
-      ];
-      db.query(q, values, (err, data) => {
-        if (err) {
-          return res.status(500).send(err);
-        }
-        res.status(200).json('Le service a été mis à jour avec succès.');
-      });
-    });
-  };
-  
-
   export const deleteService = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Vous devez être connecté pour supprimer un service.");
