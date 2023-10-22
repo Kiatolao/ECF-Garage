@@ -72,9 +72,7 @@ export const Testimonial = () => {
             className="text-red-600 hover:text-red-700 py-2 px-4 font-semibold cursor-pointer">
             Voir plus de commentaires
           </p>
-
             <TestimonialButton />
-
         </div>
       )}
 </>

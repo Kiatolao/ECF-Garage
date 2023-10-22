@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import DOMpurify from 'isomorphic-dompurify';
 
 
 export const Register = () => {
   // state des champs de formulaire
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: DOMpurify.sanitize(''),
+    email: DOMpurify.sanitize(''),
+    password: DOMpurify.sanitize(''),
   });
 
   const [error, setError] = useState(null);
