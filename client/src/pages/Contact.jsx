@@ -1,26 +1,23 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import layer from '../assets/layer.jpg';
 import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import logo2 from '../assets/parrot-logo.png';
+import DOMPurify from 'dompurify';
 
 export function Contact() {
 
   const currentDate = new Date();
   const [submissionStatus, setSubmissionStatus] = useState('');
   // récupération de l'objet du message dans l'url (depuis cardetail)
-  const location = useLocation();
-  const objectFromUrl = new URLSearchParams(location.search).get('object');
 
   const initialFormData = {
-    lastName: '',
-    firstName: '',
-    email: '',
-    phone: '',
-    message: '',
-    // recupere l'objet du message dans l'url
-    object: objectFromUrl || '',
+    lastName: DOMPurify.sanitize(''),
+    firstName: DOMPurify.sanitize(''),
+    email: DOMPurify.sanitize(''),
+    phone: DOMPurify.sanitize(''),
+    message: DOMPurify.sanitize(''),
+    object: DOMPurify.sanitize(''),
     date: currentDate,
   };
 
@@ -28,7 +25,8 @@ export function Contact() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const sanitizedValue = DOMPurify.sanitize(value);
+    setFormData({ ...formData, [name]: sanitizedValue });
   };
   
 
@@ -138,7 +136,9 @@ export function Contact() {
             required>
             </textarea>
         </div>
-        {submissionStatus && <p className="text-green-500  mb-2">{submissionStatus}</p>}
+        {submissionStatus && (
+            <p className="text-green-500 mb-2">{DOMPurify.sanitize(submissionStatus)}</p>
+        )}
         <button
           type="submit"
           className="bg-red-700 text-white py-2 px-4 mb-4 rounded  hover:bg-red-800 w-full">
