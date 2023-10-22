@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DOMPurify from 'isomorphic-dompurify';
 
 
 export const AddCar = () => {
+
+  const [status, setStatus] = useState(''); 
 
   const [formData, setFormData] = useState({
     title: DOMPurify.sanitize(''),
@@ -40,7 +42,9 @@ export const AddCar = () => {
       }, {
         withCredentials: true,
       });
+      setStatus('success');
     } catch (err) {
+      setStatus('error');
       console.error('Erreur lors de l\'ajout de la voiture :', err.response ? err.response.data : err.message);
     }
   };
@@ -67,6 +71,22 @@ export const AddCar = () => {
         return;
     }
   };
+
+  // réinitialisation du formulaire
+    useEffect(() => {
+      if(status === 'success') {
+        setFormData({
+          title: '',
+          year: '',
+          price: '',
+          km: '',
+          fuel: '',
+          gearbox: '',
+          warrant: '',
+          file: null,
+        })
+      }
+    }, [status]) 
   
   return (
     <div className="max-w-xl">
@@ -174,7 +194,15 @@ export const AddCar = () => {
             className="border border-gray-400 w-full"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-2">
+        {/* affichage d'un message en cas de succes ou echec */}
+        {status === 'success' && 
+            <p className="text-green-700 font-semibold mb-2">Voiture ajoutée!</p>
+          }
+
+          {status === 'error' &&
+            <p className="text-red-700 font-semibold mb-2">Erreur lors de l'ajout</p>
+          }
           <button
             type="submit"
             className="bg-red-700 text-white py-2 px-4 rounded hover:bg-re-800 w-full"
