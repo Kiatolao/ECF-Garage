@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import DOMPurify from 'isomorphic-dompurify';
 
 export const ScheduleEditor = () => {
   const [schedules, setSchedules] = useState([]);
@@ -21,7 +22,7 @@ export const ScheduleEditor = () => {
   }, []);
 
   const handleEditClick = (schedule) => {
-    // Ouvrir l'éditeur pour cet horaire
+    // ouvrir l'éditeur pour cet horaire
     setEditingSchedule(schedule);
     setEditedSchedule({ ...schedule });
   };
@@ -33,13 +34,22 @@ export const ScheduleEditor = () => {
   };
 
   const handleEditSave = async () => {
+    const purifiedSchedule = {
+      ...editedSchedule,
+      day: DOMPurify.sanitize(editedSchedule.day),
+      openingM: DOMPurify.sanitize(editedSchedule.openingM),
+      closingM: DOMPurify.sanitize(editedSchedule.closingM),
+      openingA: DOMPurify.sanitize(editedSchedule.openingA),
+      closingA: DOMPurify.sanitize(editedSchedule.closingA),
+    
+    };
     try {
-      // Envoyer la mise à jour de l'horaire au serveur
-      await axios.put(`http://localhost:8000/api/schedules/${editedSchedule.id}`, editedSchedule, {
+      // envoyer la mise à jour de l'horaire au serveur
+      await axios.put(`http://localhost:8000/api/schedules/${editedSchedule.id}`, purifiedSchedule, {
         withCredentials: true,
       });
 
-      // Mettre à jour l'état local des horaires
+      // mettre à jour l'état local des horaires
       const updatedSchedules = schedules.map((schedule) =>
         schedule.id === editedSchedule.id ? editedSchedule : schedule
       );
