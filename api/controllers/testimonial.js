@@ -1,5 +1,6 @@
 import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
+import DOMPurify from 'isomorphic-dompurify';
 
 // Récupérer tous les témoignages
 export const getTestimonials = (req, res) => {
@@ -26,10 +27,11 @@ export const getTestimonial = (req, res) => {
 
 // ajouter un nouveau témoignage
 export const addTestimonial = (req, res) => {
+
     const q = 'INSERT INTO testimonials (user, testimonial, note, validated) VALUES (?, ?, ?, ?)';
     const values = [
-        req.body.user, 
-        req.body.testimonial, 
+        DOMPurify.sanitize(req.body.user),
+        DOMPurify.sanitize(req.body.testimonial),
         req.body.note,
         req.body.validated
     ];

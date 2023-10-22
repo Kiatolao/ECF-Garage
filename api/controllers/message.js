@@ -1,7 +1,6 @@
 import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
-import createDOMPurify from 'dompurify';
-import { JSDOM } from 'jsdom';
+import DOMPurify from 'isomorphic-dompurify';
 
 // récupérer tous les messages
 export const getMessages = (req, res) => {
@@ -43,15 +42,6 @@ export const deleteMessage = (req, res) => {
 
 // Méthode pour ajouter un nouveau message
 export const addMessage = (req, res) => {
-    //sanitize les données
-    const DOMPurify = createDOMPurify(new JSDOM('').window);
-
-    const sanitizedFirstName = DOMPurify.sanitize(req.body.firstName);
-    const sanitizedLastName = DOMPurify.sanitize(req.body.lastName);
-    const sanitizedEmail = DOMPurify.sanitize(req.body.email);
-    const sanitizedPhone = DOMPurify.sanitize(req.body.phone);
-    const sanitizedMessage = DOMPurify.sanitize(req.body.message);
-    const sanitizedObject = DOMPurify.sanitize(req.body.object);
 
     const date = new Date();
     //formatage de la date
@@ -61,12 +51,12 @@ export const addMessage = (req, res) => {
       "INSERT INTO messages (`firstName`, `lastName`, `email`, `phone`, `message`, `object`, `date`) VALUES (?)";
 
     const values = [
-      sanitizedFirstName,
-      sanitizedLastName,
-      sanitizedEmail,
-      sanitizedPhone,
-      sanitizedMessage,
-      sanitizedObject,
+      DOMPurify.sanitize(req.body.firstName),
+      DOMPurify.sanitize(req.body.lastName),
+      DOMPurify.sanitize(req.body.email),
+      DOMPurify.sanitize(req.body.phone),
+      DOMPurify.sanitize(req.body.message),
+      DOMPurify.sanitize(req.body.object),
       dateString
     ];
 

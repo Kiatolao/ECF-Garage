@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { AiFillStar } from 'react-icons/ai';
 import { IoMdClose } from 'react-icons/io';
-
+import DOMPurify from 'isomorphic-dompurify';
 
 export const TestimonialAdd = () => {
   const [user, setUser] = useState('');
@@ -12,11 +12,12 @@ export const TestimonialAdd = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     // envoyer les données au serveur
     try {
       const response = await axios.post('http://localhost:8000/api/testimonials', {
-        user,
-        testimonial,
+        user: DOMPurify.sanitize(user),
+        testimonial: DOMPurify.sanitize(testimonial),
         note: rating,
         validated: 0,
       });

@@ -1,42 +1,54 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import DOMPurify from 'isomorphic-dompurify';
 
 
 export const CarContactForm = ({ carTitle }) => {
+  const currentDate = new Date();
+  const [submissionStatus, setSubmissionStatus] = useState('');
+  // récupération de l'objet du message dans l'url (depuis cardetail)
 
-  const [submissionStatus, setSubmissionStatus] = useState('');  
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    message: '',
-    object: carTitle,
-  });
+  const initialFormData = {
+    lastName: DOMPurify.sanitize(''),
+    firstName: DOMPurify.sanitize(''),
+    email: DOMPurify.sanitize(''),
+    phone: DOMPurify.sanitize(''),
+    message: DOMPurify.sanitize(''),
+    object: DOMPurify.sanitize(carTitle),
+    date: currentDate,
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    const sanitizedValue = DOMPurify.sanitize(value);
+    setFormData({ ...formData, [name]: sanitizedValue });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-    await axios.post('http://localhost:8000/api/messages', formData, {
+      await axios.post('http://localhost:8000/api/messages', formData, {
         withCredentials: true, 
-      }); 
+      });
+      // Réinitialisez le formulaire après l'envoi réussi
       setFormData({
-        firstName: '',
         lastName: '',
+        firstName: '',
         email: '',
         phone: '',
         message: '',
         object: carTitle,
+        date: '',
       });
-      setSubmissionStatus('Le témoignage a été envoyé avec succès!');
-    } catch (error) {
-      console.error('Erreur lors de l\'envoi du formulaire :', error);
+      setSubmissionStatus('Le message a été envoyé avec succès!');
+    } catch (err) {
+      console.error('Erreur lors de l\'ajout de la voiture :', err.response ? err.response.data : err.message);
+      alert('Une erreur s\'est produite lors de l\'envoi du message.');
       setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
     }
   };

@@ -3,7 +3,7 @@ import axios from 'axios';
 import layer from '../assets/layer.jpg';
 import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import logo2 from '../assets/parrot-logo.png';
-import DOMPurify from 'dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 
 export function Contact() {
 
