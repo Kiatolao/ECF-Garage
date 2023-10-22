@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import DOMPurify from 'isomorphic-dompurify';
 
 
 export const AddCar = () => {
 
   const [formData, setFormData] = useState({
-    title: '',
-    year: '',
-    price: '',
-    km: '',
-    fuel: '',
-    gearbox: '',
-    warrant: '',
+    title: DOMPurify.sanitize(''),
+    year: DOMPurify.sanitize(''),
+    price: DOMPurify.sanitize(''),
+    km: DOMPurify.sanitize(''),
+    fuel: DOMPurify.sanitize(''),
+    gearbox: DOMPurify.sanitize(''),
+    warrant: DOMPurify.sanitize(''),
     file: null,
   });
 
@@ -43,7 +44,7 @@ export const AddCar = () => {
   const uploadImage = async (file) => {
     try {
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append('file', DOMPurify.sanitize(file));
 
       const response = await axios.post('http://localhost:8000/api/upload', formData, {
         withCredentials: true,

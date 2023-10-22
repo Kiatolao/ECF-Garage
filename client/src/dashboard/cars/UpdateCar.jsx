@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { AiOutlineSafetyCertificate, AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { EditCarModal } from './EditCarModal';
+import DOMPurify from 'isomorphic-dompurify'
 
 export const UpdateCar = () => {
   const [cars, setCars] = useState([]);
@@ -39,10 +40,23 @@ export const UpdateCar = () => {
     setEditCar(car);
   };
 
+
+
   // Fonction pour mettre à jour la voiture
   const updateCar = async (car) => {
+    const purifiedCar = {
+      ...car, 
+      title: DOMPurify.sanitize(car.title),
+      image: DOMPurify.sanitize(car.image),
+      year: DOMPurify.sanitize(car.year),
+      price: DOMPurify.sanitize(car.price),
+      km: DOMPurify.sanitize(car.km),
+      fuel: DOMPurify.sanitize(car.fuel),
+      gearbox: DOMPurify.sanitize(car.gearbox),
+      warrant: DOMPurify.sanitize(car.warrant),
+    }
     try {
-      await axios.put(`http://localhost:8000/api/cars/${car.id}`, car, {
+      await axios.put(`http://localhost:8000/api/cars/${car.id}`, purifiedCar, {
         withCredentials: true,
       });
 

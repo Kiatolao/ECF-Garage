@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { ServiceDel } from './ServiceDel';
+import DOMPurify from 'isomorphic-dompurify';
 
 export const ServiceEditor = ({ onServiceAdded }) => {
   const [serviceData, setServiceData] = useState({
@@ -24,7 +25,7 @@ export const ServiceEditor = ({ onServiceAdded }) => {
       });
       if (response.status === 201) {
         setServiceData({
-          service: '',
+          service: DOMPurify.sanitize(''),
         });
 
         //  mise à jour de la liste des services 

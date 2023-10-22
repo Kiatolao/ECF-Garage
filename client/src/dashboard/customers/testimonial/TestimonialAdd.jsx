@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { AiFillStar } from 'react-icons/ai';
+import DOMPurify from 'isomorphic-dompurify';
 
 export const TestimonialAdd = () => {
   const [user, setUser] = useState('');
@@ -12,9 +13,9 @@ export const TestimonialAdd = () => {
     // envoyer les données au serveur
     try {
       const response = await axios.post('http://localhost:8000/api/testimonials', {
-        user,
-        testimonial,
-        note: rating,
+        user: DOMPurify.sanitize(user),
+        testimonial: DOMPurify.sanitize(testimonial),
+        note: DOMPurify.sanitize(rating),
         validated: 1, 
       }, {
         withCredentials: true,

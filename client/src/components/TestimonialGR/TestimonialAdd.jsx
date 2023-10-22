@@ -18,7 +18,7 @@ export const TestimonialAdd = () => {
       const response = await axios.post('http://localhost:8000/api/testimonials', {
         user: DOMPurify.sanitize(user),
         testimonial: DOMPurify.sanitize(testimonial),
-        note: rating,
+        note: DOMPurify.sanitize(rating),
         validated: 0,
       });
       // réinitialiser le formulaire / afficher un message de confirmation
