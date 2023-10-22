@@ -78,7 +78,6 @@ export const updateCar =  (req, res) => {
       const q = 
       "UPDATE cars SET `title`=?, `image`=?, `year`=?, `price`=?, `km`=?, `fuel`=?, `gearbox`=?, `warrant`=? WHERE `id`=?";
 
-  
       const values = [
         req.body.title,
         req.body.image,

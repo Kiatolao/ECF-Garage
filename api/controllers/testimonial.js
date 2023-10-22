@@ -60,3 +60,27 @@ export const deleteTestimonial = (req, res) => {
   });
 };
 
+export const updateTestimonial=  (req, res) => {
+  const token = req.cookies.access_token;
+if (!token) return res.status(401).json("Pas de token trouvé.");
+
+jwt.verify(token, "jwtkey", (err) => {
+ if (err) return res.status(403).json("Le token n'est pas valide.");
+
+ const testimonialId = req.params.id;
+ const q = "UPDATE testimonials SET `validated`=? WHERE `id`=?";
+
+ const values = [
+  req.body.validated,
+  testimonialId
+ ];
+
+ db.query(q, values, (err, data) => {
+   if (err) return   console.log('User:', req.body.user);
+console.log('Testimonial:', req.body.testimonial);
+console.log('Note:', req.body.note);
+
+   return res.json("La voiture a été modifiée avec succès.");
+ });
+});
+}; 
