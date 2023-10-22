@@ -29,23 +29,31 @@ app.use(cors({
 app.use(cookieParser());
 
 // activation de multer 
+const maxSize = 5 * 1024 * 1024;
+// activation et configuration de multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../client/public/upload/');
+    cb(null, '../client/public/upload/'); 
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);
-  },
+  }
+});
+//limitation de la taille du fichier
+const upload = multer({
+  storage: storage,
+  limits: {fileSize: maxSize} 
 });
 
-const upload = multer({storage});
-
 app.post('/api/upload', upload.single('file'), (req, res) => {
+
+  if(req.file.size > maxSize) {
+    return res.status(400).send('File too large');
+  }
+
   const file = req.file;
   res.status(200).json(file.filename);
 });
-
-
 
 // utilisation des routes
 app.use("/api/auth", authRoutes);

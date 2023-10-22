@@ -20,12 +20,16 @@ export const AddCar = () => {
     const { name, value, type, files } = e.target;
     setFormData({
       ...formData,
-      [name]: type === 'file' ? files[0] : value, // Gérer correctement le champ de fichier
-    });
+      [name]: type === 'file' ? files[0] : value,});
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // empeche l'envoi du formulaire si le fichier est trop lourd
+    if (formData.file && formData.file.size > 5 * 1024 * 1024) {
+      alert("Le fichier dépasse 5 Mo");
+      return;
+    }
 
     const imgUrl = await uploadImage(formData.file);
 
@@ -42,9 +46,15 @@ export const AddCar = () => {
   };
 
   const uploadImage = async (file) => {
+    const maxSize = 5 * 1024 * 1024;
+    if(file.size > maxSize) {
+      throw new Error('Le fichier dépasse 5Mo'); 
+    }
     try {
       const formData = new FormData();
-      formData.append('file', DOMPurify.sanitize(file));
+      // sanitize le nom du fichier 
+      const name = DOMPurify.sanitize(file.name);
+      formData.append('file', file, name);
 
       const response = await axios.post('http://localhost:8000/api/upload', formData, {
         withCredentials: true,
@@ -52,10 +62,12 @@ export const AddCar = () => {
 
       return response.data;
     } catch (err) {
-      console.error('Erreur lors de l\'upload de l\'image :', err);
+        alert(err.message);
+        console.error(err);
+        return;
     }
   };
-
+  
   return (
     <div className="max-w-xl">
       <h1 className="font-bold text-lg mb-4">Créer une Nouvelle Voiture</h1>
