@@ -1,5 +1,7 @@
 import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
+import createDOMPurify from 'dompurify';
+import { JSDOM } from 'jsdom';
 
 // récupérer tous les messages
 export const getMessages = (req, res) => {
@@ -41,20 +43,30 @@ export const deleteMessage = (req, res) => {
 
 // Méthode pour ajouter un nouveau message
 export const addMessage = (req, res) => {
+    //sanitize les données
+    const DOMPurify = createDOMPurify(new JSDOM('').window);
+
+    const sanitizedFirstName = DOMPurify.sanitize(req.body.firstName);
+    const sanitizedLastName = DOMPurify.sanitize(req.body.lastName);
+    const sanitizedEmail = DOMPurify.sanitize(req.body.email);
+    const sanitizedPhone = DOMPurify.sanitize(req.body.phone);
+    const sanitizedMessage = DOMPurify.sanitize(req.body.message);
+    const sanitizedObject = DOMPurify.sanitize(req.body.object);
 
     const date = new Date();
+    //formatage de la date
     const dateString = date.toISOString().slice(0, 19).replace('T', ' ');
 
     const q =
       "INSERT INTO messages (`firstName`, `lastName`, `email`, `phone`, `message`, `object`, `date`) VALUES (?)";
 
     const values = [
-      req.body.firstName,
-      req.body.lastName,
-      req.body.email,
-      req.body.phone,
-      req.body.message,
-      req.body.object,
+      sanitizedFirstName,
+      sanitizedLastName,
+      sanitizedEmail,
+      sanitizedPhone,
+      sanitizedMessage,
+      sanitizedObject,
       dateString
     ];
 
