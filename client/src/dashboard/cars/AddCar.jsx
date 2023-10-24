@@ -95,6 +95,7 @@ export const AddCar = () => {
         <div className="mb-4">
           <label htmlFor="file" className="block mb-2">Image de la Voiture</label>
           <input
+            required
             type="file"
             id="file"
             name="file"
