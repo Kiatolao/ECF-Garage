@@ -1,9 +1,7 @@
-import mysql from 'mysql';
+import pg from 'pg';
 
-// Create a connection to the database
-export const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'garage'   
-});
+const { Pool } = pg;
+
+export const pool = new Pool({
+  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+})
