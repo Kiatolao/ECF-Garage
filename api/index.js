@@ -22,7 +22,7 @@ app.use(express.json());
 
 // activation de cors
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://ecf-garage-client.vercel.app',
   credentials: true
 }));
 
