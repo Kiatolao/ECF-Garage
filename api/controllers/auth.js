@@ -1,5 +1,5 @@
 import { db } from "../db.js";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import DOMPurify from "isomorphic-dompurify";
 
@@ -16,8 +16,8 @@ export const register = async (req, res) => {
             return res.status(409).json("L'email ou le nom d'utilisateur existe déjà"); 
         }
         //hashage du mot de passe et creation de l'utilisateur
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(req.body.password, salt);
+        const salt = bcryptjs.genSaltSync(10);
+        const hash = bcryptjs.hashSync(req.body.password, salt);
 
         const q = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
         const values = [
@@ -48,7 +48,7 @@ export const login = async (req, res) => {
         }
 
         // Si le mot de passe est correct
-        const isPasswordValid = bcrypt.compareSync(
+        const isPasswordValid = bcryptjs.compareSync(
             DOMPurify.sanitize(req.body.password), 
             data[0].password
         );
