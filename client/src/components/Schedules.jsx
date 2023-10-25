@@ -8,7 +8,7 @@ export const Schedules = () => {
     // fonction asynchrone pour récupérer les horaires
     const fetchSchedules = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/schedules');
+        const response = await axios.get('https://ecf-garage-server.vercel.app/api/schedules');
         setSchedules(response.data);
       } catch (error) {
         console.error('Erreur lors de la récupération des horaires :', error);
