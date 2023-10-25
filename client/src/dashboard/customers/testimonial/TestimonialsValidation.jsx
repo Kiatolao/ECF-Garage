@@ -12,9 +12,6 @@ export const TestimonialsValidation = () => {
     const fetchTestimonials = async () => {
       try {
         const response = await axios.get('https://ecf-garage-server.vercel.app/api/testimonials', {
-          headers: {
-            Authorization: `Bearer ${token}`  
-          },
           withCredentials: true,
         });
         const allTestimonials = response.data;
