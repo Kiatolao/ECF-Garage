@@ -27,7 +27,7 @@ app.use(cors({
 }));
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'hhttps://garage-parrot.vercel.app');
+  res.setHeader('Access-Control-Allow-Origin', 'https://garage-parrot.vercel.app');
   next();
 });
 
