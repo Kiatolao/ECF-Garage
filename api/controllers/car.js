@@ -1,4 +1,4 @@
-import {pool} from '../db.js';
+import {db} from '../db.js';
 import jwt from 'jsonwebtoken';
 import  DOMPurify from 'isomorphic-dompurify'
 
