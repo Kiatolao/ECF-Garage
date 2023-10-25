@@ -2,8 +2,6 @@ import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
 import DOMPurify from 'isomorphic-dompurify';
 
-const jwtkey = process.env.JWT_SECRET;
-
 // Récupérer tous les témoignages
 export const getTestimonials = (req, res) => {
   const q = 'SELECT * FROM testimonials';
@@ -49,7 +47,7 @@ export const deleteTestimonial = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Vous devez être connecté pour supprimer un témoignage.");
 
-  jwt.verify(token, jwtkey, (err) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err) => {
     if (err) return res.status(403).json("Vous n'êtes pas autorisé à supprimer un témoignage.");
 
     const q = 'DELETE FROM testimonials WHERE id = ?';
@@ -66,7 +64,7 @@ export const updateTestimonial=  (req, res) => {
   const token = req.cookies.access_token;
 if (!token) return res.status(401).json("Pas de token trouvé.");
 
-jwt.verify(token, jwtkey, (err) => {
+jwt.verify(token, process.env.JWT_SECRET, (err) => {
  if (err) return res.status(403).json("Le token n'est pas valide.");
 
  const q = "UPDATE testimonials SET `validated`=? WHERE `id`=?";
