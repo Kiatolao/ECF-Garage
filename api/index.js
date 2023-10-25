@@ -22,12 +22,12 @@ app.use(express.json());
 
 // activation de cors
 app.use(cors({
-  origin: 'https://ecf-garage-client.vercel.app',
+  origin: 'https://garage-parrot.vercel.app',
   credentials: true
 }));
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://ecf-garage-client.vercel.app');
+  res.setHeader('Access-Control-Allow-Origin', 'hhttps://garage-parrot.vercel.app');
   next();
 });
 
