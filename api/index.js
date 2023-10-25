@@ -26,6 +26,13 @@ app.use(cors({
   credentials: true
 }));
 
+app.get('/api/cars', (req, res) => {
+  // Get cars data
+  res.setHeader('Access-Control-Allow-Origin', 'https://ecf-garage-client.vercel.app');
+  res.json(cars);
+
+});
+
 // activation de cookie-parser
 app.use(cookieParser());
 
