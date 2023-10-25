@@ -12,7 +12,7 @@ export const TestimonialForm = () => {
     e.preventDefault();
     // envoyer les données au serveur
     try {
-      const response = await axios.post('http://localhost:8000/api/testimonials', {
+      const response = await axios.post('https://ecf-garage-server.vercel.app/api/testimonials', {
         user: DOMPurify.sanitize(user),
         testimonial: DOMPurify.sanitize(testimonial),
         note: DOMPurify.sanitize(rating),

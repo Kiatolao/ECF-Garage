@@ -7,7 +7,7 @@ const DeleteCar = ({ carId, onDeleteCar }) => {
   const handleDeleteCar = async () => {
     try {
 
-        await axios.delete(`http://localhost:8000/api/cars/${carId}`, {
+        await axios.delete(`https://ecf-garage-server.vercel.app/api/cars/${carId}`, {
           withCredentials: true,
         });
         

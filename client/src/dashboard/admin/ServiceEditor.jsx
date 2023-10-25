@@ -20,7 +20,7 @@ export const ServiceEditor = ({ onServiceAdded }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8000/api/services', serviceData, {
+      const response = await axios.post('https://ecf-garage-server.vercel.app/api/services', serviceData, {
         withCredentials: true,
       });
       if (response.status === 201) {

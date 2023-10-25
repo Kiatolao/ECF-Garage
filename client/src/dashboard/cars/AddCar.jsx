@@ -36,7 +36,7 @@ export const AddCar = () => {
     const imgUrl = await uploadImage(formData.file);
 
     try {
-      await axios.post('http://localhost:8000/api/cars/', {
+      await axios.post('https://ecf-garage-server.vercel.app/api/cars/', {
         ...formData,
         image: formData.file ? imgUrl : '',
       }, {
@@ -60,7 +60,7 @@ export const AddCar = () => {
       const name = DOMPurify.sanitize(file.name);
       formData.append('file', file, name);
 
-      const response = await axios.post('http://localhost:8000/api/upload', formData, {
+      const response = await axios.post('https://ecf-garage-server.vercel.app/api/upload', formData, {
         withCredentials: true,
       });
 

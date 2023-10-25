@@ -12,7 +12,7 @@ export const UpdateCar = () => {
   useEffect(() => {
     async function fetchCars() {
       try {
-        const response = await axios.get('http://localhost:8000/api/cars');
+        const response = await axios.get('https://ecf-garage-server.vercel.app/api/cars');
         setCars(response.data);
       } catch (error) {
         console.error('Erreur lors de la récupération des données :', error);
@@ -26,7 +26,7 @@ export const UpdateCar = () => {
     const confirmDelete = window.confirm('Êtes-vous sûr de vouloir supprimer cette voiture ?');
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:8000/api/cars/${carId}`, {
+        await axios.delete(`https://ecf-garage-server.vercel.app/api/cars/${carId}`, {
           withCredentials: true,
         });
         setCars(cars.filter((car) => car.id !== carId));
@@ -56,7 +56,7 @@ export const UpdateCar = () => {
       warrant: DOMPurify.sanitize(car.warrant),
     }
     try {
-      await axios.put(`http://localhost:8000/api/cars/${car.id}`, purifiedCar, {
+      await axios.put(`https://ecf-garage-server.vercel.app/api/cars/${car.id}`, purifiedCar, {
         withCredentials: true,
       });
 

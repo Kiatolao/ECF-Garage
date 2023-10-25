@@ -11,7 +11,7 @@ export const ScheduleEditor = () => {
     // Récupérer les horaires depuis le serveur
     async function fetchSchedules() {
       try {
-        const response = await axios.get('http://localhost:8000/api/schedules');
+        const response = await axios.get('https://ecf-garage-server.vercel.app/api/schedules');
         setSchedules(response.data);
       } catch (error) {
         console.error('Erreur lors de la récupération des horaires :', error);
@@ -45,7 +45,7 @@ export const ScheduleEditor = () => {
     };
     try {
       // envoyer la mise à jour de l'horaire au serveur
-      await axios.put(`http://localhost:8000/api/schedules/${editedSchedule.id}`, purifiedSchedule, {
+      await axios.put(`https://ecf-garage-server.vercel.app/api/schedules/${editedSchedule.id}`, purifiedSchedule, {
         withCredentials: true,
       });
 

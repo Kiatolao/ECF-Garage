@@ -17,7 +17,7 @@ export const Testimonial = () => {
   
     const fetchTestimonials = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/testimonials');
+        const response = await axios.get('https://ecf-garage-server.vercel.app/api/testimonials');
         setTestimonials(response.data);
       } catch (error) {
         console.error('Erreur lors de la récupération des témoignages :', error);

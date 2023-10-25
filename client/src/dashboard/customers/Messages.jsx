@@ -8,7 +8,7 @@ export const Messages= () => {
 
     const fetchMessages = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/messages', {
+        const response = await axios.get('https://ecf-garage-server.vercel.app/api/messages', {
           withCredentials: true,
         });
 

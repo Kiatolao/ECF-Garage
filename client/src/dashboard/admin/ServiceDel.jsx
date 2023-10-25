@@ -9,7 +9,7 @@ export const ServiceDel = () => {
     // fetch des services
     async function fetchServices() {
       try {
-        const response = await axios.get('http://localhost:8000/api/services', {
+        const response = await axios.get('https://ecf-garage-server.vercel.app/api/services', {
           withCredentials: true,
         });
         setServices(response.data);
@@ -23,7 +23,7 @@ export const ServiceDel = () => {
 
   const handleDeleteService = async (serviceId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/services/${serviceId}`, {
+      await axios.delete(`https://ecf-garage-server.vercel.app/api/services/${serviceId}`, {
         withCredentials: true,
       });
       // mise à jour de la liste des services après la suppression

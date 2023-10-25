@@ -10,7 +10,7 @@ export const Services = () => {
         // récupération des services 
         async function fetchServices() {
             try {
-                const response = await axios.get('http://localhost:8000/api/services');
+                const response = await axios.get('https://ecf-garage-server.vercel.app/api/services');
                 setServices(response.data);
             } catch (error) {
                 console.error('Erreur lors de la récupération des services :', error);

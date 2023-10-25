@@ -15,7 +15,7 @@ export const CarDetail = () => {
   useEffect(() => {
     async function fetchCarDetails() {
       try {
-        const response = await axios.get(`http://localhost:8000/api/cars/${id}`);
+        const response = await axios.get(`https://ecf-garage-server.vercel.app/api/cars/${id}`);
         if (response.data.length > 0) { 
           const carData = response.data[0]; 
           setCar(carData);

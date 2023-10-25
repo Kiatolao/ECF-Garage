@@ -32,7 +32,7 @@ export const CarContactForm = ({ carTitle }) => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:8000/api/messages', formData, {
+      await axios.post('https://ecf-garage-server.vercel.app/api/messages', formData, {
         withCredentials: true, 
       });
       // Réinitialisez le formulaire après l'envoi réussi

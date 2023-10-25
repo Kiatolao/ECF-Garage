@@ -11,7 +11,7 @@ export const TestimonialsValidation = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/testimonials', {
+        const response = await axios.get('https://ecf-garage-server.vercel.app/api/testimonials', {
           withCredentials: true,
         });
         const allTestimonials = response.data;
@@ -29,7 +29,7 @@ export const TestimonialsValidation = () => {
 
   const validateTestimonial = async (testimonialId) => {
     try {
-      await axios.put(`http://localhost:8000/api/testimonials/${testimonialId}`, {
+      await axios.put(`https://ecf-garage-server.vercel.app/api/testimonials/${testimonialId}`, {
         validated: 1,
       }, {
         withCredentials: true,
@@ -51,7 +51,7 @@ export const TestimonialsValidation = () => {
 
   const deleteTestimonial = async (testimonialId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/testimonials/${testimonialId}`, {
+      await axios.delete(`https://ecf-garage-server.vercel.app/api/testimonials/${testimonialId}`, {
         withCredentials: true,
       });
   

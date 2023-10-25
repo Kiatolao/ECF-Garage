@@ -10,7 +10,7 @@ export const AuthContextProvider = ({ children }) => {
     const login = async (inputs) => {
         try {
             const res = await axios.post(
-                "http://localhost:8000/api/auth/login", inputs, {
+                "https://ecf-garage-server.vercel.app/api/auth/login", inputs, {
                 withCredentials: true,
             });
             setCurrentUser(res.data);
@@ -28,7 +28,7 @@ export const AuthContextProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await axios.post("http://localhost:8000/api/auth/logout");
+            await axios.post("https://ecf-garage-server.vercel.app/api/auth/logout");
             // effacer le cookie utilisateur
             Cookies.remove("access_token");
             setCurrentUser(null);
