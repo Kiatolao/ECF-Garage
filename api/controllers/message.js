@@ -2,6 +2,8 @@ import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
 import DOMPurify from 'isomorphic-dompurify';
 
+const jwtkey = process.env.JWT_SECRET;
+
 // récupérer tous les messages
 export const getMessages = (req, res) => {
   const q = 'SELECT * FROM messages';
@@ -25,7 +27,7 @@ export const deleteMessage = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Vous devez être connecté pour supprimer un message.");
 
-  jwt.verify(token, "jwtkey", (err) => {
+  jwt.verify(token, jwtkey, (err) => {
     if (err) return res.status(403).json("Vous n'êtes pas autorisé à supprimer ce message.");
 
     const messageId = req.params.id;

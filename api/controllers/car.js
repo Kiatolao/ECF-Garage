@@ -2,6 +2,7 @@ import {db} from '../db.js';
 import jwt from 'jsonwebtoken';
 import  DOMPurify from 'isomorphic-dompurify'
 
+const jwtkey = process.env.JWT_SECRET;
   
 export const getCars =  (req, res) => {
     const q = 'SELECT * FROM cars';
@@ -25,7 +26,7 @@ export const deleteCar = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Vous devez être connecté pour supprimer une voiture.");
   
-    jwt.verify(token, "jwtkey", (err) => {
+    jwt.verify(token, jwtkey, (err) => {
       if (err) return res.status(403).json("Vous n'êtes pas autorisé à supprimer cette voiture.");
       
       const carId = req.params.id;
@@ -44,7 +45,7 @@ export const deleteCar = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Pas de token trouvé.");
   
-    jwt.verify(token, "jwtkey", (err) => {
+    jwt.verify(token, jwtkey, (err) => {
       if (err) return res.status(403).json("Le token n'est pas valide.");
   
       const q =
@@ -72,7 +73,7 @@ export const updateCar =  (req, res) => {
        const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Pas de token trouvé.");
   
-    jwt.verify(token, "jwtkey", (err) => {
+    jwt.verify(token, jwtkey, (err) => {
       if (err) return res.status(403).json("Le token n'est pas valide.");
   
       const q = 

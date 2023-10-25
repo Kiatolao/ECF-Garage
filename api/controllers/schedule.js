@@ -2,6 +2,8 @@ import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
 import DOMPurify from 'isomorphic-dompurify';
 
+const jwtkey = process.env.JWT_SECRET;
+
 export const getSchedules = (req, res) => {
   const q = 'SELECT * FROM schedules';
   db.query(q, (err, result) => {
@@ -23,7 +25,7 @@ export const updateSchedule = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Pas de token trouvé.");
 
-  jwt.verify(token, "jwtkey", (err) => {
+  jwt.verify(token, jwtkey, (err) => {
     if (err) return res.status(403).json("Le token n'est pas valide.");
 
     const q =

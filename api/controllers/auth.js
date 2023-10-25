@@ -3,6 +3,8 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import DOMPurify from "isomorphic-dompurify";
 
+const jwtkey = process.env.JWT_SECRET;
+
 export const register = async (req, res) => { 
 
     // création utilisateurs
@@ -57,7 +59,7 @@ export const login = async (req, res) => {
         return res.status(400).json("Email ou mot de passe incorrect");
 
         // Création du token    
-        const token = jwt.sign({ id: data[0].id }, "jwtkey");
+        const token = jwt.sign({ id: data[0].id }, jwtkey);
         //separer le mot de passe de data
         const { password, ...other } = data[0];
   
