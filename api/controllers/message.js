@@ -1,6 +1,9 @@
 import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
 import DOMPurify from 'isomorphic-dompurify';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // récupérer tous les messages
 export const getMessages = (req, res) => {

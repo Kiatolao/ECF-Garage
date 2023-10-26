@@ -8,8 +8,11 @@ import  testimonialsRoutes  from "./routes/testimonials.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import multer from "multer";
+import dotenv from "dotenv";
 
+dotenv.config();
 
+const apiUrl = process.env.API_URL_SERVER;
 const app = express();
 
 app.use((err, req, res, next) => {
@@ -22,12 +25,12 @@ app.use(express.json());
 
 // activation de cors
 app.use(cors({
-  origin: 'https://garage-parrot.vercel.app',
+  origin: `${apiUrl}`,
   credentials: true
 }));
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://garage-parrot.vercel.app');
+  res.setHeader('Access-Control-Allow-Origin', `${apiUrl}`);
   next();
 });
 

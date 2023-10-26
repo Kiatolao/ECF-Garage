@@ -1,6 +1,9 @@
 import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
 import DOMPurify from 'isomorphic-dompurify';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export const getServices = (req, res) => {
     const q = 'SELECT * FROM services';

@@ -2,6 +2,9 @@ import { db } from "../db.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import DOMPurify from "isomorphic-dompurify";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export const register = async (req, res) => { 
 
