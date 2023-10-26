@@ -54,7 +54,7 @@ export const TestimonialAdd = () => {
     return stars;
   };
 
-  const key = "6Ld0bdAoAAAAALOQYAcgxdlUu3f4BYSlbgV62pNQ";
+  const key = "6Lf-kdAoAAAAAMeVffuTh-Kjx2wEKZqdBTh86r6N";
   const onChange = value => {
     if(value) {
       setCaptchaValidated(true); 
