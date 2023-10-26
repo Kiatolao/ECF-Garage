@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import DOMPurify from 'isomorphic-dompurify';
+import ReCAPTCHA from "react-google-recaptcha";
 
 export const CarContactForm = ({ carTitle }) => {
   const currentDate = new Date();
   const [submissionStatus, setSubmissionStatus] = useState('');
+  const [captchaValidated, setCaptchaValidated] = useState(false);
   // récupération de l'objet du message dans l'url (depuis cardetail)
 
   const initialFormData = {
@@ -52,6 +54,13 @@ export const CarContactForm = ({ carTitle }) => {
       setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
     }
   };
+
+  const key = "6Lf-kdAoAAAAAMeVffuTh-Kjx2wEKZqdBTh86r6N";
+  const onChange = value => {
+    if(value) {
+      setCaptchaValidated(true); 
+    }
+  }
 
   return (
     <div className="p-4 border border-neutral-300 bg-white shadow rounded-md grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -121,9 +130,17 @@ export const CarContactForm = ({ carTitle }) => {
             value={formData.message}
             onChange={handleChange}
             className="border border-gray-300 p-1 w-full h-[175px]"/>
-        </div>
+        </div>          
+          <ReCAPTCHA
+          sitekey={key}
+          onChange={onChange}
+          className="mb-2"/>
         {submissionStatus && <p className="text-green-500  mb-2">{submissionStatus}</p>}
-        <button type="submit" className="bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded w-full">Envoyer</button>
+        <button 
+          type="submit"
+          disabled={!captchaValidated}
+          className="bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded w-full"
+          >Envoyer</button>
       </form>
       </div>
       <div className="">
@@ -151,7 +168,7 @@ export const CarContactForm = ({ carTitle }) => {
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42423.72584773053!2d-1.1953339499999998!3d48.35124450000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48093778fd795953%3A0x6531938abaecd607!2s35133%20Foug%C3%A8res!5e0!3m2!1sfr!2sfr!4v1697717732880!5m2!1sfr!2sfr"
           title="Google Maps"
           width="100%"
-          height="265"
+          height="340"
           style={{ border: 0 }}
           allowFullScreen=""
           loading="lazy"

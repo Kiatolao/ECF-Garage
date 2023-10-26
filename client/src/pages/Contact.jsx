@@ -4,10 +4,12 @@ import layer from '../assets/layer.jpg';
 import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import logo2 from '../assets/parrot-logo.png';
 import DOMPurify from 'isomorphic-dompurify';
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 export function Contact() {
-  const apiUrl = process.env.REACT_APP_API_URL;
+ 
+  const [captchaValidated, setCaptchaValidated] = useState(false);
   const currentDate = new Date();
   const [submissionStatus, setSubmissionStatus] = useState('');
   // récupération de l'objet du message dans l'url (depuis cardetail)
@@ -35,6 +37,7 @@ export function Contact() {
     e.preventDefault();
 
     try {
+      const apiUrl = process.env.REACT_APP_API_URL;
       await axios.post(`${apiUrl}/api/messages`, formData, {
         withCredentials: true, 
       });
@@ -55,6 +58,13 @@ export function Contact() {
       setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
     }
   };
+
+  const key = "6Lf-kdAoAAAAAMeVffuTh-Kjx2wEKZqdBTh86r6N";
+  const onChange = value => {
+    if(value) {
+      setCaptchaValidated(true); 
+    }
+  }
 
   return (
     <>
@@ -79,7 +89,7 @@ export function Contact() {
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
-            className="w-full border rounded px-3"
+            className="w-full border rounded px-3 p-1"
             required />
         </div>
         <div className="mb-4">
@@ -90,7 +100,7 @@ export function Contact() {
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
-            className="w-full border rounded  px-3"
+            className="w-full border rounded  px-3 p-1"
             required/>
         </div>
         <div className="mb-4">
@@ -101,7 +111,7 @@ export function Contact() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full border rounded  px-3"
+            className="w-full border rounded  px-3 p-1"
             required/>
         </div>
         <div className="mb-4">
@@ -112,7 +122,7 @@ export function Contact() {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full border rounded  px-3"
+            className="w-full border rounded  px-3 p-1"
             required/>
         </div>
         <div className="mb-4">
@@ -125,14 +135,14 @@ export function Contact() {
             onChange={handleChange}
             className="w-full border rounded  px-3"/>
         </div>
-        <div className="mb-4">
+        <div className="mb-2">
           <label htmlFor="message" className="block text-gray-600">Message :</label>
           <textarea
             id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
-            className="w-full border rounded py-2 px-3"
+            className="w-full border rounded py-2 px-3 p-1"
             rows="4"
             required>
             </textarea>
@@ -140,8 +150,13 @@ export function Contact() {
         {submissionStatus && (
             <p className="text-green-500 mb-2">{DOMPurify.sanitize(submissionStatus)}</p>
         )}
+         <ReCAPTCHA
+          sitekey={key}
+          onChange={onChange}
+          className="mb-2"/>
         <button
           type="submit"
+          disabled={!captchaValidated}
           className="bg-red-700 text-white py-2 px-4 mb-4 rounded  hover:bg-red-800 w-full">
           Envoyer
         </button>
@@ -171,7 +186,7 @@ export function Contact() {
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42423.72584773053!2d-1.1953339499999998!3d48.35124450000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48093778fd795953%3A0x6531938abaecd607!2s35133%20Foug%C3%A8res!5e0!3m2!1sfr!2sfr!4v1697717732880!5m2!1sfr!2sfr"
           title="Google Maps"
           width="100%"
-          height="265"
+          height="300"
           style={{ border: 0 }}
           allowFullScreen=""
           loading="lazy"
