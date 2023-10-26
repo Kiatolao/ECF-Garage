@@ -3,12 +3,14 @@ import axios from 'axios';
 import { AiFillStar } from 'react-icons/ai';
 import { IoMdClose } from 'react-icons/io';
 import DOMPurify from 'isomorphic-dompurify';
+import ReCAPTCHA from "react-google-recaptcha";
 
 export const TestimonialAdd = () => {
   const [user, setUser] = useState('');
   const [testimonial, setTestimonial] = useState('');
   const [rating, setRating] = useState(0);
   const [submissionStatus, setSubmissionStatus] = useState('');
+  const [captchaValidated, setCaptchaValidated] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +32,11 @@ export const TestimonialAdd = () => {
     } catch (error) {
       console.error('Erreur lors de la soumission du témoignage :', error);
       setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
+    }finally {
+
+      // réinitialiser l'état
+      setCaptchaValidated(false);
+  
     }
   };
 
@@ -47,7 +54,12 @@ export const TestimonialAdd = () => {
     return stars;
   };
 
-  
+  const key = "6Ld0bdAoAAAAAMY78QHC8fiU-Xb3vlBSg71xSkY2";
+  const onChange = value => {
+    if(value) {
+      setCaptchaValidated(true); 
+    }
+  }
   return (
     <div className="w-[325px]">
       <h2 className="text-xl font-bold mb-4">Ajouter un témoignage</h2>
@@ -82,9 +94,16 @@ export const TestimonialAdd = () => {
               {renderStars()}
             </div>
           </div>
-          <button type="submit" className="bg-red-700 hover:bg-red-800 text-white py-2 px-4 rounded-md">
-            Soumettre
+          <button
+              type="submit"
+              disabled={!captchaValidated}
+              className="bg-red-700 hover:bg-red-800 text-white py-2 px-4 rounded-md">
+              Soumettre
           </button>
+          <ReCAPTCHA
+            sitekey={key}
+            onChange={onChange}
+          />
         </form>
       </div>
     </div>
