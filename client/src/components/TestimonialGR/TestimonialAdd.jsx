@@ -94,16 +94,16 @@ export const TestimonialAdd = () => {
               {renderStars()}
             </div>
           </div>
+          <ReCAPTCHA
+            sitekey={key}
+            onChange={onChange}
+          />
           <button
               type="submit"
               disabled={!captchaValidated}
               className="bg-red-700 hover:bg-red-800 text-white py-2 px-4 rounded-md">
               Soumettre
           </button>
-          <ReCAPTCHA
-            sitekey={key}
-            onChange={onChange}
-          />
         </form>
       </div>
     </div>
