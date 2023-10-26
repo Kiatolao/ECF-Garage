@@ -63,24 +63,19 @@ export const deleteTestimonial = (req, res) => {
   });
 };
 
-export const updateTestimonial=  (req, res) => {
-  const token = req.cookies.access_token;
-if (!token) return res.status(401).json("Pas de token trouvé.");
+export const updateTestimonial = (req, res) => {
+  const q = "UPDATE testimonials SET `validated`=? WHERE `id`=?";
 
-jwt.verify(token, process.env.JWT_SECRET, (err) => {
- if (err) return res.status(403).json("Le token n'est pas valide.");
+  const values = [
+    DOMPurify.sanitize(req.body.validated),
+    req.params.id
+  ];
 
- const q = "UPDATE testimonials SET `validated`=? WHERE `id`=?";
-
- const values = [
-  DOMPurify.sanitize(req.body.validated),
-  req.params.id
- ];
-
- db.query(q, values, (err, data) => {
-   if (err) return res.status(500).send(err);
-
-   return res.json("La voiture a été modifiée avec succès.");
- });
-});
-}; 
+  db.query(q, values, (err, result) => {
+    if (err) return res.status(500).json(err);
+    if (result.affectedRows === 0) {
+      return res.status(404).json("Témoignage introuvable.");
+    }
+    res.status(200).json("Témoignage mis à jour avec succès.");
+  });
+};
