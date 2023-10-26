@@ -18,7 +18,7 @@ export const AuthContextProvider = ({ children }) => {
             Cookies.set("access_token", res.data.token, { 
                 sameSites: "none",
                 secure: true,
-                httpsOnly: true
+                httpOnly: true
             });
 
         } catch (err) {
