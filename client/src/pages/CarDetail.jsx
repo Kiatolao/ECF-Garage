@@ -8,14 +8,17 @@ import logo2 from '../assets/parrot-logo.png';
 import { CarContactForm } from '../components/CarContactForm';
 import { AiOutlineCheck } from 'react-icons/ai';
 
+
 export const CarDetail = () => {
+
   const { id } = useParams();
   const [car, setCar] = useState({});
 
   useEffect(() => {
     async function fetchCarDetails() {
       try {
-        const response = await axios.get(`https://ecf-garage-server.vercel.app/api/cars/${id}`);
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const response = await axios.get(`${apiUrl}/api/cars/${id}`);
         if (response.data.length > 0) { 
           const carData = response.data[0]; 
           setCar(carData);

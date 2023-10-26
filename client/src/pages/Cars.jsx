@@ -10,7 +10,6 @@ import logo2 from '../assets/parrot-logo.png';
 
 
 export const Cars = () =>  {
-
   const [cars, setCars] = useState([]);
   const navigate = useNavigate();
   const [filteredCars, setFilteredCars] = useState([]); 
@@ -51,7 +50,8 @@ export const Cars = () =>  {
   useEffect(() => {
     async function fetchCars() {
       try {
-        const response = await axios.get('https://ecf-garage-server.vercel.app/api/cars');
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const response = await axios.get(`${apiUrl}/api/cars`);
         setCars(response.data);
         setFilteredCars(response.data); 
       } catch (error) {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DOMPurify from 'isomorphic-dompurify';
 
+
 export const ScheduleEditor = () => {
   const [schedules, setSchedules] = useState([]);
   const [editingSchedule, setEditingSchedule] = useState(null);
@@ -11,7 +12,8 @@ export const ScheduleEditor = () => {
     // Récupérer les horaires depuis le serveur
     async function fetchSchedules() {
       try {
-        const response = await axios.get('https://ecf-garage-server.vercel.app/api/schedules');
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const response = await axios.get(`${apiUrl}/api/schedules`);
         setSchedules(response.data);
       } catch (error) {
         console.error('Erreur lors de la récupération des horaires :', error);
@@ -44,8 +46,9 @@ export const ScheduleEditor = () => {
     
     };
     try {
+      const apiUrl = process.env.REACT_APP_API_URL;
       // envoyer la mise à jour de l'horaire au serveur
-      await axios.put(`https://ecf-garage-server.vercel.app/api/schedules/${editedSchedule.id}`, purifiedSchedule, {
+      await axios.put(`${apiUrl}/api/schedules/${editedSchedule.id}`, purifiedSchedule, {
         withCredentials: true,
       });
 

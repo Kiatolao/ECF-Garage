@@ -5,7 +5,9 @@ import { IoMdClose } from 'react-icons/io';
 import DOMPurify from 'isomorphic-dompurify';
 import ReCAPTCHA from "react-google-recaptcha";
 
+
 export const TestimonialAdd = () => {
+
   const [user, setUser] = useState('');
   const [testimonial, setTestimonial] = useState('');
   const [rating, setRating] = useState(0);
@@ -17,7 +19,8 @@ export const TestimonialAdd = () => {
 
     // envoyer les données au serveur
     try {
-      const response = await axios.post('https://ecf-garage-server.vercel.app/api/testimonials', {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/api/testimonials`, {
         user: DOMPurify.sanitize(user),
         testimonial: DOMPurify.sanitize(testimonial),
         note: DOMPurify.sanitize(rating),
@@ -97,6 +100,7 @@ export const TestimonialAdd = () => {
           <ReCAPTCHA
             sitekey={key}
             onChange={onChange}
+            className="mb-2"
           />
           <button
               type="submit"

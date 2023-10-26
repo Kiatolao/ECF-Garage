@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export const Schedules = () => {
+  
   const [schedules, setSchedules] = useState([]);
 
   useEffect(() => {
     // fonction asynchrone pour récupérer les horaires
     const fetchSchedules = async () => {
       try {
-        const response = await axios.get('https://ecf-garage-server.vercel.app/api/schedules');
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const response = await axios.get(`${apiUrl}/api/schedules`);
         setSchedules(response.data);
       } catch (error) {
         console.error('Erreur lors de la récupération des horaires :', error);

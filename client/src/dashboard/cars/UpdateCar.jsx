@@ -4,7 +4,9 @@ import { AiOutlineSafetyCertificate, AiOutlineDelete, AiOutlineEdit } from 'reac
 import { EditCarModal } from './EditCarModal';
 import DOMPurify from 'isomorphic-dompurify'
 
+
 export const UpdateCar = () => {
+
   const [cars, setCars] = useState([]);
   const [editCar, setEditCar] = useState(null);
 
@@ -12,7 +14,8 @@ export const UpdateCar = () => {
   useEffect(() => {
     async function fetchCars() {
       try {
-        const response = await axios.get('https://ecf-garage-server.vercel.app/api/cars');
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const response = await axios.get(`${apiUrl}/api/cars`);
         setCars(response.data);
       } catch (error) {
         console.error('Erreur lors de la récupération des données :', error);
@@ -26,7 +29,8 @@ export const UpdateCar = () => {
     const confirmDelete = window.confirm('Êtes-vous sûr de vouloir supprimer cette voiture ?');
     if (confirmDelete) {
       try {
-        await axios.delete(`https://ecf-garage-server.vercel.app/api/cars/${carId}`, {
+        const apiUrl = process.env.REACT_APP_API_URL;
+        await axios.delete(`${apiUrl}/api/cars/${carId}`, {
           withCredentials: true,
         });
         setCars(cars.filter((car) => car.id !== carId));
@@ -56,7 +60,8 @@ export const UpdateCar = () => {
       warrant: DOMPurify.sanitize(car.warrant),
     }
     try {
-      await axios.put(`https://ecf-garage-server.vercel.app/api/cars/${car.id}`, purifiedCar, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      await axios.put(`${apiUrl}/api/cars/${car.id}`, purifiedCar, {
         withCredentials: true,
       });
 

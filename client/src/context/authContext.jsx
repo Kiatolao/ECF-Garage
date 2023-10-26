@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -9,8 +10,9 @@ export const AuthContextProvider = ({ children }) => {
 
     const login = async (inputs) => {
         try {
+            const apiUrl = process.env.REACT_APP_API_URL;
             const res = await axios.post(
-                "https://ecf-garage-server.vercel.app/api/auth/login", inputs, {
+                `${apiUrl}/api/auth/login`, inputs, {
                 withCredentials: true,
             });
             setCurrentUser(res.data);
@@ -28,7 +30,8 @@ export const AuthContextProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await axios.post("https://ecf-garage-server.vercel.app/api/auth/logout");
+            const apiUrl = process.env.REACT_APP_API_URL;
+            await axios.post(`${apiUrl}/api/auth/logout`);
             // effacer le cookie utilisateur
             Cookies.remove("access_token");
             setCurrentUser(null);

@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { MdOutlineCancel } from 'react-icons/md';
 
+
 export const ServiceDel = () => {
+
   const [services, setServices] = useState([]);
 
   useEffect(() => {
     // fetch des services
     async function fetchServices() {
       try {
-        const response = await axios.get('https://ecf-garage-server.vercel.app/api/services', {
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const response = await axios.get(`${apiUrl}/api/services`, {
           withCredentials: true,
         });
         setServices(response.data);
@@ -23,7 +26,8 @@ export const ServiceDel = () => {
 
   const handleDeleteService = async (serviceId) => {
     try {
-      await axios.delete(`https://ecf-garage-server.vercel.app/api/services/${serviceId}`, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      await axios.delete(`${apiUrl}/api/services/${serviceId}`, {
         withCredentials: true,
       });
       // mise à jour de la liste des services après la suppression

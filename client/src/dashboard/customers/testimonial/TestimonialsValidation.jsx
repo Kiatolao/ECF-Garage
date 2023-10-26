@@ -3,7 +3,9 @@ import axios from 'axios';
 import { Archived } from './Archived';
 import { Pending } from './Pending';
 
+
 export const TestimonialsValidation = () => {
+
   const [testimonials, setTestimonials] = useState([]);
   const [archivedTestimonials, setArchivedTestimonials] = useState([]);
 
@@ -11,7 +13,8 @@ export const TestimonialsValidation = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await axios.get('https://ecf-garage-server.vercel.app/api/testimonials', {
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const response = await axios.get(`${apiUrl}/api/testimonials`, {
           withCredentials: true,
         });
         const allTestimonials = response.data;
@@ -29,7 +32,8 @@ export const TestimonialsValidation = () => {
 
   const validateTestimonial = async (testimonialId) => {
     try {
-      await axios.put(`https://ecf-garage-server.vercel.app/api/testimonials/${testimonialId}`, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      await axios.put(`${apiUrl}/api/testimonials/${testimonialId}`, {
         validated: 1,
       }, {
         withCredentials: true,
@@ -51,7 +55,8 @@ export const TestimonialsValidation = () => {
 
   const deleteTestimonial = async (testimonialId) => {
     try {
-      await axios.delete(`https://ecf-garage-server.vercel.app/api/testimonials/${testimonialId}`, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      await axios.delete(`${apiUrl}/api/testimonials/${testimonialId}`, {
         withCredentials: true,
       });
   

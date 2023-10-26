@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
 export const Messages= () => {
   const [messages, setMessages] = useState([]);
 
@@ -8,7 +9,9 @@ export const Messages= () => {
 
     const fetchMessages = async () => {
       try {
-        const response = await axios.get('https://ecf-garage-server.vercel.app/api/messages', {
+        
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const response = await axios.get(`${apiUrl}/api/messages`, {
           withCredentials: true,
         });
 

@@ -5,6 +5,7 @@ import { BiSolidQuoteRight } from 'react-icons/bi';
 import { LiaUserEditSolid } from 'react-icons/lia';
 import { TestimonialButton } from './TestimonialAdd';
 
+
 export const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [visibleCount, setVisibleCount] = useState(3);
@@ -17,7 +18,8 @@ export const Testimonial = () => {
   
     const fetchTestimonials = async () => {
       try {
-        const response = await axios.get('https://ecf-garage-server.vercel.app/api/testimonials');
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const response = await axios.get(`${apiUrl}/api/testimonials`);
         setTestimonials(response.data);
       } catch (error) {
         console.error('Erreur lors de la récupération des témoignages :', error);

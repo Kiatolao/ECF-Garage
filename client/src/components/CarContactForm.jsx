@@ -3,7 +3,6 @@ import axios from 'axios';
 import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import DOMPurify from 'isomorphic-dompurify';
 
-
 export const CarContactForm = ({ carTitle }) => {
   const currentDate = new Date();
   const [submissionStatus, setSubmissionStatus] = useState('');
@@ -32,7 +31,8 @@ export const CarContactForm = ({ carTitle }) => {
     e.preventDefault();
 
     try {
-      await axios.post('https://ecf-garage-server.vercel.app/api/messages', formData, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      await axios.post(`${apiUrl}/api/messages`, formData, {
         withCredentials: true, 
       });
       // Réinitialisez le formulaire après l'envoi réussi

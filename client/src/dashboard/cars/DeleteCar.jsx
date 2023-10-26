@@ -3,11 +3,11 @@ import axios from 'axios';
 
 
 const DeleteCar = ({ carId, onDeleteCar }) => {
-
+  const apiUrl = process.env.REACT_APP_API_URL;
   const handleDeleteCar = async () => {
     try {
 
-        await axios.delete(`https://ecf-garage-server.vercel.app/api/cars/${carId}`, {
+        await axios.delete(`${apiUrl}/api/cars/${carId}`, {
           withCredentials: true,
         });
         

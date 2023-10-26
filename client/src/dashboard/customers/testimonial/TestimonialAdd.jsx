@@ -3,7 +3,9 @@ import axios from 'axios';
 import { AiFillStar } from 'react-icons/ai';
 import DOMPurify from 'isomorphic-dompurify';
 
+
 export const TestimonialAdd = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const [user, setUser] = useState('');
   const [testimonial, setTestimonial] = useState('');
   const [rating, setRating] = useState(0);
@@ -12,7 +14,7 @@ export const TestimonialAdd = () => {
     e.preventDefault();
     // envoyer les données au serveur
     try {
-      const response = await axios.post('https://ecf-garage-server.vercel.app/api/testimonials', {
+      const response = await axios.post(`${apiUrl}/api/testimonials`, {
         user: DOMPurify.sanitize(user),
         testimonial: DOMPurify.sanitize(testimonial),
         note: DOMPurify.sanitize(rating),

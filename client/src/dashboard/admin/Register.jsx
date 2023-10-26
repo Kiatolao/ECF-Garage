@@ -25,7 +25,8 @@ export const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://ecf-garage-server.vercel.app/api/auth/register', formData, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/api/auth/register`, formData, {
       withCredentials: true, 
     });
 

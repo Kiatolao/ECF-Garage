@@ -3,7 +3,9 @@ import axios from 'axios';
 import { ServiceDel } from './ServiceDel';
 import DOMPurify from 'isomorphic-dompurify';
 
+
 export const ServiceEditor = ({ onServiceAdded }) => {
+
   const [serviceData, setServiceData] = useState({
     service: '',
   });
@@ -20,7 +22,8 @@ export const ServiceEditor = ({ onServiceAdded }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://ecf-garage-server.vercel.app/api/services', serviceData, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/api/services`, serviceData, {
         withCredentials: true,
       });
       if (response.status === 201) {

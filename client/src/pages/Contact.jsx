@@ -5,8 +5,9 @@ import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import logo2 from '../assets/parrot-logo.png';
 import DOMPurify from 'isomorphic-dompurify';
 
-export function Contact() {
 
+export function Contact() {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const currentDate = new Date();
   const [submissionStatus, setSubmissionStatus] = useState('');
   // récupération de l'objet du message dans l'url (depuis cardetail)
@@ -34,7 +35,7 @@ export function Contact() {
     e.preventDefault();
 
     try {
-      await axios.post('https://ecf-garage-server.vercel.app/api/messages', formData, {
+      await axios.post(`${apiUrl}/api/messages`, formData, {
         withCredentials: true, 
       });
       // Réinitialisez le formulaire après l'envoi réussi
