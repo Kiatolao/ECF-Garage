@@ -45,7 +45,7 @@ const maxSize = 5 * 1024 * 1024;
 // activation et configuration de multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../client/public/upload/'); 
+    cb(null, './public/upload/'); 
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);
