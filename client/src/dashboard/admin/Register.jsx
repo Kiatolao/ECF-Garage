@@ -11,8 +11,7 @@ export const Register = () => {
     password: DOMpurify.sanitize(''),
   });
 
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState('');
+  const [status, setStatus] = useState('');
 
   // gestion des changements form
   const handleChange = (e) => {
@@ -26,7 +25,7 @@ export const Register = () => {
 
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(`${apiUrl}/api/auth/register`, formData, {
+      await axios.post(`${apiUrl}/api/auth/register`, formData, {
       withCredentials: true, 
     });
 
@@ -36,13 +35,10 @@ export const Register = () => {
         email: '',
         password: '',
       });
-      setSuccessMessage(response.data);
-      setError(null);
+      setStatus('success');
     } catch (err) {
-      if (err.response && err.response.data && err.response.data.message) {
-        setError(err.response.data.message);
-      } else {
-        setError("Une erreur s'est produite lors de l'inscription.");
+      if (err) {
+        setStatus('Une erreur est survenue. Veuillez réessayer.');
       }
     }
   };
@@ -96,14 +92,19 @@ export const Register = () => {
             required
           />
         </div>
+        {status === 'success' && 
+            <p className="text-green-700 font-semibold mb-2">L'utilisateur a été ajoutée avec succes</p>
+          }
+
+          {status === 'error' &&
+            <p className="text-red-700 font-semibold mb-2">Erreur lors de l'ajout de l'utilisateur</p>
+          }
         <button
           type="submit"
           className="bg-blue-500 text-white py-2 px-4 mb-4 rounded hover:bg-blue-600"
         >
           Enregistrer un employé
         </button>
-        {error && <p className="text-red-500">{error}</p>}
-        {successMessage && <p className="text-green-500">{successMessage}</p>}
       </form>
     </div>
   );

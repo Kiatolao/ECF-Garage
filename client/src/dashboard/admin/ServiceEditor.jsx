@@ -6,6 +6,7 @@ import DOMPurify from 'isomorphic-dompurify';
 
 export const ServiceEditor = ({ onServiceAdded }) => {
 
+  const [status, setStatus] = useState('');
   const [serviceData, setServiceData] = useState({
     service: '',
   });
@@ -28,15 +29,12 @@ export const ServiceEditor = ({ onServiceAdded }) => {
       });
       if (response.status === 201) {
         setServiceData({
-          service: DOMPurify.sanitize(''),
+          service: DOMPurify.sanitize(''), 
         });
-
-        //  mise à jour de la liste des services 
-        if (onServiceAdded) {
-          onServiceAdded();
-        }
+        setStatus('success');
       }
     } catch (error) {
+      setStatus('error');
       console.error('Erreur lors de l\'ajout du service :', error);
     }
   };
@@ -59,6 +57,13 @@ export const ServiceEditor = ({ onServiceAdded }) => {
             className="border border-gray-400 w-full"/>
         </div>
         <div className="mb-4">
+        {status === 'success' && 
+            <p className="text-green-700 font-semibold mb-2">Le service a été ajoutée avec succes</p>
+          }
+
+          {status === 'error' &&
+            <p className="text-red-700 font-semibold mb-2">Erreur lors de l'ajout du service</p>
+          }
           <button
             type="submit"
             className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">

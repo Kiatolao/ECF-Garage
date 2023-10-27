@@ -199,11 +199,11 @@ export const AddCar = () => {
         <div className="mb-2">
         {/* affichage d'un message en cas de succes ou echec */}
         {status === 'success' && 
-            <p className="text-green-700 font-semibold mb-2">Voiture ajoutée!</p>
+            <p className="text-green-700 font-semibold mb-2">La voiture a été ajoutée avec succes</p>
           }
 
           {status === 'error' &&
-            <p className="text-red-700 font-semibold mb-2">Erreur lors de l'ajout</p>
+            <p className="text-red-700 font-semibold mb-2">Erreur lors de l'ajout de la voiture</p>
           }
           <button
             type="submit"
