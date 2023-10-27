@@ -22,8 +22,6 @@ export const Cars = () =>  {
         km: [0, 300000],
         price: [0, 50000],
         year: [2000, 2023],
-        gearbox: 'Manuelle',
-        fuel: 'Essence',
       };
     }
 
@@ -38,9 +36,8 @@ export const Cars = () =>  {
         car.price >= filters.price[0] &&
         car.price <= filters.price[1] &&
         car.year >= filters.year[0] &&
-        car.year <= filters.year[1] &&
-        car.gearbox === filters.gearbox &&
-        car.fuel === filters.fuel 
+        car.year <= filters.year[1]
+ 
       );
     });
 
@@ -97,7 +94,11 @@ export const Cars = () =>  {
             onClick={() => navigate(`/car_detail/${car.id}`)}
           >
             <div className="w-full  h-40 overflow-hidden">
-              <img src={`/upload/${car?.image}`} alt={car.title} className="w-full h-full object-cover" />
+            <img
+              src={`https://res.cloudinary.com/doz6ojndh/image/upload/v1698436696/${car?.image}`}
+              alt={car.title}
+              className="w-full h-full object-cover"
+            />
             </div>
 
             <h2 className="text-lg font-semibold mt-2">{car.title}</h2>

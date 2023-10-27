@@ -9,13 +9,21 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import multer from "multer";
 import dotenv from "dotenv";
-/* import axios from "axios"; */
+import {v2 as cloudinary} from 'cloudinary';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
+
 
 dotenv.config();
 
 const apiUrl = process.env.API_URL_SERVER;
-/* const siteKey = process.env.SITE_KEY; */
 const app = express();
+
+//config cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 app.use((err, req, res, next) => {
   console.error(err.stack); // Log the error
@@ -40,12 +48,34 @@ app.use((req, res, next) => {
 // activation de cookie-parser
 app.use(cookieParser());
 
-// activation de multer 
+const maxSize = 5 * 1024 * 1024;
+// Configure multer storage using CloudinaryStorage
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    resource_type: 'auto', // Automatically detect the file type
+    public_id: (req, file) => Date.now() // Generate a unique filename
+  },
+  limits: { fileSize: maxSize }
+});
+
+// Configure multer upload
+const upload = multer({ storage: storage });
+
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  if (req.file.size > maxSize) {
+    return res.status(400).send('File too large');
+  }
+
+  const file = req.file;
+  res.status(200).json(file.filename);
+});
+/* // activation de multer 
 const maxSize = 5 * 1024 * 1024;
 // activation et configuration de multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'https://garage-parrot.vercel.app/upload/'); 
+    cb(null, '../client/public/upload/'); 
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);
@@ -65,16 +95,9 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
 
   const file = req.file;
   res.status(200).json(file.filename);
-});
+}); */
 
-/* app.post("/verify", async (request, response) => {
-  const { captchaValue } = request.body;
-  const { data } = await axios.post(
-    `https://www.google.com/recaptcha/api/siteverify?secret=${siteKey}&response=${captchaValue}`
-  );
-  response.send(data);
-}
-); */
+
 
 // utilisation des routes
 app.use("/api/auth", authRoutes);
