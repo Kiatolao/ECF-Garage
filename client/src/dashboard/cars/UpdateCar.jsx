@@ -101,7 +101,7 @@ export const UpdateCar = () => {
         </div>
         <div className="mb-4 mt-2 border-b border-gray-300"></div>
         <div className="w-full h-40 overflow-hidden">
-        <img src={`https://res.cloudinary.com/doz6ojndh/image/upload/v1698436696/${car?.image}`} alt={car.title} className="w-full h-full object-cover" />
+        <img src={`https://res.cloudinary.com/doz6ojndh/image/upload/${car?.image}`} alt={car.title} className="w-full h-full object-cover" />
       </div>
 
           <h2 className="text-lg font-semibold mt-2">{car.title}</h2>
