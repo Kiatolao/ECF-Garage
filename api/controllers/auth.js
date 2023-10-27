@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const register = async (req, res) => { 
-
+    // validation du password, 8 caractères et un chiffre au minimum
     const password = DOMPurify.sanitize(req.body.password); 
 
     if (!password || password.length < 8) {
@@ -29,12 +29,13 @@ export const register = async (req, res) => {
         }
         if (data.length > 0) {
             // 409 = données déja existantes (conflit)
-            return res.status(409).json("L'email ou le nom d'utilisateur existe déjà"); 
+            return res.status(409).json("Données incorrectes"); 
         }
         //hashage du mot de passe et creation de l'utilisateur
         const salt = bcryptjs.genSaltSync(10);
         const hash = bcryptjs.hashSync(req.body.password, salt);
 
+        //envoi des données dans la base de données
         const q = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
         const values = [
             DOMPurify.sanitize(req.body.username),
