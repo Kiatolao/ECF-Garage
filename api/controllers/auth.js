@@ -8,6 +8,19 @@ dotenv.config();
 
 export const register = async (req, res) => { 
 
+    const password = DOMPurify.sanitize(req.body.password); 
+
+    if (!password || password.length < 8) {
+        return res.status(400).json({
+          error: 'Le mot de passe doit contenir au moins 8 caractères.',
+        });
+    }
+
+    if (!/\d/.test(password)) {
+        return res.status(400).json({
+          error: 'Le mot de passe doit contenir au moins un chiffre.',
+        });
+    }
     // création utilisateurs
     const q = "SELECT * FROM users WHERE email = ? OR username = ?";
     db.query(q, [DOMPurify.sanitize(req.body.email), DOMPurify.sanitize(req.body.username)], (err, data) => {

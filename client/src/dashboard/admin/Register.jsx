@@ -12,6 +12,7 @@ export const Register = () => {
   });
 
   const [status, setStatus] = useState('');
+  const [statusMessage, setStatusMessage] = useState('');
 
   // gestion des changements form
   const handleChange = (e) => {
@@ -22,7 +23,18 @@ export const Register = () => {
   // soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (formData.password.length < 8) {
+      setStatus('error');
+      setStatusMessage('Le mot de passe doit contenir au moins 8 caractères.');
+      return;
+    }
+    
+    if (!/\d/.test(formData.password)) {
+      setStatus('error');
+      setStatusMessage('Le mot de passe doit contenir au moins un chiffre.');
+      return;
+    }
+  
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
       await axios.post(`${apiUrl}/api/auth/register`, formData, {
@@ -99,6 +111,11 @@ export const Register = () => {
           {status === 'error' &&
             <p className="text-red-700 font-semibold mb-2">Erreur lors de l'ajout de l'utilisateur</p>
           }
+          {status === 'error' && (
+            <p className="text-red-700 font-semibold mb-2">
+              {statusMessage}
+            </p>
+          )}
         <button
           type="submit"
           className="bg-blue-500 text-white py-2 px-4 mb-4 rounded hover:bg-blue-600"

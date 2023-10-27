@@ -57,7 +57,7 @@ export const TestimonialAdd = () => {
     return stars;
   };
 
-  const key = "6Lf-kdAoAAAAAMeVffuTh-Kjx2wEKZqdBTh86r6N";
+  const key = process.env.REACT_APP_SITE_KEY;
   const onChange = value => {
     if(value) {
       setCaptchaValidated(true); 
@@ -100,8 +100,7 @@ export const TestimonialAdd = () => {
           <ReCAPTCHA
             sitekey={key}
             onChange={onChange}
-            className="mb-2"
-          />
+            className="mb-2"/>
           <button
               type="submit"
               disabled={!captchaValidated}

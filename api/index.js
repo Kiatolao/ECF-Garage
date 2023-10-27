@@ -9,10 +9,12 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import multer from "multer";
 import dotenv from "dotenv";
+/* import axios from "axios"; */
 
 dotenv.config();
 
 const apiUrl = process.env.API_URL_SERVER;
+/* const siteKey = process.env.SITE_KEY; */
 const app = express();
 
 app.use((err, req, res, next) => {
@@ -64,6 +66,15 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
   const file = req.file;
   res.status(200).json(file.filename);
 });
+
+/* app.post("/verify", async (request, response) => {
+  const { captchaValue } = request.body;
+  const { data } = await axios.post(
+    `https://www.google.com/recaptcha/api/siteverify?secret=${siteKey}&response=${captchaValue}`
+  );
+  response.send(data);
+}
+); */
 
 // utilisation des routes
 app.use("/api/auth", authRoutes);
