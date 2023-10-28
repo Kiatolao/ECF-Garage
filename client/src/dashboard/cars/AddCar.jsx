@@ -35,8 +35,8 @@ export const AddCar = () => {
       //setup cloudinary
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "garage-upload");
-      formData.append("api_key", "534464916355525"); 
+      formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
+      formData.append("api_key", process.env.REACT_APP_CLOUDINARY_KEY); 
       formData.append("timestamp", (Date.now() / 1000) | 0);
   
       const response = await axios.post("https://api.cloudinary.com/v1_1/doz6ojndh/image/upload", formData, {
