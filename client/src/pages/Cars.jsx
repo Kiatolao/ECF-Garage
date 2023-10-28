@@ -95,7 +95,7 @@ export const Cars = () =>  {
           >
             <div className="w-full  h-40 overflow-hidden">
             <img
-              src={`https://res.cloudinary.com/doz6ojndh/image/upload/${car?.image}`}
+              src={`${car?.image}`}
               alt={car.title}
               className="w-full h-full object-cover"
             />

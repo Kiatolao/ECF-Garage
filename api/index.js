@@ -10,7 +10,7 @@ import cors from "cors";
 import multer from "multer";
 import dotenv from "dotenv";
 import {v2 as cloudinary} from 'cloudinary';
-import { CloudinaryStorage } from 'multer-storage-cloudinary';
+import streamifier from 'streamifier';
 
 
 dotenv.config();
@@ -48,28 +48,38 @@ app.use((req, res, next) => {
 // activation de cookie-parser
 app.use(cookieParser());
 
-const maxSize = 5 * 1024 * 1024;
-// Configure multer storage using CloudinaryStorage
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    resource_type: 'auto', // Automatically detect the file type
-    public_id: (req, file) => Date.now() // Generate a unique filename
-  },
-  limits: { fileSize: maxSize }
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
 });
 
-// Configure multer upload
-const upload = multer({ storage: storage });
+async function handleUpload(file) {
+  const res = await cloudinary.uploader.upload(file, {
+    resource_type: "auto",
+  });
+  return res;
+}
 
-app.post('/api/upload', upload.single('file'), (req, res) => {
-  if (req.file.size > maxSize) {
-    return res.status(400).send('File too large');
+app.post("/api/upload", upload.single("file"), async (req, res) => {
+  try {
+    const b64 = Buffer.from(req.file.buffer).toString("base64");
+    let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+    const cldRes = await handleUpload(dataURI);
+    const imageUrl = cldRes.secure_url;
+    res.json({ imageUrl });
+  } catch (error) {
+    console.log(error);
+    res.send({
+      message: error.message,
+    });
   }
-
-  const file = req.file;
-  res.status(200).json(file.filename);
 });
+
 /* // activation de multer 
 const maxSize = 5 * 1024 * 1024;
 // activation et configuration de multer

@@ -25,21 +25,50 @@ export const AddCar = () => {
       [name]: type === 'file' ? files[0] : value,});
   };
 
+  const uploadImage = async (file) => {
+    const maxSize = 5 * 1024 * 1024;
+    if (file.size > maxSize) {
+      throw new Error('Le fichier dépasse 5Mo');
+    }
+  
+    try {
+      //setup cloudinary
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "garage-upload");
+      formData.append("api_key", "534464916355525"); 
+      formData.append("timestamp", (Date.now() / 1000) | 0);
+  
+      const response = await axios.post("https://api.cloudinary.com/v1_1/doz6ojndh/image/upload", formData, {
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+      });
+      // récupération de l'url et du nom du fichier
+      return {
+        url: response.data.url, 
+        filename: file.name
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     // empeche l'envoi du formulaire si le fichier est trop lourd
     if (formData.file && formData.file.size > 5 * 1024 * 1024) {
       alert("Le fichier dépasse 5 Mo");
       return;
     }
 
-    const imgUrl = await uploadImage(formData.file);
+    const {url, filename} = await uploadImage(formData.file);
 
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
       await axios.post(`${apiUrl}/api/cars/`, {
         ...formData,
-        image: formData.file ? imgUrl : '',
+        image: url,
+        filename: filename
       }, {
         withCredentials: true,
       });
@@ -47,29 +76,6 @@ export const AddCar = () => {
     } catch (err) {
       setStatus('error');
       console.error('Erreur lors de l\'ajout de la voiture :', err.response ? err.response.data : err.message);
-    }
-  };
-
-  const uploadImage = async (file) => {
-    const maxSize = 5 * 1024 * 1024;
-    if(file.size > maxSize) {
-      throw new Error('Le fichier dépasse 5Mo'); 
-    }
-    try {
-      const formData = new FormData();
-      // sanitize le nom du fichier 
-      const name = DOMPurify.sanitize(file.name);
-      formData.append('file', file, name);
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(`${apiUrl}/api/upload`, formData, {
-        withCredentials: true,
-      });
-
-      return response.data;
-    } catch (err) {
-        alert(err.message);
-        console.error(err);
-        return;
     }
   };
 
@@ -90,6 +96,7 @@ export const AddCar = () => {
     }, [status]) 
   
   return (
+    
     <div className="max-w-xl">
       <h1 className="font-bold text-lg mb-4">Créer une Nouvelle Voiture</h1>
       <form onSubmit={handleSubmit} className="">

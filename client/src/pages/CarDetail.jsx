@@ -48,7 +48,7 @@ export const CarDetail = () => {
       <div className="md:w-1/2">
         <div className="h-80 mx-auto mb-4 shadow-lg">
           <img
-            src={`https://res.cloudinary.com/doz6ojndh/image/upload/${car?.image}`}
+            src={`${car?.image}`}
             alt={car.title}
             className="w-full h-full object-cover rounded-md"
           />
