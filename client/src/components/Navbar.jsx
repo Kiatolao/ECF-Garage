@@ -30,8 +30,8 @@ export const Navbar = () => {
     return (
       <nav
       className={`${
-      isOnTop  ? 'bg-transparent' : 'bg-stone-800 opacity-95'
-      } text-white text-lg border-gray-200  z-20 w-full fixed transition-all duration-300`}
+      isOnTop  ? 'bg-transparent text-2xl' : 'bg-stone-800 opacity-95 text-xl'
+      } text-white  border-gray-200  z-20 w-full fixed transition-all duration-300`}
     >
         <div className=" flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center">
@@ -74,18 +74,18 @@ export const Navbar = () => {
               isMenuOpen ? 'block' : 'hidden'
             } w-full md:flex md:w-auto md:order-1`}
           >
-            <ul className=" flex flex-col  p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
+            <ul className="flex flex-col  p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
               <li>
-                <Link className="font-semibold" to="/">Accueil</Link>
+                <Link className="font-semibold " to="/">Accueil</Link>
               </li>
               <li>
                 <Link className="font-semibold" to="/cars">Occasions</Link>
               </li>
               <li>
-                <Link className="font-semibold" to="/contact">Contact</Link>
+                <Link className="font-semibold " to="/contact">Contact</Link>
               </li>
               <li>
-                {currentUser &&<Link className="font-bold"  to="/dashboard">Tableau de bord</Link>}
+                {currentUser &&<Link className="font-bold "  to="/dashboard">Tableau de bord</Link>}
               </li>
               <li>
               

@@ -30,7 +30,7 @@ export const AddCar = () => {
     if (file.size > maxSize) {
       throw new Error('Le fichier dépasse 5Mo');
     }
-  
+ 
     try {
       //setup cloudinary
       const formData = new FormData();
@@ -46,6 +46,7 @@ export const AddCar = () => {
         url: response.data.url, 
         filename: file.name
       }
+      
     } catch (error) {
       console.error(error);
     }
