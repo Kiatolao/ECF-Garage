@@ -8,13 +8,16 @@ import { useWindowWidth } from '@react-hook/window-size';
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isOnTop, setIsOnTop] = useState(true);
+    const [isOnTop, setIsOnTop] = useState(true);  
+    const { currentUser, logout } = useContext(AuthContext);
 
     const toggleMenu = () => {
-      setIsMenuOpen(!isMenuOpen);
+      setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
     };
-    
-    const { currentUser, logout } = useContext(AuthContext);
+    const handleLinkClick = () => {
+      setIsMenuOpen(false);
+    };
+
 
     useEffect(() => {
       const handleScroll = () => {
@@ -74,23 +77,19 @@ export const Navbar = () => {
               </svg>
             </button>
           </div>
-          <div
-            className={`${
-              isMenuOpen ? 'block' : 'hidden'
-            } w-full md:flex md:w-auto md:order-1`}
-          >
+          <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full md:flex md:w-auto md:order-1`}>
             <ul className="flex flex-col  p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
               <li>
-                <Link className="font-semibold " to="/">Accueil</Link>
+                <Link className="font-semibold " to="/" onClick={handleLinkClick}>Accueil</Link>
               </li>
               <li>
-                <Link className="font-semibold" to="/cars">Occasions</Link>
+                <Link className="font-semibold" to="/cars" onClick={handleLinkClick}>Occasions</Link>
               </li>
               <li>
-                <Link className="font-semibold " to="/contact">Contact</Link>
+                <Link className="font-semibold " to="/contact" onClick={handleLinkClick}>Contact</Link>
               </li>
               <li>
-                {currentUser &&<Link className="font-bold "  to="/dashboard">Tableau de bord</Link>}
+                {currentUser &&<Link className="font-bold "  to="/dashboard " onClick={handleLinkClick}>Tableau de bord</Link>}
               </li>
               <li>
               
