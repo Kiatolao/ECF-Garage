@@ -28,13 +28,13 @@ export const Navbar = () => {
       };
     }, []);
 
-    const isMobile = useWindowWidth() < 768; 
+    const isMobile = useWindowWidth() < 965; 
 
     return (
       <nav
       className={`${
       isMobile ? 'bg-stone-800' :
-      isOnTop  ? 'bg-transparent text-2xl' : 'bg-stone-800 opacity-95 text-xl'
+      isOnTop  ? 'bg-transparent text-xl' : 'bg-stone-800 opacity-95 text-xl'
       } text-white  border-gray-200  z-20 w-full fixed transition-all duration-300`}
     >
         <div className=" flex flex-wrap items-center justify-between mx-auto p-4">

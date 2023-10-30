@@ -51,10 +51,10 @@ export const TestimonialAdd = () => {
   };
   return (
 
-    <div className="w-[350px]">
+    <div className="">
       <h2 className="text-xl font-bold mb-4">Ajouter un témoignage</h2>
 
-      <div className="w-full">
+      <div className="max-w-[500px]">
       <form onSubmit={handleSubmit} className="mt-4 p-2 w-full">
         <div className="mb-4">
           <label htmlFor="user" className="block text-gray-700">Nom :</label>
@@ -90,7 +90,7 @@ export const TestimonialAdd = () => {
           {status === 'error' &&
             <p className="text-red-700 font-semibold mb-2">Erreur lors de l'ajout du témoignage</p>
           }
-        <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md">
+        <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ">
           Soumettre
         </button>
       </form>
