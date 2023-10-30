@@ -7,6 +7,7 @@ import { CarFilter } from '../components/CarFilter';
 import { Infos } from '../components/Infos';
 import layer from '../assets/layer.jpg';
 import logo2 from '../assets/parrot-logo.png';
+import { SocialMedia } from '../components/Socialmedia';
 
 
 export const Cars = () =>  {
@@ -64,6 +65,7 @@ export const Cars = () =>  {
 
   return (
     <>
+    <SocialMedia />
     <div className="">
       <img src={layer} alt="fond navbar" className="h-[70px] w-full bg-cover shadow-xl bg-opacity-80"/>
       <div className="flex-grow border-t border-black"></div>

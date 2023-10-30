@@ -40,8 +40,8 @@ export const Infos = () => {
             17 Rue Nowhere<br />
             35300 Fougères<br />
           </address><br />
-          <p>Téléphone : +33 1 23 45 67 89</p>
-          <p>Email : contact@example.com</p>
+          <p>Téléphone : 01 02 03 04 05</p>
+          <p>Email : vincent@parrot.fr</p>
         </div>
         <div className="md:col-span-1 md:mx-auto">
             <h3 className="text-xl font-semibold mb-2">
@@ -57,11 +57,14 @@ export const Infos = () => {
                 <Link to="/cars">Occasions</Link>
               </li>
               <li>
+                <Link to="/contact">Contact</Link>
+              </li>
+{/*               <li>
                 <Link to="/politique-de-confidentialite">Politique de confidentialité</Link>
               </li>
               <li>
                 <Link to="/plan-du-site">Plan du site</Link>
-              </li>
+              </li> */}
             </ul>
         </div>
       </div>

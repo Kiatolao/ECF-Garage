@@ -5,6 +5,7 @@ import { Testimonial } from '../components/TestimonialGR/Testimonial';
 import { Infos } from '../components/Infos';
 import { AiOutlineRight } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { SocialMedia } from '../components/Socialmedia';
 
 export const Home = () => {
   const divStyle = {
@@ -13,8 +14,9 @@ export const Home = () => {
   };
   return (
     <>
+    <SocialMedia />
 <div style={divStyle} className="p-5 bg-no-repeat bg-center bg-cover h-screen shadow-lg">
-    <div className="absolute inset-0 flex flex-col justify-center items-start bg-black bg-opacity-20 text-white">
+    <div className="absolute inset-0 flex flex-col justify-center items-start bg-black bg-opacity-20 text-white z-200 pointer-events-none">
       <div className="max-w-[500px] ml-10 mt-20">
       <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl  ">
         <span className="font-bold">Garage Parrot</span> réparations automobiles de confiance depuis <span className="font-bold">2004</span>

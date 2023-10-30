@@ -5,6 +5,7 @@ import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import logo2 from '../assets/parrot-logo.png';
 import DOMPurify from 'isomorphic-dompurify';
 import ReCAPTCHA from "react-google-recaptcha";
+import { SocialMedia } from '../components/Socialmedia';
 
 
 export function Contact() {
@@ -68,6 +69,7 @@ export function Contact() {
 
   return (
     <>
+    <SocialMedia />
     <div>
     <img src={layer} alt="Moteur" className="h-[70px] w-full bg-cover shadow-xl bg-opacity-80"/>
       <div className="flex-grow border-t border-black"></div>

@@ -7,6 +7,7 @@ import layer from '../assets/layer.jpg';
 import logo2 from '../assets/parrot-logo.png';
 import { CarContactForm } from '../components/CarContactForm';
 import { AiOutlineCheck } from 'react-icons/ai';
+import { SocialMedia } from '../components/Socialmedia';
 
 
 export const CarDetail = () => {
@@ -33,6 +34,7 @@ export const CarDetail = () => {
 
   return (
   <>
+  <SocialMedia />
   <div>
     <img src={layer} alt="Moteur" className="h-[70px] w-full bg-cover shadow-xl bg-opacity-80"/>
     <div className="flex-grow border-t border-black"></div>
