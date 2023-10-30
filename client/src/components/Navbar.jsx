@@ -3,7 +3,8 @@ import { useState, useContext, useEffect } from 'react';
 import garageLogo from '../assets/parrot-logo2.png';
 import { Link } from 'react-router-dom';
 import  {AuthContext}  from '../context/authContext';
-import '../index.css';
+import '../index.css'; 
+import { useWindowWidth } from '@react-hook/window-size';
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,9 +28,12 @@ export const Navbar = () => {
       };
     }, []);
 
+    const isMobile = useWindowWidth() < 768; 
+
     return (
       <nav
       className={`${
+      isMobile ? 'bg-stone-800' :
       isOnTop  ? 'bg-transparent text-2xl' : 'bg-stone-800 opacity-95 text-xl'
       } text-white  border-gray-200  z-20 w-full fixed transition-all duration-300`}
     >
@@ -38,6 +42,7 @@ export const Navbar = () => {
           <img
             src={garageLogo}
             className={`h-8 ml-5 transition-all duration-500 ${
+              isMobile ? 'scale-100' :
               isOnTop ? 'scale-150 mt-2' : 'scale-100'
             }`}
             alt="Parrot Logo"
