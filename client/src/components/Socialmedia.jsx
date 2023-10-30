@@ -14,7 +14,7 @@ export const SocialMedia = () => {
       <div className="flex items-center bg-white border-black shadow">
         <button
           onClick={handleMediaShareClick}
-          className={` bg-red-700 text-white py-1 px-1  hover:bg-red-800 focus:outline-none transition-transform ${
+          className={` bg-red-700 text-white py-1 px-1 focus:outline-none transition-transform ${
             expanded ? '-translate-x-5' : 'translate-x-0'
           }`}
         >
