@@ -48,7 +48,7 @@ export const CarDetail = () => {
   <div className=" container mx-auto mt-5">
     <div className="md:flex md:space-x-4">
       <div className="md:w-1/2">
-        <div className="h-80 mx-auto mb-4 shadow-lg">
+        <div className="h-80 mx-auto mb-4 shadow-lg p-3">
           <img
             src={`${car?.image}`}
             alt={car.title}

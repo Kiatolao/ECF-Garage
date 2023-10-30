@@ -25,7 +25,7 @@ export const Overview = () => {
       <div className="flex-grow border-t border-red-700"></div>
     </div>
     <div className="p-5">
-      <div className=" flex flex-col md:flex-row pb-10 ">
+      <div className=" flex flex-col md:flex-row  ">
         <div className="grid grid-cols-2 gap-1 max-w-[600px] mx-auto pt-1">
           <div>
               <img className="h-auto max-w-full rounded" src={working5} alt=""/>
@@ -41,7 +41,9 @@ export const Overview = () => {
           </div>
       </div>
       <div className="max-w-[500px] mx-auto pt-4 ">
+      <div className="flex justify-center">
           <h2 className="text-2xl font-bold mb-5 text-red-700">Un garage à votre service</h2>
+          </div>
           <p className="mb-4 text-justify">
             Depuis 2004, notre équipe de professionnels qualifiés assure des réparations de confiance et propose une sélection soignée de véhicules d'occasion de qualité. <br />
             Nous offrons un service complet, de la réparation à l'achat, en mettant l'accent sur la satisfaction du client.
@@ -49,10 +51,12 @@ export const Overview = () => {
           <p className="mb-4 text-justify">
             Chez Garage Parrot, la fiabilité, l'expertise et l'engagement sont au cœur de notre approche. Faites confiance à notre garage pour prendre soin de votre véhicule et vous guider dans le choix de votre prochaine voiture.
           </p>
-        <Link to="/contact">
-        <button className="bg-red-700 text-white py-2 px-4 rounded hover:bg-red-800 mb-5 mt-5 shadow-md">Prendre rendez-vous <AiOutlineRight size={17} className="inline-block" />
-        </button>
-        </Link>
+          <div className="flex justify-center">
+            <Link to="/contact">
+              <button className="bg-red-700 text-white py-2 px-4 rounded hover:bg-red-800 mb-5 mt-5 shadow-md">Prendre rendez-vous <AiOutlineRight size={17} className="inline-block" />
+              </button>
+            </Link>
+          </div>
       </div>
     </div>
     </div>
