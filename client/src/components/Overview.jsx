@@ -26,7 +26,7 @@ export const Overview = () => {
     </div>
     <div className="p-5">
       <div className=" flex flex-col md:flex-row  ">
-        <div className="grid grid-cols-2 gap-1 max-w-[600px] mx-auto pt-1">
+        <div className="grid grid-cols-2 gap-1 max-w-[600px] mx-auto pt-1 pb-5">
           <div>
               <img className="h-auto max-w-full rounded" src={working5} alt=""/>
           </div>
