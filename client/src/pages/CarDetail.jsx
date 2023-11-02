@@ -98,7 +98,7 @@ export const CarDetail = () => {
           </li>
           <li className="flex items-start">
             <AiOutlineCheck className="h-5 w-5 text-green-500 mt-1 mr-2" />
-            <span>Possibilité d'essai avant l'achat</span>
+            <span>Possibilité d'essai avant achat</span>
           </li>
         </ul>
       </div>

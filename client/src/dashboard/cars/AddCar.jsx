@@ -98,10 +98,10 @@ export const AddCar = () => {
   return (
     
     <div className="max-w-xl">
-      <h1 className="font-bold text-lg mb-4">Ajouter une Nouvelle Voiture</h1>
+      <h1 className="font-bold text-lg mb-4">Ajouter une nouvelle voiture</h1>
       <form onSubmit={handleSubmit} className="">
         <div className="mb-4">
-          <label htmlFor="file" className="block mb-2">Image de la Voiture</label>
+          <label htmlFor="file" className="block mb-2">Image de la voiture</label>
           <input
             required
             type="file"
@@ -112,7 +112,7 @@ export const AddCar = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="title" className="block mb-2">Modèle de la Voiture</label>
+          <label htmlFor="title" className="block mb-2">Modèle de la voiture</label>
           <input
             type="text"
             id="title"
@@ -160,7 +160,7 @@ export const AddCar = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="fuel" className="block mb-2">Type de Carburant</label>
+          <label htmlFor="fuel" className="block mb-2">Type de carburant</label>
           <select
             id="fuel"
             name="fuel"
@@ -177,7 +177,7 @@ export const AddCar = () => {
           </select>
         </div>
         <div className="mb-4">
-          <label htmlFor="gearbox" className="block mb-2">Boîte de Vitesses</label>
+          <label htmlFor="gearbox" className="block mb-2">Boîte de vitesses</label>
           <select
             id="gearbox"
             name="gearbox"

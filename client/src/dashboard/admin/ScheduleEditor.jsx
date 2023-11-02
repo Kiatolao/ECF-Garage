@@ -73,10 +73,10 @@ export const ScheduleEditor = () => {
         <thead>
           <tr className="bg-neutral-200">
             <th className="border border-gray-300 px-4 py-2">Jour</th>
-            <th className="border border-gray-300 px-4 py-2">Ouverture Matin</th>
-            <th className="border border-gray-300 px-4 py-2">Fermeture Matin</th>
-            <th className="border border-gray-300 px-4 py-2">Ouverture Après-midi</th>
-            <th className="border border-gray-300 px-4 py-2">Fermeture Après-midi</th>
+            <th className="border border-gray-300 px-4 py-2">Ouverture matin</th>
+            <th className="border border-gray-300 px-4 py-2">Fermeture matin</th>
+            <th className="border border-gray-300 px-4 py-2">Ouverture après-midi</th>
+            <th className="border border-gray-300 px-4 py-2">Fermeture après-midi</th>
             <th className="border border-gray-300 px-4 py-2">Actions</th>
           </tr>
         </thead>
