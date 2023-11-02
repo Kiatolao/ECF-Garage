@@ -98,7 +98,7 @@ export const AddCar = () => {
   return (
     
     <div className="max-w-xl">
-      <h1 className="font-bold text-lg mb-4">Créer une Nouvelle Voiture</h1>
+      <h1 className="font-bold text-lg mb-4">Ajouter une Nouvelle Voiture</h1>
       <form onSubmit={handleSubmit} className="">
         <div className="mb-4">
           <label htmlFor="file" className="block mb-2">Image de la Voiture</label>
