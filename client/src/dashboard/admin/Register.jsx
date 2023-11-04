@@ -11,18 +11,26 @@ export const Register = () => {
     password: DOMpurify.sanitize(''),
   });
 
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [status, setStatus] = useState('');
   const [statusMessage, setStatusMessage] = useState('');
 
   // gestion des changements form
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    if (name === 'password') {
+      setFormData({ ...formData, password: value });
+    } else if (name === 'confirmPassword') {
+      setConfirmPassword(value);
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   // soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // condition de validation du formulaire 8 caractères, 1 chiffre et password = confirmPassword
     if (formData.password.length < 8) {
       setStatus('error');
       setStatusMessage('Le mot de passe doit contenir au moins 8 caractères.');
@@ -34,6 +42,12 @@ export const Register = () => {
       setStatusMessage('Le mot de passe doit contenir au moins un chiffre.');
       return;
     }
+
+    if (formData.password !== confirmPassword) {
+      setStatus('error');
+      setStatusMessage("Les mots de passe ne correspondent pas.");
+      return;
+    }
   
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
@@ -41,12 +55,13 @@ export const Register = () => {
       withCredentials: true, 
     });
 
-      // réinitialisation des champs du formulaire et affichage d'un message de succès
+      // réinitialisation des champs du formulaire et affichage d'un message de succès/erreur
       setFormData({
         username: '',
         email: '',
         password: '',
       });
+      setConfirmPassword('');
       setStatus('success');
     } catch (err) {
       if (err) {
@@ -101,6 +116,21 @@ export const Register = () => {
             onChange={handleChange}
             className="border border-gray-400 w-full"
             autoComplete='new-password'
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="confirmPassword" className="block text-gray-600">
+            Confirmez le mot de passe :
+          </label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={handleChange}
+            className="border border-gray-400 w-full"
+            autoComplete="new-password"
             required
           />
         </div>

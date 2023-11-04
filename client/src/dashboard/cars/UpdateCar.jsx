@@ -46,7 +46,7 @@ export const UpdateCar = () => {
 
 
 
-  // Fonction pour mettre à jour la voiture
+  // fonction pour mettre à jour la voiture
   const updateCar = async (car) => {
     const purifiedCar = {
       ...car, 
