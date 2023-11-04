@@ -54,13 +54,13 @@ export function Contact() {
       });
       setSubmissionStatus('Le message a été envoyé avec succès!');
     } catch (err) {
-      console.error('Erreur lors de l\'ajout de la voiture :', err.response ? err.response.data : err.message);
+      console.error('Erreur lors de l\'envoie du message ');
       alert('Une erreur s\'est produite lors de l\'envoi du message.');
       setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
     }
   };
 
-  const key = "6Lf-kdAoAAAAAMeVffuTh-Kjx2wEKZqdBTh86r6N";
+  const key = process.env.REACT_APP_SITE_KEY;
   const onChange = value => {
     if(value) {
       setCaptchaValidated(true); 

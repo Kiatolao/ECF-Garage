@@ -55,7 +55,7 @@ export const CarContactForm = ({ carTitle }) => {
     }
   };
 
-  const key = "6Lf-kdAoAAAAAMeVffuTh-Kjx2wEKZqdBTh86r6N";
+  const key = process.env.REACT_APP_SITE_KEY;
   const onChange = value => {
     if(value) {
       setCaptchaValidated(true); 
