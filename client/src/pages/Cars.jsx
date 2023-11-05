@@ -26,10 +26,6 @@ export const Cars = () =>  {
       };
     }
 
-    if (!cars || !Array.isArray(cars)) {
-      return;
-    }
-
     const filtered = cars.filter((car) => {
       return (
         car.km >= filters.km[0] &&
@@ -41,7 +37,6 @@ export const Cars = () =>  {
  
       );
     });
-
     setFilteredCars(filtered);
   };
 
@@ -90,9 +85,12 @@ export const Cars = () =>  {
         {filteredCars.map((car) => (
           <div
             key={car.id}
-            className="bg-white shadow-md rounded-md p-4 hover:border-neutral-300 border cursor-pointer hover:shadow-2xl transition duration-300 ease-in-out hover:scale-105"
-            onClick={() => navigate(`/car_detail/${car.id}`)}
-          >
+            className="
+            bg-white shadow-md rounded-md p-4 
+            hover:border-neutral-300 
+            border cursor-pointer 
+            hover:shadow-2xl transition duration-300 ease-in-out hover:scale-105"
+            onClick={() => navigate(`/car_detail/${car.id}`)}>
             <div className="w-full  h-40 overflow-hidden">
             <img
               src={`${car?.image}`}

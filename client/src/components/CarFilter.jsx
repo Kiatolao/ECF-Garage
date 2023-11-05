@@ -50,8 +50,7 @@ export const CarFilter = ({ onFilterChange }) => {
             min={0}
             max={300000}
             value={kmRange}
-            onChange={setKmRange}
-          />
+            onChange={setKmRange}/>
           <p>
             {kmRange[0]} km - {kmRange[1]} km
           </p>
