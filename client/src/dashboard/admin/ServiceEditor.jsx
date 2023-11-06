@@ -35,7 +35,7 @@ export const ServiceEditor = ({ onServiceAdded }) => {
       }
     } catch (error) {
       setStatus('error');
-      console.error('Erreur lors de l\'ajout du service :', error);
+      console.error('Erreur lors de l\'ajout du service');
     }
   };
 

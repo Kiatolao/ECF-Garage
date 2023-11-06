@@ -15,11 +15,11 @@ const apiUrl = process.env.API_URL_SERVER;
 const app = express();
 
 app.use((err, req, res, next) => {
-  console.error(err.stack); // Log the error
-  res.status(500).send('Something went wrong!');
+  console.error(err.stack); 
+  res.status(500).send('Erreur!');
 });
 
-// lien avec la base de données
+// activation de express.json
 app.use(express.json());
 
 // activation de cors
@@ -32,7 +32,6 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', `${apiUrl}`);
   next();
 });
-
 
 // activation de cookie-parser
 app.use(cookieParser());
