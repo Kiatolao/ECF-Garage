@@ -35,8 +35,31 @@ export const addTestimonial = (req, res) => {
         DOMPurify.sanitize(req.body.user),
         DOMPurify.sanitize(req.body.testimonial),
         DOMPurify.sanitize(req.body.note),
-        req.body.validated,
+        DOMEPurify.sanitize(req.body.validated),
     ];
+
+  // validation avec le regex
+  const userRegex = /^[A-Za-z\s-]+$/;
+  const testimonialRegex = /^[A-Za-z0-9\s.,\-!?'’()]+$/;
+  const noteRegex = /^[0-5]$/;
+  const validatedRegex = /^[0-1]$/;
+
+  if (!userRegex.test(values[0])) {
+    return res.status(400).json("Le nom ne doit contenir que des lettres, des tirets et des espaces.");
+  }
+
+  if (!testimonialRegex.test(values[1])) {
+    return res.status(400).json("Le témoignage contient des caractères non autorisés.");
+  }
+
+  if (!noteRegex.test(values[2])) {
+    return res.status(400).json("La note doit être comprise entre 0 et 5.");
+  }
+
+  if (!validatedRegex.test(values[3])) {
+    return res.status(400).json("La validation doit être 0 ou 1.");
+  }
+
     db.query(q, values, (err, data) => {
       if (err) {
         return res.status(500).send(err);

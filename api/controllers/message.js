@@ -63,6 +63,33 @@ export const addMessage = (req, res) => {
       dateString
     ];
 
+  //validation avec le regex
+  const userRegex = /^[A-Za-z\s-]+$/;
+  const phoneRegex = /^[\d\s\-+]+$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const objectRegex = /^[a-zA-Z0-9\s-]+$/;
+  const messageRegex = /^[A-Za-z0-9\s.,\-!?'’()]+$/;
+
+  if (!userRegex.test(values[0]) || !userRegex.test(values[1])) {
+    return res.status(400).json("Le nom ne doit contenir que des lettres, des tirets et des espaces.");
+  }
+
+  if (!emailRegex.test(values[2])) {
+    return res.status(400).json("Veuillez entrer une adresse e-mail valide.");
+  }
+
+  if (!phoneRegex.test(values[3])) {
+    return res.status(400).json("Le numéro ne doit contenir que des chiffres, des espaces et des tirets.");
+  }
+
+  if (!messageRegex.test(values[4])) {
+    return res.status(400).json("Le message contient des caractères non autorisés.");
+  }
+  
+  if (!objectRegex.test(values[5])) {
+    return res.status(400).json("L'objet ne doit contenir que des lettres, des chiffres, des espaces et des tirets.");
+  }
+
     db.query(q, [values], (err, data) => {
       if (err) return res.status(500).json(err);
       return res.json("Le message a été ajouté avec succès.");

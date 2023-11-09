@@ -14,7 +14,6 @@ export function Contact() {
   const currentDate = new Date();
   const [submissionStatus, setSubmissionStatus] = useState('');
   const [submissionStatusErr, setSubmissionStatusErr] = useState('');
-  // récupération de l'objet du message dans l'url (depuis cardetail)
 
   const initialFormData = {
     lastName: DOMPurify.sanitize(''),
@@ -28,6 +27,7 @@ export function Contact() {
 
   const [formData, setFormData] = useState(initialFormData);
 
+  // gestion des changements dans le formulaire
   const handleChange = (e) => {
     const { name, value } = e.target;
     const sanitizedValue = DOMPurify.sanitize(value);
@@ -59,7 +59,7 @@ export function Contact() {
       setSubmissionStatusErr('Veuillez entrer une adresse e-mail valide.');
       return;
     }
-    
+
     if (!objectRegex.test(formData.object)) {
       setSubmissionStatusErr('L\'objet ne doit contenir que des lettres, des chiffres, des espaces et des tirets.');
       return;
@@ -182,6 +182,7 @@ export function Contact() {
             required>
             </textarea>
         </div>
+        {/* message erreur/succes */}
         {submissionStatus && (
             <p className="text-green-500 mb-2">{DOMPurify.sanitize(submissionStatus)}</p>
         )}

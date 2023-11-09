@@ -21,6 +21,7 @@ export const TestimonialAdd = () => {
       // vérification regex
       const userRegex = /^[A-Za-z\s-]+$/;
       const testimonialRegex = /^[A-Za-z0-9\s.,\-!?'’()]+$/;
+      const noteRegex = /^[0-5]$/;
 
       if (!userRegex.test(user)) {
         setSubmissionStatusErr('Le nom ne doit contenir que des lettres, des tirets et des espaces.');
@@ -29,6 +30,11 @@ export const TestimonialAdd = () => {
 
       if (!testimonialRegex.test(testimonial)) {
         setSubmissionStatusErr('Le témoignage contient des caractères non autorisés.');
+        return;
+      }
+
+      if (!noteRegex.test(rating)) {
+        setSubmissionStatusErr('La note doit être comprise entre 0 et 5.');
         return;
       }
 
