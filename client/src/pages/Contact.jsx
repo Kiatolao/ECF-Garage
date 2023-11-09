@@ -40,7 +40,8 @@ export function Contact() {
 
     // vérification regex
     const userRegex = /^[A-Za-z\s-]+$/;
-    const phoneRegex = /^[\d\s-]+$/;
+    const phoneRegex = /^[\d\s\-+]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const objectRegex = /^[a-zA-Z0-9\s-]+$/;
     const messageRegex = /^[A-Za-z0-9\s.,\-!?'’()]+$/;
 
@@ -50,16 +51,22 @@ export function Contact() {
     }
 
     if (!phoneRegex.test(formData.phone)) {
-      setSubmissionStatusErr('Le témoignage ne doit contenir que des chiffres, des espaces et des tirets.');
+      setSubmissionStatusErr('Le numéro ne doit contenir que des chiffres, des espaces et des tirets.');
       return;
     }
+
+    if (!emailRegex.test(formData.email)) {
+      setSubmissionStatusErr('Veuillez entrer une adresse e-mail valide.');
+      return;
+    }
+    
     if (!objectRegex.test(formData.object)) {
-      setSubmissionStatusErr('Le témoignage ne doit contenir que des lettres, des chiffres, des espaces et des tirets.');
+      setSubmissionStatusErr('L\'objet ne doit contenir que des lettres, des chiffres, des espaces et des tirets.');
       return;
     }
 
     if (!messageRegex.test(formData.message)) {
-      setSubmissionStatusErr('Le témoignage contient des caractères non autorisés.');
+      setSubmissionStatusErr('Le message contient des caractères non autorisés.');
       return;
     }
 

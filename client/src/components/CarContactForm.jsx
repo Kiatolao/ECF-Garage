@@ -7,6 +7,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 export const CarContactForm = ({ carTitle }) => {
   const currentDate = new Date();
   const [submissionStatus, setSubmissionStatus] = useState('');
+  const [submissionStatusErr, setSubmissionStatusErr] = useState('');
   const [captchaValidated, setCaptchaValidated] = useState(false);
   // récupération de l'objet du message dans l'url (depuis cardetail)
 
@@ -31,6 +32,38 @@ export const CarContactForm = ({ carTitle }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+        // vérification regex
+        const userRegex = /^[A-Za-z\s-]+$/;
+        const phoneRegex = /^[\d\s\-+]+$/;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const objectRegex = /^[a-zA-Z0-9\s-]+$/;
+        const messageRegex = /^[A-Za-z0-9\s.,\-!?'’()]+$/;
+    
+        if (!userRegex.test(formData.lastName) || !userRegex.test(formData.firstName)) {
+          setSubmissionStatusErr('Le nom ne doit contenir que des lettres, des tirets et des espaces.');
+          return;
+        }
+    
+        if (!phoneRegex.test(formData.phone)) {
+          setSubmissionStatusErr('Le numero ne doit contenir que des chiffres, des espaces et des tirets.');
+          return;
+        }
+
+        if (!emailRegex.test(formData.email)) {
+          setSubmissionStatusErr('Veuillez entrer une adresse e-mail valide.');
+          return;
+        }
+
+        if (!objectRegex.test(formData.object)) {
+          setSubmissionStatusErr('L\'objet ne doit contenir que des lettres, des chiffres, des espaces et des tirets.');
+          return;
+        }
+    
+        if (!messageRegex.test(formData.message)) {
+          setSubmissionStatusErr('Le message contient des caractères non autorisés.');
+          return;
+        }
 
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
@@ -136,6 +169,9 @@ export const CarContactForm = ({ carTitle }) => {
           onChange={onChange}
           className="mb-2"/>
         {submissionStatus && <p className="text-green-500  mb-2">{submissionStatus}</p>}
+        {submissionStatusErr && (
+            <p className="text-red-500 mb-2">{DOMPurify.sanitize(submissionStatusErr)}</p>
+        )}
         <button 
           type="submit"
           disabled={!captchaValidated}
