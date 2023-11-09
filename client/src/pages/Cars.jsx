@@ -93,7 +93,7 @@ export const Cars = () =>  {
             onClick={() => navigate(`/car_detail/${car.id}`)}>
             <div className="w-full  h-40 overflow-hidden">
             <img
-              src={`${car?.image}`}
+              src={`${car?.image.replace('http://', 'https://')}`}
               alt={car.title}
               className="w-full h-full object-cover"
             />
