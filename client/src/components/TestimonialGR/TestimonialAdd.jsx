@@ -12,10 +12,25 @@ export const TestimonialAdd = () => {
   const [testimonial, setTestimonial] = useState('');
   const [rating, setRating] = useState(0);
   const [submissionStatus, setSubmissionStatus] = useState('');
+  const [submissionStatusErr, setSubmissionStatusErr] = useState('');
   const [captchaValidated, setCaptchaValidated] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+      // vérification regex
+      const userRegex = /^[A-Za-z\s-]+$/;
+      const testimonialRegex = /^[A-Za-z0-9\s.,\-!?'’()]+$/;
+
+      if (!userRegex.test(user)) {
+        setSubmissionStatusErr('Le nom ne doit contenir que des lettres, des tirets et des espaces.');
+        return;
+      }
+
+      if (!testimonialRegex.test(testimonial)) {
+        setSubmissionStatusErr('Le témoignage contient des caractères non autorisés.');
+        return;
+      }
 
     // envoyer les données au serveur
     try {
@@ -79,6 +94,7 @@ export const TestimonialAdd = () => {
               required
               className="w-full px-3 py-1 border focus:outline-none focus:ring focus:border-blue-300"
             />
+            
           </div>
           <div className="mb-4">
             <label htmlFor="testimonial" className="block text-gray-700">Témoignage :</label>
@@ -91,6 +107,7 @@ export const TestimonialAdd = () => {
             />
           </div>
           {submissionStatus && <p className="text-green-500 mt-2 mb-2">{submissionStatus}</p>}
+          {submissionStatusErr && <p className="text-red-500 mt-2 mb-2">{submissionStatusErr}</p>}
           <div className="mb-4">
             <label htmlFor="rating" className="block text-gray-700">Note :</label>
             <div className="flex space-x-2">
