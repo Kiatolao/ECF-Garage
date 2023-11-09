@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const register = async (req, res) => { 
+
     // validation du password, 8 caractères et un chiffre au minimum
     const password = DOMPurify.sanitize(req.body.password); 
 
@@ -21,6 +22,7 @@ export const register = async (req, res) => {
           error: 'Le mot de passe doit contenir au moins un chiffre.',
         });
     }
+
     // création utilisateurs
     const q = "SELECT * FROM users WHERE email = ? OR username = ?";
     db.query(q, [DOMPurify.sanitize(req.body.email), DOMPurify.sanitize(req.body.username)], (err, data) => {
@@ -89,7 +91,8 @@ export const login = async (req, res) => {
 export const logout = async (req, res) => { 
     //on efface le cookie pour se déconnecter
     res.clearCookie("access_token", {
-        sameSites: "none",
+        httpOnly: true,
+        sameSite: "none",
         secure: true,
     }).status(200).json("Vous êtes déconnecté");
 };   
