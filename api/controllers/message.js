@@ -7,7 +7,7 @@ dotenv.config();
 
 // récupérer tous les messages
 export const getMessages = (req, res) => {
-  const q = 'SELECT * FROM messages';
+  const q = 'SELECT * FROM messages ORDER BY date DESC';
   db.query(q, (err, result) => {
     if (err) return res.status(500).send(err);
     res.status(200).json(result);

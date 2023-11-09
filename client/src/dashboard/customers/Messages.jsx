@@ -30,9 +30,22 @@ export const Messages= () => {
   //conveti iso en date au format français
   const formatDate = (isoDate) => {
     const date = new Date(isoDate);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' }; 
-    return date.toLocaleDateString(undefined, options); 
-  };
+  
+    // formatage de la date
+    const dateString = date.toLocaleDateString(undefined, {
+      day: 'numeric', 
+      month: 'long',
+      year: 'numeric'
+    });
+  
+    // formatage de l'heure 
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0'); 
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+  
+    // date affichée
+    return `${dateString} à ${hours}:${minutes}:${seconds}`;
+  }
   
   return (
     <div className="">
