@@ -13,6 +13,7 @@ export function Contact() {
   const [captchaValidated, setCaptchaValidated] = useState(false);
   const currentDate = new Date();
   const [submissionStatus, setSubmissionStatus] = useState('');
+  const [submissionStatusErr, setSubmissionStatusErr] = useState('');
   // récupération de l'objet du message dans l'url (depuis cardetail)
 
   const initialFormData = {
@@ -36,6 +37,31 @@ export function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // vérification regex
+    const userRegex = /^[A-Za-z\s-]+$/;
+    const phoneRegex = /^[\d\s-]+$/;
+    const objectRegex = /^[a-zA-Z0-9\s-]+$/;
+    const messageRegex = /^[A-Za-z0-9\s.,\-!?'’()]+$/;
+
+    if (!userRegex.test(formData.lastName) || !userRegex.test(formData.firstName)) {
+      setSubmissionStatusErr('Le nom ne doit contenir que des lettres, des tirets et des espaces.');
+      return;
+    }
+
+    if (!phoneRegex.test(formData.phone)) {
+      setSubmissionStatusErr('Le témoignage ne doit contenir que des chiffres, des espaces et des tirets.');
+      return;
+    }
+    if (!objectRegex.test(formData.object)) {
+      setSubmissionStatusErr('Le témoignage ne doit contenir que des lettres, des chiffres, des espaces et des tirets.');
+      return;
+    }
+
+    if (!messageRegex.test(formData.message)) {
+      setSubmissionStatusErr('Le témoignage contient des caractères non autorisés.');
+      return;
+    }
 
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
@@ -151,6 +177,9 @@ export function Contact() {
         </div>
         {submissionStatus && (
             <p className="text-green-500 mb-2">{DOMPurify.sanitize(submissionStatus)}</p>
+        )}
+        {submissionStatusErr && (
+            <p className="text-red-500 mb-2">{DOMPurify.sanitize(submissionStatusErr)}</p>
         )}
          <ReCAPTCHA
           sitekey={key}
