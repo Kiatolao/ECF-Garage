@@ -50,7 +50,7 @@ export const CarDetail = () => {
       <div className="md:w-1/2">
         <div className="h-80 mx-auto mb-4 shadow-lg p-3">
           <img
-            src={`${car?.image.replace('http://', 'https://')}`}
+            src={car?.image ? car.image.replace('http://', 'https://') : ''}
             alt={car.title}
             className="w-full h-full object-cover rounded-md"
           />
