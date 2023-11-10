@@ -15,6 +15,7 @@ export const CarDetail = () => {
   const { id } = useParams();
   const [car, setCar] = useState({});
 
+  // usecallback pour éviter de relancer la fonction à chaque fois
   const fetchCarDetails = useCallback(async () => {
       try {
         const apiUrl = process.env.REACT_APP_API_URL;
@@ -48,7 +49,7 @@ export const CarDetail = () => {
   <div className=" container mx-auto mt-5">
     <div className="md:flex md:space-x-4">
       <div className="md:w-1/2">
-        <div className="h-80 mx-auto mb-4 shadow-lg p-3">
+        <div className="h-80 mx-auto mb-4 shadow-lg p-3 bg-white">
           <img
             src={car?.image ? car.image.replace('http://', 'https://') : ''}
             alt={car.title}

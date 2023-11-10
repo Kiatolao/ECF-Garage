@@ -89,7 +89,7 @@ export const Cars = () =>  {
             bg-white shadow-md rounded-md p-4 
             hover:border-neutral-300 
             border cursor-pointer 
-            hover:shadow-2xl transition duration-300 ease-in-out hover:scale-105"
+            hover:shadow-2xl transition duration-300 ease-in-out hover:scale-103"
             onClick={() => navigate(`/car_detail/${car.id}`)}>
             <div className="w-full  h-40 overflow-hidden">
             <img
