@@ -30,7 +30,7 @@ export const CarDetail = () => {
     }
   
     fetchCarDetails();
-  }, [id]);
+  }, []);
 
   return (
   <>
