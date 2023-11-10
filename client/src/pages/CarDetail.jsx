@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams} from 'react-router-dom';
 import axios from 'axios';
 import { VscWorkspaceTrusted } from 'react-icons/vsc';
@@ -15,8 +15,7 @@ export const CarDetail = () => {
   const { id } = useParams();
   const [car, setCar] = useState({});
 
-  useEffect(() => {
-    async function fetchCarDetails() {
+  const fetchCarDetails = useCallback(async () => {
       try {
         const apiUrl = process.env.REACT_APP_API_URL;
         const response = await axios.get(`${apiUrl}/api/cars/${id}`);
@@ -27,10 +26,11 @@ export const CarDetail = () => {
       } catch (error) {
         console.error('Erreur lors de la récupération des données :', error);
       }
-    }
-  
+  }, [id]);
+
+  useEffect(() => {
     fetchCarDetails();
-  }, []);
+  }, [fetchCarDetails]);
 
   return (
   <>
