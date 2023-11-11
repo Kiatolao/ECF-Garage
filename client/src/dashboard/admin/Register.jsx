@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import DOMpurify from 'isomorphic-dompurify';
+import { UserList } from './UserList';
 
 
 export const Register = () => {
@@ -71,7 +72,8 @@ export const Register = () => {
   };
 
   return (
-    <div className="w-[350px] ">
+    <>
+    <div className="max-w-[350px] ">
       <h2 className="text-xl font-bold mb-4">Ajouter un employé</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -154,5 +156,7 @@ export const Register = () => {
         </button>
       </form>
     </div>
+    <UserList />
+    </>
   );
 };
