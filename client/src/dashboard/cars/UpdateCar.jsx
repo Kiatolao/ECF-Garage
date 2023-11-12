@@ -103,7 +103,7 @@ export const UpdateCar = () => {
         </div>
         <div className="mb-4 mt-2 border-b border-gray-300"></div>
         <div className="w-full h-40 overflow-hidden">
-        <img src={`${car?.image}`} alt={car.title} className="w-full h-full object-cover" />
+        <img src={`${car?.image.replace('http://', 'https://')}`} alt={car.title} className="w-full h-full object-cover" />
       </div>
 
           <h2 className="text-lg font-semibold mt-2">{car.title}</h2>
