@@ -1,4 +1,4 @@
-Installation du projet en local
+Installation du projet en local 
 
 1 - Télecharger le repository
 
