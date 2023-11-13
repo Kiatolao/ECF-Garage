@@ -5,12 +5,14 @@ import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import logo2 from '../assets/parrot-logo.png';
 import DOMPurify from 'isomorphic-dompurify';
 import { SocialMedia } from '../components/Socialmedia';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 export function Contact() {
  
   const currentDate = new Date();
   const [submissionStatus, setSubmissionStatus] = useState('');
   const [submissionStatusErr, setSubmissionStatusErr] = useState('');
+  const sitekey = process.env.REACT_APP_SITE_KEY;
 
   const initialFormData = {
     lastName: DOMPurify.sanitize(''),
@@ -32,10 +34,19 @@ export function Contact() {
   };
   
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const apiUrl = process.env.REACT_APP_API_URL;
+  // Vérification du reCAPTCHA
+  const captchaResponse = await axios.post(
+    `${apiUrl}/api/recaptcha`,
+    {
+      response: formData.recaptcha,
+    }
+  );
 
-    // vérification regex
+  if (captchaResponse.data.success) {
+    // Le reCAPTCHA est valide, procédez à la vérification des regex
     const userRegex = /^[A-Za-z\s-]+$/;
     const phoneRegex = /^[\d\s\-+]+$/;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -68,9 +79,9 @@ export function Contact() {
     }
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
+      
       await axios.post(`${apiUrl}/api/messages`, formData, {
-        withCredentials: true, 
+        withCredentials: true,
       });
       // Réinitialisez le formulaire après l'envoi réussi
       setFormData({
@@ -81,14 +92,25 @@ export function Contact() {
         message: '',
         object: '',
         date: '',
+        recaptcha: '', // Réinitialisez également la réponse du reCAPTCHA
       });
       setSubmissionStatus('Le message a été envoyé avec succès!');
     } catch (err) {
-      console.error('Erreur lors de l\'envoie du message ');
+      console.error('Erreur lors de l\'envoi du message');
       alert('Une erreur s\'est produite lors de l\'envoi du message.');
       setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
     }
-  };
+  } else {
+    // Le reCAPTCHA est invalide, affichez un message d'erreur ou effectuez une action appropriée
+    console.error('Le reCAPTCHA est invalide');
+    // Afficher un message d'erreur ou effectuer une action appropriée
+  }
+};
+
+const handleRecaptchaChange = (value) => {
+  // Update the formData state with the recaptcha value
+  setFormData({ ...formData, recaptcha: value });
+};
 
   return (
     <>
@@ -179,6 +201,10 @@ export function Contact() {
         {submissionStatusErr && (
             <p className="text-red-500 mb-2">{DOMPurify.sanitize(submissionStatusErr)}</p>
         )}
+              <ReCAPTCHA
+        sitekey={sitekey}
+        onChange={handleRecaptchaChange}
+      />
         <button
           type="submit"
           className="bg-red-700 text-white py-2 px-4 mb-4 rounded  hover:bg-red-800 w-full">

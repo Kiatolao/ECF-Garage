@@ -8,6 +8,7 @@ import  testimonialsRoutes  from "./routes/testimonials.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
+import fetch from 'node-fetch';
 
 dotenv.config();
 
@@ -26,6 +27,22 @@ app.use(cors({
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', `${apiUrl}`);
   next();
+});
+
+app.post('/api/recaptcha', async (req, res) => {
+  const { response } = req.body;
+  const secret = process.env.SECRET_SITE_KEY;
+
+  const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${response}`;
+
+  try {
+    const captchaResponse = await fetch(url, { method: 'POST' });
+    const data = await captchaResponse.json();
+
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred' });
+  }
 });
 
 // activation de cookie-parser
