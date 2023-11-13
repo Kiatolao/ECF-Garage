@@ -14,12 +14,6 @@ dotenv.config();
 const apiUrl = process.env.API_URL_SERVER;
 const app = express();
 
-
-app.use((err, req, res, next) => {
-  console.error(err.stack); 
-  res.status(500).send('Erreur!');
-});
-
 // activation de express.json
 app.use(express.json());
 

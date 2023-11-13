@@ -2,6 +2,7 @@ import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
 import DOMPurify from 'isomorphic-dompurify';
 import dotenv from 'dotenv';
+import hCaptcha from 'hcaptcha';
 
 dotenv.config();
 
@@ -90,9 +91,17 @@ export const addMessage = (req, res) => {
     return res.status(400).json("L'objet ne doit contenir que des lettres, des chiffres, des espaces et des tirets.");
   }
 
+  const { hCaptchaToken } = req.body;
+
+  hCaptcha.verify(process.env.HCAPTCHA_SECRET_KEY, hCaptchaToken, (error) => {
+    if (error) {
+      return res.status(400).json("La validation hCaptcha a échoué.");
+    }
+
     db.query(q, [values], (err, data) => {
       if (err) return res.status(500).json(err);
       return res.json("Le message a été ajouté avec succès.");
     });
+  });
 };
 

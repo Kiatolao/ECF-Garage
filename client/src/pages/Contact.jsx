@@ -4,13 +4,11 @@ import layer from '../assets/layer.jpg';
 import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import logo2 from '../assets/parrot-logo.png';
 import DOMPurify from 'isomorphic-dompurify';
-import ReCAPTCHA from "react-google-recaptcha";
 import { SocialMedia } from '../components/Socialmedia';
-
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 export function Contact() {
  
-  const [captchaValidated, setCaptchaValidated] = useState(false);
   const currentDate = new Date();
   const [submissionStatus, setSubmissionStatus] = useState('');
   const [submissionStatusErr, setSubmissionStatusErr] = useState('');
@@ -92,13 +90,6 @@ export function Contact() {
       setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
     }
   };
-
-  const key = process.env.REACT_APP_SITE_KEY;
-  const onChange = value => {
-    if(value) {
-      setCaptchaValidated(true); 
-    }
-  }
 
   return (
     <>
@@ -189,13 +180,22 @@ export function Contact() {
         {submissionStatusErr && (
             <p className="text-red-500 mb-2">{DOMPurify.sanitize(submissionStatusErr)}</p>
         )}
-         <ReCAPTCHA
-          sitekey={key}
-          onChange={onChange}
-          className="mb-2"/>
+        <div className="mb-4">
+  <label htmlFor="hCaptcha" className="block text-gray-600">hcaptcha:</label>
+  <HCaptcha
+    sitekey="a8c010cb-f5e0-4bd9-b212-2714c626764e"
+    onVerify={(token) => {
+      // Handle the hcaptcha verification token
+      console.log('hcaptcha token:', token);
+    }}
+    onError={(errorMessage) => {
+      // Handle hcaptcha error
+      console.error('hcaptcha error:', errorMessage);
+    }}
+  />
+</div>
         <button
           type="submit"
-          disabled={!captchaValidated}
           className="bg-red-700 text-white py-2 px-4 mb-4 rounded  hover:bg-red-800 w-full">
           Envoyer
         </button>

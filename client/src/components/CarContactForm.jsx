@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import DOMPurify from 'isomorphic-dompurify';
-import ReCAPTCHA from "react-google-recaptcha";
 
 export const CarContactForm = ({ carTitle }) => {
   const currentDate = new Date();
   const [submissionStatus, setSubmissionStatus] = useState('');
   const [submissionStatusErr, setSubmissionStatusErr] = useState('');
-  const [captchaValidated, setCaptchaValidated] = useState(false);
   // récupération de l'objet du message dans l'url (depuis cardetail)
 
   const initialFormData = {
@@ -88,13 +86,6 @@ export const CarContactForm = ({ carTitle }) => {
     }
   };
 
-  const key = process.env.REACT_APP_SITE_KEY;
-  const onChange = value => {
-    if(value) {
-      setCaptchaValidated(true); 
-    }
-  }
-
   return (
     <div className="p-4 border border-neutral-300 bg-white shadow rounded-md grid grid-cols-1 sm:grid-cols-2 gap-4">
     <div className="">
@@ -164,17 +155,13 @@ export const CarContactForm = ({ carTitle }) => {
             onChange={handleChange}
             className="border border-gray-300 p-1 w-full h-[175px]"/>
         </div>          
-          <ReCAPTCHA
-          sitekey={key}
-          onChange={onChange}
-          className="mb-2"/>
+
         {submissionStatus && <p className="text-green-500  mb-2">{submissionStatus}</p>}
         {submissionStatusErr && (
             <p className="text-red-500 mb-2">{DOMPurify.sanitize(submissionStatusErr)}</p>
         )}
         <button 
           type="submit"
-          disabled={!captchaValidated}
           className="bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded w-full"
           >Envoyer</button>
       </form>
