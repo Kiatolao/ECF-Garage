@@ -58,7 +58,7 @@ export const CarDetail = () => {
         </div>
       </div>
       <div className="md:w-1/4 ">
-        <div className=" border border-neutral-300 h-80 shadow rounded-md bg-white">
+        <div className=" border border-neutral-300 h-80 shadow rounded-md bg-white overflow-auto">
           <h1 className="text-xl font-semibold p-3 ">{car.title}</h1>
           <div className="mb-2  border-b border-gray-300"></div>   
           <div className="px-4 rounded space-y-2">
@@ -77,7 +77,7 @@ export const CarDetail = () => {
         </div>
       </div>
       <div className="md:w-1/4">
-      <div className="border border-neutral-300 h-80 shadow rounded-md bg-white">
+      <div className="border border-neutral-300 h-80 shadow rounded-md bg-white overflow-auto">
   <h2 className="text-xl font-semibold p-3">Nos garanties</h2>
     <div className="mb-4 border-b border-gray-300"></div>
         <ul className="list-disc pl-5 space-y-5">

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { MdOutlineSchedule } from 'react-icons/md';
 import { MdOutlineContactPhone } from 'react-icons/md';
 import { BiDirections } from 'react-icons/bi';
+import {Footer} from './Footer'
 
 
 export const Infos = () => {
@@ -69,6 +70,7 @@ export const Infos = () => {
         </div>
       </div>
     </section>
+    <Footer />
   </>
   )
 }
