@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import DOMPurify from 'isomorphic-dompurify';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 export const CarContactForm = ({ carTitle }) => {
   const currentDate = new Date();
   const [submissionStatus, setSubmissionStatus] = useState('');
   const [submissionStatusErr, setSubmissionStatusErr] = useState('');
-  // récupération de l'objet du message dans l'url (depuis cardetail)
+  const sitekey = process.env.REACT_APP_SITE_KEY;
 
+  // récupération de l'objet du message carTitle
   const initialFormData = {
     lastName: DOMPurify.sanitize(''),
     firstName: DOMPurify.sanitize(''),
@@ -30,60 +32,78 @@ export const CarContactForm = ({ carTitle }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-        // vérification regex
-        const userRegex = /^[A-Za-z\s-]+$/;
-        const phoneRegex = /^[\d\s\-+]+$/;
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        const objectRegex = /^[a-zA-Z0-9\s-]+$/;
-        const messageRegex = /^[A-Za-z0-9\s.,\-!?'’()]+$/;
-    
-        if (!userRegex.test(formData.lastName) || !userRegex.test(formData.firstName)) {
-          setSubmissionStatusErr('Le nom ne doit contenir que des lettres, des tirets et des espaces.');
-          return;
-        }
-    
-        if (!phoneRegex.test(formData.phone)) {
-          setSubmissionStatusErr('Le numero ne doit contenir que des chiffres, des espaces et des tirets.');
-          return;
-        }
-
-        if (!emailRegex.test(formData.email)) {
-          setSubmissionStatusErr('Veuillez entrer une adresse e-mail valide.');
-          return;
-        }
-
-        if (!objectRegex.test(formData.object)) {
-          setSubmissionStatusErr('L\'objet ne doit contenir que des lettres, des chiffres, des espaces et des tirets.');
-          return;
-        }
-    
-        if (!messageRegex.test(formData.message)) {
-          setSubmissionStatusErr('Le message contient des caractères non autorisés.');
-          return;
-        }
-
+    const apiUrl = process.env.REACT_APP_API_URL;
+  
+    // vérification des regex
+    const userRegex = /^[A-Za-z\s-]+$/;
+    const phoneRegex = /^[\d\s\-+]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const objectRegex = /^[a-zA-Z0-9\s-]+$/;
+    const messageRegex = /^[A-Za-z0-9\s.,\-!?'’()]+$/;
+  
+    if (!userRegex.test(formData.lastName) || !userRegex.test(formData.firstName)) {
+      setSubmissionStatusErr('Le nom ne doit contenir que des lettres, des tirets et des espaces.');
+      return;
+    }
+  
+    if (!phoneRegex.test(formData.phone)) {
+      setSubmissionStatusErr('Le numéro ne doit contenir que des chiffres, des espaces et des tirets.');
+      return;
+    }
+  
+    if (!emailRegex.test(formData.email)) {
+      setSubmissionStatusErr('Veuillez entrer une adresse e-mail valide.');
+      return;
+    }
+  
+    if (!objectRegex.test(formData.object)) {
+      setSubmissionStatusErr('L\'objet ne doit contenir que des lettres, des chiffres, des espaces et des tirets.');
+      return;
+    }
+  
+    if (!messageRegex.test(formData.message)) {
+      setSubmissionStatusErr('Le message contient des caractères non autorisés.');
+      return;
+    }
+  
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      await axios.post(`${apiUrl}/api/messages`, formData, {
-        withCredentials: true, 
-      });
-      // Réinitialisez le formulaire après l'envoi réussi
-      setFormData({
-        lastName: '',
-        firstName: '',
-        email: '',
-        phone: '',
-        message: '',
-        object: carTitle,
-        date: '',
-      });
-      setSubmissionStatus('Le message a été envoyé avec succès!');
+      const captchaResponse = await axios.post(
+        `${apiUrl}/api/recaptcha`,
+        {
+          response: formData.recaptcha,
+        }
+      );
+  
+      if (captchaResponse.data.success) {
+        // si lee reCAPTCHA est valide, envoi du formulaire
+        await axios.post(`${apiUrl}/api/messages`, formData, {
+          withCredentials: true,
+        });
+        // réinitialisez le formulaire après l'envoi réussi
+        setFormData({
+          lastName: '',
+          firstName: '',
+          email: '',
+          phone: '',
+          message: '',
+          object: '',
+          date: '',
+          recaptcha: '', 
+        });
+        setSubmissionStatus('Le message a été envoyé avec succès!');
+      } else {
+        console.error('Le reCAPTCHA est invalide');
+      }
     } catch (err) {
-      console.error('Erreur lors de l\'ajout de la voiture :', err.response ? err.response.data : err.message);
+      console.error('Erreur lors de l\'envoi du message', err);
       alert('Une erreur s\'est produite lors de l\'envoi du message.');
       setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
     }
+  };
+
+  const handleRecaptchaChange = (value) => {
+    // Update the formData state with the recaptcha value
+    setFormData({ ...formData, recaptcha: value });
   };
 
   return (
@@ -160,6 +180,10 @@ export const CarContactForm = ({ carTitle }) => {
         {submissionStatusErr && (
             <p className="text-red-500 mb-2">{DOMPurify.sanitize(submissionStatusErr)}</p>
         )}
+                      <ReCAPTCHA
+        sitekey={sitekey}
+        onChange={handleRecaptchaChange}
+      />
         <button 
           type="submit"
           className="bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded w-full"

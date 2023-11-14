@@ -34,81 +34,79 @@ export function Contact() {
   };
   
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  const apiUrl = process.env.REACT_APP_API_URL;
-  // Vérification du reCAPTCHA
-  const captchaResponse = await axios.post(
-    `${apiUrl}/api/recaptcha`,
-    {
-      response: formData.recaptcha,
-    }
-  );
-
-  if (captchaResponse.data.success) {
-    // Le reCAPTCHA est valide, procédez à la vérification des regex
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const apiUrl = process.env.REACT_APP_API_URL;
+  
+    // vérification des regex
     const userRegex = /^[A-Za-z\s-]+$/;
     const phoneRegex = /^[\d\s\-+]+$/;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const objectRegex = /^[a-zA-Z0-9\s-]+$/;
     const messageRegex = /^[A-Za-z0-9\s.,\-!?'’()]+$/;
-
+  
     if (!userRegex.test(formData.lastName) || !userRegex.test(formData.firstName)) {
       setSubmissionStatusErr('Le nom ne doit contenir que des lettres, des tirets et des espaces.');
       return;
     }
-
+  
     if (!phoneRegex.test(formData.phone)) {
       setSubmissionStatusErr('Le numéro ne doit contenir que des chiffres, des espaces et des tirets.');
       return;
     }
-
+  
     if (!emailRegex.test(formData.email)) {
       setSubmissionStatusErr('Veuillez entrer une adresse e-mail valide.');
       return;
     }
-
+  
     if (!objectRegex.test(formData.object)) {
       setSubmissionStatusErr('L\'objet ne doit contenir que des lettres, des chiffres, des espaces et des tirets.');
       return;
     }
-
+  
     if (!messageRegex.test(formData.message)) {
       setSubmissionStatusErr('Le message contient des caractères non autorisés.');
       return;
     }
-
+  
     try {
-      
-      await axios.post(`${apiUrl}/api/messages`, formData, {
-        withCredentials: true,
-      });
-      // Réinitialisez le formulaire après l'envoi réussi
-      setFormData({
-        lastName: '',
-        firstName: '',
-        email: '',
-        phone: '',
-        message: '',
-        object: '',
-        date: '',
-        recaptcha: '', // Réinitialisez également la réponse du reCAPTCHA
-      });
-      setSubmissionStatus('Le message a été envoyé avec succès!');
+      const captchaResponse = await axios.post(
+        `${apiUrl}/api/recaptcha`,
+        {
+          response: formData.recaptcha,
+        }
+      );
+  
+      if (captchaResponse.data.success) {
+        // si lee reCAPTCHA est valide, envoi du formulaire
+        await axios.post(`${apiUrl}/api/messages`, formData, {
+          withCredentials: true,
+        });
+        // réinitialisez le formulaire après l'envoi réussi
+        setFormData({
+          lastName: '',
+          firstName: '',
+          email: '',
+          phone: '',
+          message: '',
+          object: '',
+          date: '',
+          recaptcha: '', 
+        });
+        setSubmissionStatus('Le message a été envoyé avec succès!');
+      } else {
+        console.error('Le reCAPTCHA est invalide');
+      }
     } catch (err) {
-      console.error('Erreur lors de l\'envoi du message');
+      console.error('Erreur lors de l\'envoi du message', err);
       alert('Une erreur s\'est produite lors de l\'envoi du message.');
       setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
     }
-  } else {
-    // Le reCAPTCHA est invalide, affichez un message d'erreur ou effectuez une action appropriée
-    console.error('Le reCAPTCHA est invalide');
-    // Afficher un message d'erreur ou effectuer une action appropriée
-  }
-};
+  };
 
 const handleRecaptchaChange = (value) => {
-  // Update the formData state with the recaptcha value
+  // update du state du recaptcha
   setFormData({ ...formData, recaptcha: value });
 };
 
@@ -207,7 +205,7 @@ const handleRecaptchaChange = (value) => {
       />
         <button
           type="submit"
-          className="bg-red-700 text-white py-2 px-4 mb-4 rounded  hover:bg-red-800 w-full">
+          className="bg-red-700 text-white py-2 px-4 mb-4 mt-2 rounded  hover:bg-red-800 w-full">
           Envoyer
         </button>
       </form>
@@ -238,7 +236,6 @@ const handleRecaptchaChange = (value) => {
           width="100%"
           height="300"
           style={{ border: 0 }}
-          allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade">        
           </iframe>
