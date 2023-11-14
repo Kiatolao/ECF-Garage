@@ -69,6 +69,8 @@ export const ScheduleEditor = () => {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Liste des horaires</h2>
+      <p>Veuillez écrire les horaires sous le format <p className='text-red-700 font-semibold'>10:30</p></p> <br />
+      <p className='mb-4'>Si le local est fermé, merci de bien vouloir éditer le champ avec une majuscule, un accent et dans les 2 créneaux du matin ou de l'après midi <p className='text-red-700 font-semibold'>Fermé</p></p>
       <table className="min-w-full border-collapse">
         <thead>
           <tr className="bg-neutral-200">

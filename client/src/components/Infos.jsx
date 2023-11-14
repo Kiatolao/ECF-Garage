@@ -37,10 +37,9 @@ export const Infos = () => {
                     <MdOutlineContactPhone className="mr-2" />Contact
                 </div>
             </h3>
-          <address>
+          
             17 Rue Nowhere<br />
             35300 Fougères<br />
-          </address><br />
           <p>Téléphone : 01 02 03 04 05</p>
           <p>Email : vincent@parrot.fr</p>
         </div>
@@ -60,12 +59,9 @@ export const Infos = () => {
               <li>
                 <Link to="/contact">Contact</Link>
               </li>
-{/*               <li>
-                <Link to="/politique-de-confidentialite">Politique de confidentialité</Link>
-              </li>
               <li>
-                <Link to="/plan-du-site">Plan du site</Link>
-              </li> */}
+                <Link to="/Privacy">Politique de confidentialité</Link>
+              </li>
             </ul>
         </div>
       </div>

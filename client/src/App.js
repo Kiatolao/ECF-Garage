@@ -8,6 +8,7 @@ import { Dashboard } from './pages/Dashboard';
 import {Navbar} from './components/Navbar';
 import { Cars } from './pages/Cars';
 import { CarDetail } from './pages/CarDetail';
+import {Privacy} from './components/Privacy'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                 <Route element={<CarDetail />} path="/car_detail/:id" />
                 <Route component={CarDetail} path="/car_detail/:id" />
                 <Route element={<Contact />} path="/contact"/>
+                <Route element={<Privacy />} path="/privacy"/>
               </Routes>
             </div>
         </div>

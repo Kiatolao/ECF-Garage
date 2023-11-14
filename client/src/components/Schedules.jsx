@@ -23,23 +23,35 @@ export const Schedules = () => {
 
 
   return (
-    <div className="">
-    <table>
-      <thead>
-
-      </thead>
-      <tbody>
-        {schedules.map((schedule) => (
-          <tr key={schedule.id}>
-            <td className='pr-5'>{schedule.day}</td>
-            <td>
-              {schedule.openingM.slice(0, 5)}-{schedule.closingM.slice(0, 5)} , {schedule.openingA.slice(0, 5)}-{schedule.closingA.slice(0, 5)}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
+<div className="">
+  <table >
+    <thead></thead>
+    <tbody>
+      {schedules.map((schedule) => (
+        <tr key={schedule.id}>
+          <td className='pr-5'>{schedule.day}</td>
+          <td>
+            {schedule.openingM !== 'Fermé' && schedule.closingM !== 'Fermé' ? (
+              <>
+                {schedule.openingM.slice(0, 5)}-{schedule.closingM.slice(0, 5)}
+              </>
+            ) : (
+              'Fermé'
+            )}
+            <span style={{ marginLeft: '20px' }}></span>
+            {schedule.openingA !== 'Fermé' && schedule.closingA !== 'Fermé' ? (
+              <>
+               {schedule.openingA.slice(0, 5)}-{schedule.closingA.slice(0, 5)}
+              </>
+            ) : (
+              ''
+            )}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
   );
 
 };
