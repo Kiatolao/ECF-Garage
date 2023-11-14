@@ -5,7 +5,6 @@ import { IoMdClose } from 'react-icons/io';
 import DOMPurify from 'isomorphic-dompurify';
 import ReCAPTCHA from "react-google-recaptcha";
 
-
 export const TestimonialAdd = () => {
 
   const [user, setUser] = useState('');
@@ -136,6 +135,7 @@ export const TestimonialAdd = () => {
   );
 };
 
+// intéraction laisser un témoignage
 export const TestimonialButton = () => {
   const [showModal, setShowModal] = useState(false);
 

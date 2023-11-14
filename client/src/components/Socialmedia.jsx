@@ -11,7 +11,7 @@ export const SocialMedia = () => {
 
   return (
     <div className="fixed right-0 top-1/4 transform -translate-y-1/2 z-999">
-      <div className="flex items-center bg-neutral-200 border-black shadow">
+      <div className="flex items-center bg-white border-black shadow-2xl">
         <button
           onClick={handleMediaShareClick}
           className={` bg-red-700 text-white py-1 px-1 focus:outline-none transition-transform ${

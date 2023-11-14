@@ -70,13 +70,13 @@ export const Cars = () =>  {
     </div>
     <div className="pl-5 pr-5 ">
     <button 
-      className="font-bold py-1 px-4 rounded flex items-center border-neutral-700 border focus:outline-none"
+      className="font-bold py-1 px-4 rounded flex items-center border-neutral-700 border focus:outline-none bg-white"
       onClick={toggleFilterVisibility}>  Filtrer <BsFilter size={25} className="ml-2" />
     </button>
     </div>
 
     <div className={`filter-container ${filterVisible ? 'visible' : 'hidden'}`}>
-      <div className="mb-4 ">
+      <div className="m-4 ">
         <CarFilter onFilterChange={handleFilterChange} />
       </div>
     </div>

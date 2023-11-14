@@ -40,7 +40,7 @@ export const CarFilter = ({ onFilterChange }) => {
   };
 
   return (
-    <div className="p-5 shadow w-full">
+    <div className="p-5 shadow w-full border border-neutral-300 shadow rounded-md bg-white overflow-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2">
         <div className="mb-4">
           <p>Kilomètres</p>
@@ -87,13 +87,13 @@ export const CarFilter = ({ onFilterChange }) => {
         </div>
       </div>
       <button
-        className="bg-gray-300 text-gray-700 rounded p-2 hover:bg-gray-400 ml-4"
+        className="bg-gray-300  rounded p-2 hover:bg-gray-400 ml-4 shadow border-neutral-400 border"
         onClick={handleApplyFilter}
       >
         Appliquer le filtre
       </button>
       <button
-        className="bg-gray-300 text-gray-700 rounded p-2 hover:bg-gray-400 ml-4"
+        className="bg-gray-300  rounded p-2 hover:bg-gray-400 ml-4 shadow border-neutral-400 border"
         onClick={handleResetFilter}
       >
         Réinitialiser
