@@ -9,9 +9,17 @@ import { TestimonialButton } from './TestimonialAdd';
 export const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [visibleCount, setVisibleCount] = useState(3);
+  const [showAllComments, setShowAllComments] = useState(false);
 
   const showMoreComments = () => {
     setVisibleCount(visibleCount + 3);
+  };
+
+  const toggleComments = () => {
+    if (showAllComments) {
+      setVisibleCount(3);
+    }
+    setShowAllComments(!showAllComments);
   };
 
   useEffect(() => {
@@ -67,14 +75,23 @@ export const Testimonial = () => {
             </div>
           ))}
       </div>
-      {visibleCount < testimonials.length && (
+      {testimonials.length > 3 && (
         <div className="flex flex-col items-center mb-5 sm:flex-row sm:justify-center">
-          <p
-            onClick={showMoreComments}
-            className="text-red-600 hover:text-red-700 py-2 px-4 font-semibold cursor-pointer">
-            Voir plus de commentaires
-          </p>
-            <TestimonialButton />
+          {visibleCount < testimonials.length && (
+            <p
+              onClick={showMoreComments}
+              className="text-red-600 hover:text-red-700 py-2 px-4 font-semibold cursor-pointer">
+              {showAllComments ? 'Cacher les commentaires' : 'Voir plus de commentaires'}
+            </p>
+          )}
+          {visibleCount > 3 && (
+            <p
+              onClick={toggleComments}
+              className="text-red-600 hover:text-red-700 py-2 px-4 font-semibold cursor-pointer">
+              Cacher les commentaires
+            </p>
+          )}
+          <TestimonialButton />
         </div>
       )}
 </>
