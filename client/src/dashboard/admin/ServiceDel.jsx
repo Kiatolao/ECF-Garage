@@ -7,20 +7,19 @@ export const ServiceDel = () => {
 
   const [services, setServices] = useState([]);
 
-  useEffect(() => {
-    // fetch des services
-    async function fetchServices() {
-      try {
-        const apiUrl = process.env.REACT_APP_API_URL;
-        const response = await axios.get(`${apiUrl}/api/services`, {
-          withCredentials: true,
-        });
-        setServices(response.data);
-      } catch (error) {
-        console.error('Erreur lors de la récupération des services :', error);
-      }
+  const fetchServices = async () => {
+    try {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.get(`${apiUrl}/api/services`, {
+        withCredentials: true,
+      });
+      setServices(response.data);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des services:', error);
     }
+  };
 
+  useEffect(() => {
     fetchServices();
   }, []);
 
@@ -37,9 +36,20 @@ export const ServiceDel = () => {
     }
   };
 
+  const handleRefresh = () => {
+    fetchServices();
+  };
+
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Effacer un service</h2>
+      <button
+        className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600 mb-4"
+        onClick={handleRefresh}
+      >
+        Rafraîchir
+      </button>
+      <div className="mb-2 border-b border-gray-300"></div>
       <div className="flex flex-wrap">
         {services.map((service) => (
         <button
@@ -52,6 +62,7 @@ export const ServiceDel = () => {
       </button>
         ))}
       </div>
+      <div className="mb-2 border-b border-gray-300"></div>
     </div>
   );
 };

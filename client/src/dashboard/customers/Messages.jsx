@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {AiOutlineDelete} from 'react-icons/ai';
 
 
 export const Messages= () => {
@@ -26,6 +27,27 @@ export const Messages= () => {
 
     fetchMessages();
   }, []); 
+
+  const deleteMessage = async (messageId) => {
+    try {
+      const confirmed = window.confirm('Êtes-vous sûr de vouloir supprimer ce message ?');
+      if (!confirmed) {
+        return;
+      }
+
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.delete(`${apiUrl}/api/messages/${messageId}`, {
+        withCredentials: true,
+      });
+
+      console.log(response.data);
+      setMessages((prevMessages) =>
+        prevMessages.filter((message) => message.id !== messageId)
+      );
+    } catch (error) {
+      console.error('Erreur lors de la suppression du message :', error);
+    }
+};
 
   //conveti iso en date au format français
   const formatDate = (isoDate) => {
@@ -67,9 +89,22 @@ export const Messages= () => {
               <div className="text-gray-600">{message.phone}</div>
             </div>
             <div className="mt-2 border-b border-gray-300"></div>
-            <h2 className="mt-2 font-semibold">{message.object}</h2>
-            <div className="text-gray-600 mt-2">{message.message}</div>
+          <div className='flex justify-between'>
+            <div className="flex items-center">
+              <h2 className="mt-2 font-semibold">{message.object}</h2>
+            </div>
+            <div>
+              <button
+                onClick={() => deleteMessage(message.id)}
+              className="text-red-600 hover:text-red-800 flex items-center">
+              <AiOutlineDelete className="mr-1" />
+              Supprimer
+              </button>
+            </div>
           </div>
+          <div className="text-gray-600 mt-2">{message.message}</div>
+      </div>
+
         ))}
       </ul>
 
