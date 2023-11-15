@@ -90,7 +90,7 @@ export const TestimonialAdd = () => {
       <div className="w-full">
         <form onSubmit={handleSubmit} className="mt-4 p-2 w-full">
           <div className="mb-4">
-            <label htmlFor="user" className="block text-gray-700">Nom :</label>
+            <label className="block text-gray-700">Nom :</label>
             <input
               type="text"
               id="user"
@@ -102,7 +102,7 @@ export const TestimonialAdd = () => {
             
           </div>
           <div className="mb-4">
-            <label htmlFor="testimonial" className="block text-gray-700">Témoignage :</label>
+            <label  className="block text-gray-700">Témoignage :</label>
             <textarea
               id="testimonial"
               value={testimonial}
@@ -114,7 +114,7 @@ export const TestimonialAdd = () => {
           {submissionStatus && <p className="text-green-500 mt-2 mb-2">{submissionStatus}</p>}
           {submissionStatusErr && <p className="text-red-500 mt-2 mb-2">{submissionStatusErr}</p>}
           <div className="mb-4">
-            <label htmlFor="rating" className="block text-gray-700">Note :</label>
+            <label  className="block text-gray-700">Note :</label>
             <div className="flex space-x-2">
               {renderStars()}
             </div>
