@@ -63,12 +63,12 @@ export const CarDetail = () => {
           <h1 className="text-xl font-semibold p-3 ">{car.title}</h1>
           <div className="mb-2  border-b border-gray-300"></div>   
           <div className="px-4 rounded space-y-2">
-            <p className=" text-lg text-gray-800"><b>Année :</b> {car.year}</p>
+            <p className=" text-lg text-gray-800 pt-5"><b>Année :</b> {car.year}</p>
             <p className="text-lg text-gray-800"><b>Kilométrage :</b> {car.km} km</p>
             <p className="text-lg text-gray-800"><b>Boîte de vitesse :</b> {car.gearbox}</p>
             <p className="text-lg text-gray-800"><b>Carburant :</b> {car.fuel}</p>
-            <div className="mb-2 mt-2 border-b border-gray-300"></div>
-            <div className="flex items-center mb-1">
+            <div className="mb-2 mt-2 border-b border-gray-300 pt-6"></div>
+            <div className="flex items-center mb-1 ">
           <VscWorkspaceTrusted size={20} className="mr-2 text-green-700" />
           <p className="text-lg text-green-700">Garantie : {car.warrant} mois</p>
         </div>
@@ -82,7 +82,7 @@ export const CarDetail = () => {
       <h2 className="text-xl font-semibold p-3">Nos garanties</h2>
       <div className="mb-4 border-b border-gray-300"></div>
         <ul className="list-disc pl-5 space-y-5">
-          <li className="flex items-start ">
+          <li className="flex items-start pt-3">
             <AiOutlineCheck className="h-5 w-5 text-green-500 mt-1 mr-2" />
             <span>Véhicule révisé et contrôlé</span>
           </li>
@@ -101,6 +101,10 @@ export const CarDetail = () => {
           <li className="flex items-start">
             <AiOutlineCheck className="h-5 w-5 text-green-500 mt-1 mr-2" />
             <span>Possibilité d'essai avant achat</span>
+          </li>
+          <li className="flex items-start">
+            <AiOutlineCheck className="h-5 w-5 text-green-500 mt-1 mr-2" />
+            <span>Assistance dépannage 24/7</span>
           </li>
         </ul>
       </div>
