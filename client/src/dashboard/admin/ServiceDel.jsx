@@ -24,6 +24,8 @@ export const ServiceDel = () => {
   }, []);
 
   const handleDeleteService = async (serviceId) => {
+    const confirmed = window.confirm('Êtes-vous sûr de vouloir supprimer ce serrvice ?');
+    if (confirmed) {
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
       await axios.delete(`${apiUrl}/api/services/${serviceId}`, {
@@ -34,6 +36,7 @@ export const ServiceDel = () => {
     } catch (error) {
       console.error('Erreur lors de la suppression du service :', error);
     }
+  }
   };
 
   const handleRefresh = () => {
@@ -55,7 +58,7 @@ export const ServiceDel = () => {
         <button
         key={service.id}
         onClick={() => handleDeleteService(service.id)}
-        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 mr-2 mb-2 flex items-center"
+        className="bg-transparent hover:bg-red-500 font-semibold hover:text-white py-1 px-2 border border-neutral-500 hover:border-transparent rounded mr-2 mb-2 flex items-center"
       >
         {service.service}
         <MdOutlineCancel className="ml-2" /> {/* Icône Material Icons */}
