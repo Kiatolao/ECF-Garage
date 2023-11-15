@@ -46,6 +46,7 @@ export const ServiceDel = () => {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Effacer un service</h2>
+      <p>Choisissez un service à effacer en cliquant dessus.</p> <br />
       <button
         className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600 mb-4"
         onClick={handleRefresh}
