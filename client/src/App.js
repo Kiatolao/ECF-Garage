@@ -8,7 +8,7 @@ import { Dashboard } from './pages/Dashboard';
 import {Navbar} from './components/Navbar';
 import { Cars } from './pages/Cars';
 import { CarDetail } from './pages/CarDetail';
-import {Privacy} from './components/Privacy'
+import {Privacy} from './pages/Privacy'
 
 function App() {
   return (

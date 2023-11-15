@@ -46,19 +46,20 @@ export const CarDetail = () => {
       <div className="flex-grow border-t border-red-700"></div>
   </div>
 
-  <div className=" container mx-auto mt-5">
-    <div className="md:flex md:space-x-4">
-      <div className="md:w-1/2">
-        <div className="h-80 mx-auto mb-4 shadow-lg p-3 bg-white">
+  <div className='container p-3 md:px-20 mx-auto'>
+  <div className=" mt-5">
+    <div className="lg:flex md:space-x-4">
+      <div className="lg:w-1/2">
+        <div className="h-90 mx-auto mb-4 shadow-lg bg-neutral-800">
           <img
             src={car?.image ? car.image.replace('http://', 'https://') : ''}
             alt={car.title}
-            className="w-full h-full object-cover rounded-md"
+            className="w-full h-full object-contain md:object-cover rounded-md"
           />
         </div>
       </div>
-      <div className="md:w-1/4 ">
-        <div className=" border border-neutral-300 h-80 shadow rounded-md bg-white overflow-auto">
+      <div className="lg:w-1/4 ">
+        <div className=" border border-neutral-300 h-90 shadow rounded-md bg-white overflow-auto pb-5">
           <h1 className="text-xl font-semibold p-3 ">{car.title}</h1>
           <div className="mb-2  border-b border-gray-300"></div>   
           <div className="px-4 rounded space-y-2">
@@ -76,10 +77,10 @@ export const CarDetail = () => {
           </div>
         </div>
       </div>
-      <div className="md:w-1/4">
-      <div className="border border-neutral-300 h-80 shadow rounded-md bg-white overflow-auto">
-  <h2 className="text-xl font-semibold p-3">Nos garanties</h2>
-    <div className="mb-4 border-b border-gray-300"></div>
+      <div className="lg:w-1/4">
+      <div className="border border-neutral-300 h-90 shadow rounded-md bg-white overflow-auto">
+      <h2 className="text-xl font-semibold p-3">Nos garanties</h2>
+      <div className="mb-4 border-b border-gray-300"></div>
         <ul className="list-disc pl-5 space-y-5">
           <li className="flex items-start ">
             <AiOutlineCheck className="h-5 w-5 text-green-500 mt-1 mr-2" />
@@ -107,7 +108,7 @@ export const CarDetail = () => {
     </div>
     {car.title && <CarContactForm carTitle={car.title} />}
   </div>
-
+  </div>
   <Infos />
   </>
   );

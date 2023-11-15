@@ -1,5 +1,5 @@
 import React from 'react'
-import {SocialMedia} from './Socialmedia'
+import {SocialMedia} from '../components/Socialmedia'
 import layer from '../assets/layer.jpg';
 import logo2 from '../assets/parrot-logo.png';
 
