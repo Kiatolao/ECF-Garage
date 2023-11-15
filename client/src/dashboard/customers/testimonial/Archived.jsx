@@ -1,4 +1,5 @@
 import React from 'react';
+import {AiOutlineDelete} from 'react-icons/ai';
 
 export const Archived = ({ archivedTestimonials, deleteTestimonial }) => {
   return (
@@ -18,11 +19,11 @@ export const Archived = ({ archivedTestimonials, deleteTestimonial }) => {
             <td className="border border-gray-300 px-4 py-2">{testimonial.testimonial}</td>
             <td className="border border-gray-300 px-4 py-2">{testimonial.note}</td>
             <td className="border border-gray-300 px-4 py-2">
-              <button
-                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+            <button
                 onClick={() => deleteTestimonial(testimonial.id)}
-              >
-                Supprimer
+              className="text-red-600 hover:text-red-800 flex items-center">
+              <AiOutlineDelete className="mr-1" />
+              Supprimer
               </button>
             </td>
           </tr>

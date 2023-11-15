@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {AiOutlineDelete} from 'react-icons/ai';
 
 export const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -68,12 +69,12 @@ export const UserList = () => {
                 <td className="border px-4 py-2">{user.email}</td>
                 <td className="border px-4 py-2">{user.role}</td>
                 <td className="border px-4 py-2">
-                  <button
-                    className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
-                    onClick={() => handleDelete(user.id)}
-                  >
-                    Supprimer
-                  </button>
+                <button
+                  onClick={() => handleDelete(user.id)}
+                  className="text-red-600 hover:text-red-800 flex items-center">
+                  <AiOutlineDelete className="mr-1" />
+                  Supprimer
+              </button>
                 </td>
               </tr>
             ))}

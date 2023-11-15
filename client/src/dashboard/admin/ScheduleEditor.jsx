@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DOMPurify from 'isomorphic-dompurify';
-
+import {AiOutlineEdit } from 'react-icons/ai';
+import { FaCheck } from "react-icons/fa";
+import { FcCancel } from "react-icons/fc";
 
 export const ScheduleEditor = () => {
   const [schedules, setSchedules] = useState([]);
@@ -133,16 +135,17 @@ export const ScheduleEditor = () => {
                     />
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
-                    <button
-                      className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                  <button
                       onClick={handleEditSave}
-                    >
+                      className="text-green-600 hover:text-green-800 flex items-center">
+                      <FaCheck  className="mr-1" />
                       Valider
                     </button>
+                    <div className="mb-2 mt-2 border-b border-gray-300"></div>
                     <button
-                      className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 ml-2"
                       onClick={handleEditCancel}
-                    >
+                      className="text-red-600 hover:text-red-800 flex items-center">
+                      <FcCancel  className="mr-1" />
                       Annuler
                     </button>
                   </td>
@@ -154,10 +157,10 @@ export const ScheduleEditor = () => {
                   <td className="border border-gray-300 px-4 py-2">{schedule.openingA}</td>
                   <td className="border border-gray-300 px-4 py-2">{schedule.closingA}</td>
                   <td className="border border-gray-300 px-4 py-2">
-                    <button
-                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                  <button
                       onClick={() => handleEditClick(schedule)}
-                    >
+                      className="text-blue-600 hover:text-blue-800 flex items-center">
+                      <AiOutlineEdit className="mr-1" />
                       Modifier
                     </button>
                   </td>

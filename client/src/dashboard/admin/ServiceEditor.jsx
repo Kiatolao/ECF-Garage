@@ -66,7 +66,7 @@ export const ServiceEditor = ({ onServiceAdded }) => {
           }
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+            className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600 mb-4">
             Ajouter le service
           </button>
         </div>

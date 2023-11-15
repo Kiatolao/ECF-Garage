@@ -90,7 +90,7 @@ export const TestimonialAdd = () => {
           {status === 'error' &&
             <p className="text-red-700 font-semibold mb-2">Erreur lors de l'ajout du témoignage</p>
           }
-        <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ">
+        <button type="submit" className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600 mb-4">
           Soumettre
         </button>
       </form>

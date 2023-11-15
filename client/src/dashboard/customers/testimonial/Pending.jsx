@@ -1,4 +1,6 @@
 import React from 'react';
+import {AiOutlineDelete} from 'react-icons/ai';
+import { FaCheck } from "react-icons/fa";
 
 export const Pending = ({ testimonials, validateTestimonial, deleteTestimonial }) => {
   return (
@@ -18,18 +20,19 @@ export const Pending = ({ testimonials, validateTestimonial, deleteTestimonial }
             <td className="border border-gray-300 px-4 py-2">{testimonial.testimonial}</td>
             <td className="border border-gray-300 px-4 py-2">{testimonial.note}</td>
             <td className="border border-gray-300 px-4 py-2">
-                <button
-                className="bg-blue-500 text-white px-3 py-1 rounded mr-2 hover:bg-blue-600"
+            <button
                 onClick={() => validateTestimonial(testimonial.id)}
-                >
-                Valider
-                </button>
+              className="text-blue-600 hover:text-blue-800 flex items-center">
+              <FaCheck className="mr-1" />
+              Valider
+              </button>
+              <div className="mb-2 mt-2 border-b border-gray-300"></div>
                 <button
-                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
                 onClick={() => deleteTestimonial(testimonial.id)}
-                >
-                Supprimer
-                </button>
+              className="text-red-600 hover:text-red-800 flex items-center">
+              <AiOutlineDelete className="mr-1" />
+              Supprimer
+              </button>
             </td>
             </tr>
         ))}
