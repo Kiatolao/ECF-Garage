@@ -10,7 +10,7 @@ Installation du projet en local
   - cd client
   - npm install
 
-4 - Configurer les variables d'environnement client et API ( celles sont fournies dans le dossier projet en tête de page)
+4 - Configurer les variables d'environnement client et API ( celles sont fournies dans le dossier projet en annexe)
 
 5 - Créer un admin / se connecter en local
   - Première solution importer la base de données fournie dans le rapport rendu
