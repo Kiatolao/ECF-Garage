@@ -35,7 +35,7 @@ export const addTestimonial = (req, res) => {
         DOMPurify.sanitize(req.body.user),
         DOMPurify.sanitize(req.body.testimonial),
         DOMPurify.sanitize(req.body.note),
-        DOMPurify.sanitize(req.body.validated),
+        req.body.validated,
     ];
 
   // validation avec le regex

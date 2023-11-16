@@ -13,6 +13,8 @@ export const TestimonialAdd = () => {
   const [submissionStatus, setSubmissionStatus] = useState('');
   const [submissionStatusErr, setSubmissionStatusErr] = useState('');
   const [captchaValidated, setCaptchaValidated] = useState(false);
+  const [captchaValue, setCaptchaValue] = useState('');
+  const key = process.env.REACT_APP_SITE_KEY;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,26 +42,34 @@ export const TestimonialAdd = () => {
     // envoyer les données au serveur
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(`${apiUrl}/api/testimonials`, {
-        user: DOMPurify.sanitize(user),
-        testimonial: DOMPurify.sanitize(testimonial),
-        note: DOMPurify.sanitize(rating),
-        validated: 0,
+      const captchaResponse = await axios.post(`${apiUrl}/api/recaptcha`, {
+        response: captchaValue,
       });
-      // réinitialiser le formulaire / afficher un message de confirmation
-      setUser('');
-      setTestimonial('');
-      setRating(0);
-      setSubmissionStatus('Le témoignage a été envoyé avec succès!');
-      console.log(response.data);
+
+      if (captchaResponse.data.success) {
+        const testimonialResponse = await axios.post(`${apiUrl}/api/testimonials`, {
+          user: DOMPurify.sanitize(user),
+          testimonial: DOMPurify.sanitize(testimonial),
+          note: DOMPurify.sanitize(rating),
+          validated: 0,
+        });
+
+        // Réinitialiser le formulaire / Afficher un message de confirmation
+        setUser('');
+        setTestimonial('');
+        setRating(0);
+        setSubmissionStatus('Le témoignage a été envoyé avec succès!');
+        console.log(testimonialResponse.data);
+      } else {
+        setSubmissionStatusErr('Erreur de validation reCAPTCHA.');
+      }
     } catch (error) {
       console.error('Erreur lors de la soumission du témoignage :', error);
       setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
-    }finally {
-
-      // réinitialiser l'état
+    } finally {
+      // Réinitialiser l'état
       setCaptchaValidated(false);
-  
+      setCaptchaValue(''); // Réinitialiser la valeur du reCAPTCHA
     }
   };
 
@@ -77,12 +87,13 @@ export const TestimonialAdd = () => {
     return stars;
   };
 
-  const key = process.env.REACT_APP_SITE_KEY;
-  const onChange = value => {
-    if(value) {
-      setCaptchaValidated(true); 
+  const onChange = (value) => {
+    if (value) {
+      setCaptchaValue(value); // Set the value of captchaValue
+      setCaptchaValidated(true);
     }
-  }
+  };
+
   return (
     <div className="w-[325px]">
       <h2 className="text-xl font-bold mb-4">Ajouter un témoignage</h2>

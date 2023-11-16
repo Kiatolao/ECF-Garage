@@ -2,7 +2,6 @@ import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
 import DOMPurify from 'isomorphic-dompurify';
 import dotenv from 'dotenv';
-import hCaptcha from 'hcaptcha';
 
 dotenv.config();
 
