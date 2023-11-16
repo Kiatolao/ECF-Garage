@@ -5,7 +5,8 @@ import dotenv from 'dotenv';
 import {v2 as cloudinary} from 'cloudinary'
 
 dotenv.config();
-  
+ 
+//récupération des voitures
 export const getCars =  (req, res) => {
     const q = 'SELECT * FROM cars';
     db.query(q, (err, result) => {
@@ -15,6 +16,7 @@ export const getCars =  (req, res) => {
     });
 };
 
+// récupération d'une voiture par son id
 export const getCar =  (req, res) => {
     const q = 'SELECT * FROM cars WHERE id = ?';
     db.query (q, [req.params.id], (err, result) => {
@@ -23,12 +25,16 @@ export const getCar =  (req, res) => {
         res.status(200).json(result);
     });
 };
+
+//configuration des variables cloudinary
 cloudinary.config({
   cloud_name: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
   api_key: process.env.REACT_APP_CLOUDINARY_KEY,
   api_secret: process.env.REACT_APP_CLOUDINARY_SECRET_KEY,
   secure : true
 });
+
+//effacer une voiture par son id avec comparaison du token
 export const deleteCar = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Vous devez être connecté pour supprimer une voiture.");
@@ -70,7 +76,8 @@ export const deleteCar = (req, res) => {
     });
   });
 };
-  
+ 
+// ajouter une voiture
   export const addCar= (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Pas de token trouvé.");
@@ -99,6 +106,7 @@ export const deleteCar = (req, res) => {
     });
   };
 
+// modifier une voiture
 export const updateCar =  (req, res) => {
        const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Pas de token trouvé.");

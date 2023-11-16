@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+//récupération des horaires
 export const getSchedules = (req, res) => {
   const q = 'SELECT * FROM schedules';
   db.query(q, (err, result) => {
@@ -13,6 +14,7 @@ export const getSchedules = (req, res) => {
   });
 };
 
+//récupération d'une horaire par son id
 export const getSchedule = (req, res) => {
   const q = 'SELECT * FROM schedules WHERE id = ?';
   db.query(q, [req.params.id], (err, result) => {
@@ -21,7 +23,7 @@ export const getSchedule = (req, res) => {
   });
 };
 
-
+// mise à jour d'une horaire
 export const updateSchedule = (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Pas de token trouvé.");

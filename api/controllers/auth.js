@@ -6,8 +6,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+//enregister un nouvelle employé
 export const register = async (req, res) => { 
-
     // validation du password, 8 caractères et un chiffre au minimum
     const password = DOMPurify.sanitize(req.body.password); 
 
@@ -16,7 +16,6 @@ export const register = async (req, res) => {
           error: 'Le mot de passe doit contenir au moins 8 caractères.',
         });
     }
-
     if (!/\d/.test(password)) {
         return res.status(400).json({
           error: 'Le mot de passe doit contenir au moins un chiffre.',
@@ -54,10 +53,9 @@ export const register = async (req, res) => {
     });
 };
 
-
+//formulaire de connexion
 export const login = async (req, res) => { 
-
-    // Si l'utilisateur existe
+    // si l'utilisateur existe
     const q = "SELECT * FROM users WHERE email = ?";
     
     db.query(q, [DOMPurify.sanitize(req.body.email)], (err, data) => {
@@ -66,7 +64,7 @@ export const login = async (req, res) => {
             return res.status(401).json("Donnée incorrecte!");
         }
 
-        // Si le mot de passe est correct
+        // si le mot de passe est correct
         const isPasswordValid = bcryptjs.compareSync(
             DOMPurify.sanitize(req.body.password), 
             data[0].password
@@ -88,6 +86,7 @@ export const login = async (req, res) => {
     });
   };
 
+//déconnexion
 export const logout = async (req, res) => { 
     //on efface le cookie pour se déconnecter
     res.clearCookie("access_token", {
@@ -97,13 +96,14 @@ export const logout = async (req, res) => {
     }).status(200).json("Vous êtes déconnecté");
 };
 
+//récupération des utilisateurs
 export const getUsers =  (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Vous devez être connecté pour supprimer un utilisteur.");
   
     jwt.verify(token, process.env.JWT_SECRET, (err) => {
       if (err) return res.status(403).json("Vous n'êtes pas autorisé à supprimer cet utilisteur.");
-    const q = 'SELECT * FROM users';
+    const q = 'SELECT username, email FROM users';
     db.query(q, (err, result) => {
         if (err) 
         return res.status(500).send(err);
@@ -112,6 +112,7 @@ export const getUsers =  (req, res) => {
     });
 };
 
+//effacer un utilisateur
 export const deleteUser = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Vous devez être connecté pour supprimer un utilisteur.");

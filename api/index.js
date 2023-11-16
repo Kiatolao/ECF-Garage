@@ -57,6 +57,11 @@ app.use("/api/schedules", scheduleRoutes);
 app.use("/api/services", servicesRoutes)
 app.use("/api/testimonials", testimonialsRoutes)
 
+//gestion des erreurs
+app.use((err, req, res, next) => {
+  res.status(500).json({ error: "Une erreur s'est produite." });
+});
+
 app.listen(8000, () => {
   console.log('Server is running on port 8000');
 });

@@ -86,6 +86,7 @@ export const deleteTestimonial = (req, res) => {
   });
 };
 
+//mise à jour d'un témoignage
 export const updateTestimonial=  (req, res) => {
   const token = req.cookies.access_token;
 if (!token) return res.status(401).json("Pas de token trouvé.");
