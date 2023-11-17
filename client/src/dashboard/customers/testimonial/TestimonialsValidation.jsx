@@ -9,7 +9,7 @@ export const TestimonialsValidation = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [archivedTestimonials, setArchivedTestimonials] = useState([]);
 
-
+  //récuparation des témoignages
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
@@ -18,6 +18,7 @@ export const TestimonialsValidation = () => {
           withCredentials: true,
         });
         const allTestimonials = response.data;
+        //filtre les commentaires validé ou non
         const pendingTestimonials = allTestimonials.filter((testimonial) => testimonial.validated === 0);
         const archivedTestimonials = allTestimonials.filter((testimonial) => testimonial.validated === 1);
         setTestimonials(pendingTestimonials);
@@ -30,6 +31,7 @@ export const TestimonialsValidation = () => {
     fetchTestimonials();
   }, []);
 
+  //mise à jour du statu validé
   const validateTestimonial = async (testimonialId) => {
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
@@ -53,6 +55,7 @@ export const TestimonialsValidation = () => {
     }
   };
 
+  //effacer témoignage
   const deleteTestimonial = async (testimonialId) => {
     try {
       const apiUrl = process.env.REACT_APP_API_URL;

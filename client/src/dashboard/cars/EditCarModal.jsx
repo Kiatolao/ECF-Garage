@@ -7,12 +7,14 @@ export const EditCarModal = ({ car, isOpen, onClose, onUpdate }) => {
     setFormData(car);
   }, [car]);
 
+  //mise à jour des entrées
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({...formData, [name]: value,
     });
   };
 
+  // soumission du formulaire
   const handleSubmit = (e) => {
     e.preventDefault();
     onUpdate(formData);

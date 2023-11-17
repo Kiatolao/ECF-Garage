@@ -7,6 +7,7 @@ export const ServiceDel = () => {
 
   const [services, setServices] = useState([]);
 
+  //récupération des services
   const fetchServices = async () => {
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
@@ -23,6 +24,7 @@ export const ServiceDel = () => {
     fetchServices();
   }, []);
 
+  //effacer un service
   const handleDeleteService = async (serviceId) => {
     const confirmed = window.confirm('Êtes-vous sûr de vouloir supprimer ce serrvice ?');
     if (confirmed) {
@@ -39,6 +41,7 @@ export const ServiceDel = () => {
   }
   };
 
+  //raffraichi la liste des services
   const handleRefresh = () => {
     fetchServices();
   };
@@ -62,7 +65,7 @@ export const ServiceDel = () => {
         className="bg-transparent hover:bg-red-500 font-semibold hover:text-white py-1 px-2 border border-neutral-500 hover:border-transparent rounded mr-2 mb-2 flex items-center"
       >
         {service.service}
-        <MdOutlineCancel className="ml-2" /> {/* Icône Material Icons */}
+        <MdOutlineCancel className="ml-2" />
       </button>
         ))}
       </div>

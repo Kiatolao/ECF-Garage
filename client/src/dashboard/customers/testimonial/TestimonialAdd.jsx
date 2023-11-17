@@ -36,6 +36,7 @@ export const TestimonialAdd = () => {
     }
   };
 
+  //système de notation
   const renderStars = () => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {

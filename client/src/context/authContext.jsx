@@ -8,6 +8,7 @@ export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
 
+    //envoie des données au controller auth.js
     const login = async (inputs) => {
         try {
             const apiUrl = process.env.REACT_APP_API_URL;
@@ -28,6 +29,7 @@ export const AuthContextProvider = ({ children }) => {
         }
     };
 
+    //déconnexion
     const logout = async () => {
         try {
             const apiUrl = process.env.REACT_APP_API_URL;
@@ -40,6 +42,7 @@ export const AuthContextProvider = ({ children }) => {
         }
     };
     return (
+        // fourni les valeurs du composant enfant
         <AuthContext.Provider value={{ currentUser, login, logout }}>
             {children}
         </AuthContext.Provider>

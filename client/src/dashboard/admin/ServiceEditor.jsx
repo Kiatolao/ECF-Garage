@@ -11,6 +11,7 @@ export const ServiceEditor = ({ onServiceAdded }) => {
     service: '',
   });
 
+  //mise à jour des entrées utilisateur
   const handleChange = (e) => {
     const { name, value } = e.target;
     setServiceData({
@@ -19,6 +20,7 @@ export const ServiceEditor = ({ onServiceAdded }) => {
     });
   };
 
+  //ajout d un service
   const handleSubmit = async (e) => {
     e.preventDefault();
 

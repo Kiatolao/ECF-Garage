@@ -6,8 +6,8 @@ import {AiOutlineDelete} from 'react-icons/ai';
 export const Messages= () => {
   const [messages, setMessages] = useState([]);
 
+  //récupération des messages
   useEffect(() => {
-
     const fetchMessages = async () => {
       try {
         
@@ -16,6 +16,7 @@ export const Messages= () => {
           withCredentials: true,
         });
 
+        //affiche les messages par ordre chronologique
         const sortedMessages = response.data.sort((a, b) => {
           return new Date(b.date) - new Date(a.date);
         });
@@ -28,6 +29,7 @@ export const Messages= () => {
     fetchMessages();
   }, []); 
 
+  //effacer un message
   const deleteMessage = async (messageId) => {
     try {
       const confirmed = window.confirm('Êtes-vous sûr de vouloir supprimer ce message ?');

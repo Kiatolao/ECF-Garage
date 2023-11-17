@@ -40,11 +40,10 @@ export const UpdateCar = () => {
     }
   };
 
+  // fonction qui active la modal
   const openEditModal = (car) => {
     setEditCar(car);
   };
-
-
 
   // fonction pour mettre à jour la voiture
   const updateCar = async (car) => {

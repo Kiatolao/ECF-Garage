@@ -9,6 +9,7 @@ export const UserList = () => {
     fetchUsers();
   }, []);
 
+  //récupération des utilisateurs, le get est configuré pour ne récupérer que les données affichées: utilisteur/email
   const fetchUsers = async () => {
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
@@ -17,14 +18,13 @@ export const UserList = () => {
       });
       setUsers(response.data);
     } catch (error) {
-      console.error('Erreur lors de la récupération des employés :', error);
+      console.error('Erreur lors de la récupération des employés');
     }
   };
 
+  //effacer un utilisateur
   const handleDelete = async (userId) => {
-
     const shouldDelete = window.confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');
-
     if (shouldDelete) {
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
@@ -34,11 +34,12 @@ export const UserList = () => {
       // mettre à jour la liste des employés après la suppression
       setUsers(users.filter((user) => user.id !== userId));
     } catch (error) {
-      console.error('Erreur lors de la suppression de l\'employé :', error);
+      console.error('Erreur lors de la suppression de l\'employé');
     }
   }
   };
 
+  //rafraichi la liste des utilisateurs
   const handleRefresh = () => {
     fetchUsers();
   };

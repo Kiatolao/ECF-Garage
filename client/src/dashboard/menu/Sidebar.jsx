@@ -13,6 +13,7 @@ import { AiOutlineEdit } from 'react-icons/ai';
 
 export const Sidebar = ({ onSelectMenuItem }) => {
 
+  //on récupère le  nom d'utilisateur qu'on affichera dans le dashboard
   const {currentUser} = useContext(AuthContext)
 
   return (

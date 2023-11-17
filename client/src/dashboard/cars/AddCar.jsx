@@ -7,6 +7,7 @@ export const AddCar = () => {
 
   const [status, setStatus] = useState(''); 
 
+  //dompurify assaini les données
   const [formData, setFormData] = useState({
     title: DOMPurify.sanitize(''),
     year: DOMPurify.sanitize(''),
@@ -18,6 +19,7 @@ export const AddCar = () => {
     file: null,
   });
 
+  //mise à jour des entrées
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     setFormData({
@@ -25,6 +27,7 @@ export const AddCar = () => {
       [name]: type === 'file' ? files[0] : value,});
   };
 
+  // upload de l'image avec restriction de taille
   const uploadImage = async (file) => {
     const maxSize = 5 * 1024 * 1024;
     if (file.size > maxSize) {
