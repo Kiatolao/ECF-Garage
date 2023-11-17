@@ -8,6 +8,7 @@ export const Dashboard = () => {
     const [selectedMenuItem, setSelectedMenuItem] = useState('');
     const [isMobile, setIsMobile] = useState(false);
   
+    //menu dashboard pour mobile
     const toggleSidebar = () => {
       setIsSidebarOpen(!isSidebarOpen);
     };
@@ -23,12 +24,11 @@ export const Dashboard = () => {
         setIsMobile(window.innerWidth <= 767);
       };
 
-      handleResize(); // Check initial screen size
+      handleResize(); 
 
-      window.addEventListener('resize', handleResize); // Update on window resize
-
+      window.addEventListener('resize', handleResize); 
       return () => {
-        window.removeEventListener('resize', handleResize); // Cleanup
+        window.removeEventListener('resize', handleResize); 
       };
     }, []);
 
@@ -46,6 +46,7 @@ export const Dashboard = () => {
         >
           <Sidebar onSelectMenuItem={onSelectMenuItem} />
         </div>
+        {/* gestion des espaces de la sidebar/content */}
           <div className={`w-full md:w-3/4 ${isSidebarOpen ? 'ml-1/4' : ''}
            p-5 ${isMobile ? 'pt-70' : ''}`} onClick={() => setIsSidebarOpen(false)}>
           <Content selectedMenuItem={selectedMenuItem} className="h-full" />

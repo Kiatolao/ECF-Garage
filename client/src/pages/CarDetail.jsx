@@ -15,7 +15,7 @@ export const CarDetail = () => {
   const { id } = useParams();
   const [car, setCar] = useState({});
 
-  // usecallback pour éviter de relancer la fonction à chaque fois
+  // usecallback pour éviter de relancer la fonction en boucle
   const fetchCarDetails = useCallback(async () => {
       try {
         const apiUrl = process.env.REACT_APP_API_URL;
@@ -25,7 +25,7 @@ export const CarDetail = () => {
           setCar(carData);
         }
       } catch (error) {
-        console.error('Erreur lors de la récupération des données :', error);
+        console.error('Erreur lors de la récupération des données');
       }
   }, [id]);
 
@@ -45,7 +45,7 @@ export const CarDetail = () => {
         <img src={logo2} className="h-[50px]" alt="logo garage parrot" />
       <div className="flex-grow border-t border-red-700"></div>
   </div>
-
+  {/* mise  en page des détails du vehicule */}
   <div className='container p-3 md:px-20 mx-auto'>
   <div className=" mt-5">
     <div className="lg:flex md:space-x-4">

@@ -23,13 +23,14 @@ export const CarContactForm = ({ carTitle }) => {
 
   const [formData, setFormData] = useState(initialFormData);
 
+  //mise à jour des entrées
   const handleChange = (e) => {
     const { name, value } = e.target;
     const sanitizedValue = DOMPurify.sanitize(value);
     setFormData({ ...formData, [name]: sanitizedValue });
   };
   
-
+  //soumission formulaire avec verification regex/captcha
   const handleSubmit = async (e) => {
     e.preventDefault();
     const apiUrl = process.env.REACT_APP_API_URL;
@@ -102,7 +103,6 @@ export const CarContactForm = ({ carTitle }) => {
   };
 
   const handleRecaptchaChange = (value) => {
-    // Update the formData state with the recaptcha value
     setFormData({ ...formData, recaptcha: value });
   };
 

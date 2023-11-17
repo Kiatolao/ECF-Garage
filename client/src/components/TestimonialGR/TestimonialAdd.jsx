@@ -16,6 +16,7 @@ export const TestimonialAdd = () => {
   const [captchaValue, setCaptchaValue] = useState('');
   const key = process.env.REACT_APP_SITE_KEY;
 
+  //envoie du formulaire si les condition regex et captcha sont valides
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -39,7 +40,7 @@ export const TestimonialAdd = () => {
         return;
       }
 
-    // envoyer les données au serveur
+    // vérification captcha coté serveur
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
       const captchaResponse = await axios.post(`${apiUrl}/api/recaptcha`, {
@@ -73,6 +74,7 @@ export const TestimonialAdd = () => {
     }
   };
 
+  //attribue une note
   const renderStars = () => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -87,9 +89,10 @@ export const TestimonialAdd = () => {
     return stars;
   };
 
+  // changement de statu du captcha
   const onChange = (value) => {
     if (value) {
-      setCaptchaValue(value); // Set the value of captchaValue
+      setCaptchaValue(value); 
       setCaptchaValidated(true);
     }
   };
@@ -134,6 +137,9 @@ export const TestimonialAdd = () => {
             sitekey={key}
             onChange={onChange}
             className="mb-2"/>
+          {/* Ici on desactive le bouton de soumission par sécurité tant que qu'on aura pas cocher le captcha
+              De plus il ne sera pas possible de soumettre le formulaire tant que la secret key du captcha ne sera pas vérifiée
+          */}
           <button
               type="submit"
               disabled={!captchaValidated}
@@ -146,7 +152,7 @@ export const TestimonialAdd = () => {
   );
 };
 
-// intéraction laisser un témoignage
+// Ouvvrir la modal pour laisser un témoignage
 export const TestimonialButton = () => {
   const [showModal, setShowModal] = useState(false);
 

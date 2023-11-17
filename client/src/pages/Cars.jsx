@@ -16,6 +16,7 @@ export const Cars = () =>  {
   const [filteredCars, setFilteredCars] = useState([]); 
   const [filterVisible, setFilterVisible] = useState(false);
 
+  // function de filtre à améliorer / reprendre les value min/max des voitures existante
   const handleFilterChange = (filters) => {
     if (!filters) {
 
@@ -40,6 +41,7 @@ export const Cars = () =>  {
     setFilteredCars(filtered);
   };
 
+  //récupération des voitures
   useEffect(() => {
     async function fetchCars() {
       try {
@@ -54,6 +56,7 @@ export const Cars = () =>  {
     fetchCars();
   }, []);
 
+  //afficher/cacher le filtre
   const toggleFilterVisibility = () => {
     setFilterVisible(!filterVisible);
   };
@@ -80,7 +83,7 @@ export const Cars = () =>  {
         <CarFilter onFilterChange={handleFilterChange} />
       </div>
     </div>
-
+    {/* création de card pour affichier les données voitures */}
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4 ">
         {filteredCars.map((car) => (
           <div

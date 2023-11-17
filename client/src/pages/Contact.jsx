@@ -199,7 +199,9 @@ const handleRecaptchaChange = (value) => {
         {submissionStatusErr && (
             <p className="text-red-500 mb-2">{DOMPurify.sanitize(submissionStatusErr)}</p>
         )}
-              <ReCAPTCHA
+
+        {/* intégration Recaptcha + site key */}
+        <ReCAPTCHA
         sitekey={sitekey}
         onChange={handleRecaptchaChange}
       />

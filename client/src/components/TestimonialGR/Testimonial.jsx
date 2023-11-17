@@ -11,6 +11,7 @@ export const Testimonial = () => {
   const [visibleCount, setVisibleCount] = useState(3);
   const [showAllComments, setShowAllComments] = useState(false);
 
+  //afficher plus de commentaire par set de 3
   const showMoreComments = () => {
     setVisibleCount(visibleCount + 3);
   };
@@ -22,6 +23,7 @@ export const Testimonial = () => {
     setShowAllComments(!showAllComments);
   };
 
+  //récupération des témoignages
   useEffect(() => {
   
     const fetchTestimonials = async () => {
@@ -30,13 +32,14 @@ export const Testimonial = () => {
         const response = await axios.get(`${apiUrl}/api/testimonials`);
         setTestimonials(response.data);
       } catch (error) {
-        console.error('Erreur lors de la récupération des témoignages :', error);
+        console.error('Erreur lors de la récupération des témoignages ');
       }
     };
 
     fetchTestimonials();
   }, []);
 
+  // système de notation du témoignage, on combine les étoiles remplie et pleine
   const renderStars = (rating) => {
     const filledStars = Array(rating).fill(null).map((_, index) => (
       <AiFillStar key={`filled-${index}`} className="text-yellow-500" />
@@ -57,6 +60,7 @@ export const Testimonial = () => {
     </h1>
   </div>
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-5">
+        {/* filtre les commentaires valides, les affiche par 3, itère le schema du témoignage avec map() */}
         {testimonials
           .filter((testimonial) => testimonial.validated === 1)
           .slice(0, visibleCount)
@@ -75,6 +79,9 @@ export const Testimonial = () => {
             </div>
           ))}
       </div>
+      {/* conditions pour afficher les témoignages: si tem. >3 on affiche 'voir plus de commentaires' et il n'y plus de tem. à afficher
+          on affiche 'Cacher commentaires'
+      */}
       {testimonials.length > 3 && (
         <div className="flex flex-col items-center mb-5 sm:flex-row sm:justify-center">
           {visibleCount < testimonials.length && (
