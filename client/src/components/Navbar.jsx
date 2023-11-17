@@ -18,7 +18,7 @@ export const Navbar = () => {
       setIsMenuOpen(false);
     };
 
-
+    // state qui verifira quand l'ecran est en haut
     useEffect(() => {
       const handleScroll = () => {
         const isScrolledToTop = window.scrollY === 0;
@@ -31,10 +31,12 @@ export const Navbar = () => {
       };
     }, []);
 
+    //mediaquerie
     const isMobile = useWindowWidth() < 965; 
 
     return (
       <nav
+      //condition: sur mobile la barre de navigation sera opaque/ en desktop elle sera transparente onTop et opaque quand on scrollera
       className={`${
       isMobile ? 'bg-stone-800' :
       isOnTop  ? 'bg-transparent text-xl' : 'bg-stone-800 opacity-95 text-xl'

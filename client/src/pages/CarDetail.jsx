@@ -8,22 +8,25 @@ import logo2 from '../assets/parrot-logo.png';
 import { CarContactForm } from '../components/CarContactForm';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { SocialMedia } from '../components/Socialmedia';
-
+import { BeatLoader} from 'react-spinners';
 
 export const CarDetail = () => {
 
   const { id } = useParams();
   const [car, setCar] = useState({});
+  const [loading, setLoading] = useState(true);
 
   // usecallback pour éviter de relancer la fonction en boucle
   const fetchCarDetails = useCallback(async () => {
       try {
+        setLoading(true);
         const apiUrl = process.env.REACT_APP_API_URL;
         const response = await axios.get(`${apiUrl}/api/cars/${id}`);
         if (response.data.length > 0) { 
           const carData = response.data[0]; 
           setCar(carData);
-        }
+        }        
+        setLoading(false);
       } catch (error) {
         console.error('Erreur lors de la récupération des données');
       }
@@ -46,6 +49,10 @@ export const CarDetail = () => {
       <div className="flex-grow border-t border-red-700"></div>
   </div>
   {/* mise  en page des détails du vehicule */}
+  <>
+  <div className="flex items-center justify-center">
+    {loading && <BeatLoader color="rgba(214, 54, 54, 1)" className='pt-10'/>}
+  </div>
   <div className='container p-3 md:px-20 mx-auto'>
   <div className=" mt-5">
     <div className="lg:flex md:space-x-4">
@@ -113,6 +120,7 @@ export const CarDetail = () => {
     {car.title && <CarContactForm carTitle={car.title} />}
   </div>
   </div>
+  </>
   <Infos />
   </>
   );

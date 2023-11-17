@@ -8,6 +8,7 @@ import { Infos } from '../components/Infos';
 import layer from '../assets/layer.jpg';
 import logo2 from '../assets/parrot-logo.png';
 import { SocialMedia } from '../components/Socialmedia';
+import { BeatLoader} from 'react-spinners'; 
 
 
 export const Cars = () =>  {
@@ -15,6 +16,7 @@ export const Cars = () =>  {
   const navigate = useNavigate();
   const [filteredCars, setFilteredCars] = useState([]); 
   const [filterVisible, setFilterVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // function de filtre à améliorer / reprendre les value min/max des voitures existante
   const handleFilterChange = (filters) => {
@@ -45,10 +47,12 @@ export const Cars = () =>  {
   useEffect(() => {
     async function fetchCars() {
       try {
+        setLoading(true);
         const apiUrl = process.env.REACT_APP_API_URL;
         const response = await axios.get(`${apiUrl}/api/cars`);
         setCars(response.data);
-        setFilteredCars(response.data); 
+        setFilteredCars(response.data);
+        setLoading(false); 
       } catch (error) {
         console.error('Erreur lors de la récupération des données :', error);
       }
@@ -84,6 +88,10 @@ export const Cars = () =>  {
       </div>
     </div>
     {/* création de card pour affichier les données voitures */}
+    <>
+  <div className="flex items-center justify-center">
+    {loading && <BeatLoader color="rgba(214, 54, 54, 1)" className='pt-10'/>}
+  </div>
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4 ">
         {filteredCars.map((car) => (
           <div
@@ -133,6 +141,7 @@ export const Cars = () =>  {
           </div>
         ))}
       </div>
+      </>
       <Infos />
   </>
   );

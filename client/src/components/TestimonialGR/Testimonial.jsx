@@ -63,8 +63,8 @@ export const Testimonial = () => {
     </h1>
   </div>
   <>
-  <div className="flex items-center justify-center pt-10">
-    {loading && <BeatLoader color="rgba(214, 54, 54, 1)"/>}
+  <div className="flex items-center justify-center">
+    {loading && <BeatLoader color="rgba(214, 54, 54, 1)" className='pt-10'/>}
   </div>
 
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-5">

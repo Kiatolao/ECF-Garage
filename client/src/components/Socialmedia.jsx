@@ -5,6 +5,7 @@ import { IoShareSocialOutline } from 'react-icons/io5';
 export const SocialMedia = () => {
   const [expanded, setExpanded] = useState(false);
 
+  //fonction qui verifie le state d'un bouton qui permettre de montrer les réseaux sociaux
   const handleMediaShareClick = () => {
     setExpanded(!expanded);
   };

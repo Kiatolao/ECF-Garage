@@ -27,6 +27,7 @@ export const Schedules = () => {
   <table >
     <thead></thead>
     <tbody>
+      {/* utilisation de map() pour itérer le schema avec toues les horaires */}
       {schedules.map((schedule) => (
         <tr key={schedule.id}>
           <td className='pr-5'>{schedule.day}</td>
