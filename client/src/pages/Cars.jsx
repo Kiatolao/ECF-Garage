@@ -10,7 +10,6 @@ import logo2 from '../assets/parrot-logo.png';
 import { SocialMedia } from '../components/Socialmedia';
 import { BeatLoader} from 'react-spinners'; 
 
-
 export const Cars = () =>  {
   const [cars, setCars] = useState([]);
   const navigate = useNavigate();
@@ -18,14 +17,15 @@ export const Cars = () =>  {
   const [filterVisible, setFilterVisible] = useState(false);
   const [loading, setLoading] = useState(true);
 
+
   // function de filtre à améliorer / reprendre les value min/max des voitures existante
   const handleFilterChange = (filters) => {
     if (!filters) {
 
       filters = {
-        km: [0, 300000],
-        price: [0, 50000],
-        year: [2000, 2023],
+        km: [],
+        price: [],
+        year: [],
       };
     }
 

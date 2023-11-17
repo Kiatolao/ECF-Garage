@@ -4,9 +4,9 @@ import 'rc-slider/assets/index.css';
 
 export const CarFilter = ({ onFilterChange }) => {
   // valeurs par défaut
-  const defaultKmRange = [0, 300000];
+  const defaultKmRange = [0, 200000];
   const defaultPriceRange = [0, 50000];
-  const defaultYearRange = [2000, 2023];
+  const defaultYearRange = [1955, 2023];
 
   // déclaration des states
   const [kmRange, setKmRange] = useState(defaultKmRange);
@@ -40,7 +40,7 @@ export const CarFilter = ({ onFilterChange }) => {
   };
 
   return (
-    <div className="p-5 shadow w-full border border-neutral-300 shadow rounded-md bg-white overflow-auto">
+    <div className="p-5 w-full border border-neutral-300 shadow rounded-md bg-white overflow-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2">
         <div className="mb-4">
           <p>Kilomètres</p>
@@ -48,7 +48,7 @@ export const CarFilter = ({ onFilterChange }) => {
             className="max-w-sm"
             range
             min={0}
-            max={300000}
+            max={200000}
             value={kmRange}
             onChange={setKmRange}/>
           <p>
@@ -76,7 +76,7 @@ export const CarFilter = ({ onFilterChange }) => {
           <Slider
             className="max-w-sm"
             range
-            min={2000}
+            min={1955}
             max={2023}
             value={yearRange}
             onChange={setYearRange}
