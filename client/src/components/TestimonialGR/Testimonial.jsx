@@ -4,12 +4,13 @@ import axios from 'axios';
 import { BiSolidQuoteRight } from 'react-icons/bi';
 import { LiaUserEditSolid } from 'react-icons/lia';
 import { TestimonialButton } from './TestimonialAdd';
-
+import { BeatLoader} from 'react-spinners'; 
 
 export const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [visibleCount, setVisibleCount] = useState(3);
   const [showAllComments, setShowAllComments] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   //afficher plus de commentaire par set de 3
   const showMoreComments = () => {
@@ -28,9 +29,11 @@ export const Testimonial = () => {
   
     const fetchTestimonials = async () => {
       try {
+        setLoading(true);
         const apiUrl = process.env.REACT_APP_API_URL;
         const response = await axios.get(`${apiUrl}/api/testimonials`);
         setTestimonials(response.data);
+        setLoading(false);
       } catch (error) {
         console.error('Erreur lors de la récupération des témoignages ');
       }
@@ -59,6 +62,11 @@ export const Testimonial = () => {
       <LiaUserEditSolid size={30} className="text-red-700 mr-1" /> Vos témoignages
     </h1>
   </div>
+  <>
+  <div className="flex items-center justify-center pt-10">
+    {loading && <BeatLoader color="rgba(214, 54, 54, 1)"/>}
+  </div>
+
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-5">
         {/* filtre les commentaires valides, les affiche par 3, itère le schema du témoignage avec map() */}
         {testimonials
@@ -101,6 +109,8 @@ export const Testimonial = () => {
           <TestimonialButton />
         </div>
       )}
+      </>
+      
 </>
   );
 };

@@ -10,6 +10,7 @@ import { UpdateCar } from '../cars/UpdateCar';
 
 
 export const Content = ({ selectedMenuItem }) => {
+  //espace réservé au contenu du dashboard
   const renderContent = () => {
     switch (selectedMenuItem) {
       case 'ajouter-employe':
