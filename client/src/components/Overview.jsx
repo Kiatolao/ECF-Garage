@@ -44,11 +44,11 @@ export const Overview = () => {
       <div className="flex justify-center">
           <h2 className="text-2xl font-bold mb-5 text-red-700">Un garage à votre service</h2>
           </div>
-          <p className="mb-4 text-justify">
+          <p className="mb-4 text-justify sm:ml-4">
             Depuis 2004, notre équipe de professionnels qualifiés assure des réparations de confiance et propose une sélection soignée de véhicules d'occasion de qualité. <br />
             Nous offrons un service complet, de la réparation à l'achat, en mettant l'accent sur la satisfaction du client.
           </p>
-          <p className="mb-4 text-justify">
+          <p className="mb-4 text-justify sm:ml-4">
             Chez Garage Parrot, la fiabilité, l'expertise et l'engagement sont au cœur de notre approche. Faites confiance à notre garage pour prendre soin de votre véhicule et vous guider dans le choix de votre prochaine voiture.
           </p>
           <div className="flex justify-center">
