@@ -27,16 +27,6 @@ export const EditCarModal = ({ car, isOpen, onClose, onUpdate }) => {
         <form onSubmit={handleSubmit}>
           <div className="bg-white modal-body p-6 mt-[400px] ">
           <h2 className="text-xl font-semibold mb-4">Modifier la Voiture</h2>
-          <div className="mb-4">
-          <label htmlFor="file" className="block mb-2">Image de la Voiture</label>
-          <input
-            type="file"
-            id="file"
-            name="file"
-            onChange={handleChange}
-            className="border border-gray-400 w-full"
-          />
-        </div>
         <div className="mb-4">
           <label htmlFor="title" className="block mb-2">Modèle de la Voiture</label>
           <input

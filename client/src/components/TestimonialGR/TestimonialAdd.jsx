@@ -174,10 +174,10 @@ export const TestimonialButton = () => {
       </p>
 
       {showModal && (
-        <div className="modal fixed top-0 left-0 w-full h-screen bg-black bg-opacity-50 flex overflow-y-auto items-center justify-center z-100">
-          <div className="bg-white p-4 rounded-lg shadow-lg">
+        <div className="modal fixed top-10 left-0 w-full h-screen bg-black bg-opacity-50 flex overflow-y-auto items-center justify-center z-100">
+          <div className="bg-white p-4 rounded-lg shadow-lg top-10">
             <button
-              className="absolute top-20 pl-[300px] text-gray-500 hover:text-gray-700"
+              className="top-10 pl-[300px] text-gray-500 hover:text-gray-700"
               onClick={handleCloseModal}
             >
               <IoMdClose size={30} />
