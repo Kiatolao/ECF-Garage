@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams} from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { VscWorkspaceTrusted } from 'react-icons/vsc';
 import { Infos } from '../components/Infos';
@@ -48,6 +48,35 @@ export const CarDetail = () => {
         <img src={logo2} className="h-[50px]" alt="logo garage parrot" />
       <div className="flex-grow border-t border-red-700"></div>
   </div>
+
+{/* File d'ariane */}
+<nav className="flex px-20" aria-label="Breadcrumb" >
+  <ol className="inline-flex items-center space-x-1 md:space-x-3">
+    <li className="inline-flex items-center">
+        <svg className="w-5 h-5 mr-2.5" fillRule="currentColor" viewBox="0 0 20 20" >
+          <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+            </path></svg>
+          <Link to="/">Accueil</Link>
+    </li>
+    <li>
+      <div className="flex items-center">
+        <svg className="w-6 h-6 text-gray-400" fillRule="currentColor" viewBox="0 0 20 20" >
+          <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd">
+            </path></svg>
+        <Link to="/cars">Occasions</Link>
+      </div>
+    </li>
+    <li aria-current="page">
+      <div className="flex items-center">
+        <svg className="w-6 h-6 text-gray-400" fillRule="currentColor" viewBox="0 0 20 20" >
+          <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd">
+            </path></svg>
+        <span className="text-red-700 font-semibold ml-1 md:ml-2 text-md">{car.title}</span>
+      </div>
+    </li>
+  </ol>
+</nav>
+
   {/* mise  en page des détails du vehicule */}
   <>
   <div className="flex items-center justify-center">
@@ -57,7 +86,7 @@ export const CarDetail = () => {
   <div className=" mt-5">
     <div className="lg:flex md:space-x-4">
       <div className="lg:w-1/2">
-        <div className="h-90 mx-auto mb-4 shadow-lg bg-neutral-800 rounded-md">
+        <div className="h-90 mx-auto mb-4 shadow-inner bg-neutral-800 rounded-md">
           <img
             src={car?.image ? car.image.replace('http://', 'https://') : ''}
             alt={car.title}
