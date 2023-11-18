@@ -6,6 +6,7 @@ import logo2 from '../assets/parrot-logo.png';
 import DOMPurify from 'isomorphic-dompurify';
 import { SocialMedia } from '../components/Socialmedia';
 import ReCAPTCHA from 'react-google-recaptcha';
+import 'default-passive-events';
 
 export function Contact() {
  

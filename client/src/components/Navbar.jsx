@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import  {AuthContext}  from '../context/authContext';
 import '../index.css'; 
 import { useWindowWidth } from '@react-hook/window-size';
+import { CiLock } from "react-icons/ci";
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,9 +39,9 @@ export const Navbar = () => {
       <nav
       //condition: sur mobile la barre de navigation sera opaque/ en desktop elle sera transparente onTop et opaque quand on scrollera
       className={`${
-      isMobile ? 'bg-stone-800' :
+      isMobile ? 'bg-stone-800 opacity-95' :
       isOnTop  ? 'bg-transparent text-xl' : 'bg-stone-800 opacity-95 text-xl'
-      } text-white  border-gray-200  z-20 w-full fixed transition-all duration-300`}
+      } text-white  border-gray-200 w-full z-20  fixed transition-all duration-300`}
     >
         <div className=" flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center">
@@ -59,7 +60,7 @@ export const Navbar = () => {
             <button
               onClick={toggleMenu}
               type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center rounded-md text-sm text-white md:hidden hover:bg-stone-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
             >
               <span className="sr-only">Open main menu</span>
               <svg
@@ -80,7 +81,7 @@ export const Navbar = () => {
             </button>
           </div>
           <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full md:flex md:w-auto md:order-1`}>
-            <ul className="flex flex-col  p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
+            <ul className="flex flex-col space-y-3 p-4 max-w-sm ml-auto md:space-y-0  md:p-0 mt-4 border border-stone-700  rounded-md  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
               <li>
                 <Link className="font-semibold " to="/" onClick={handleLinkClick}>Accueil</Link>
               </li>
@@ -90,19 +91,22 @@ export const Navbar = () => {
               <li>
                 <Link className="font-semibold " to="/contact" onClick={handleLinkClick}>Contact</Link>
               </li>
-              <li>
-                {currentUser &&<Link className="font-bold "  to="/dashboard " onClick={handleLinkClick}>Tableau de bord</Link>}
-              </li>
-              <li>
-              
-          {currentUser && (
-            <>
-              <span className="mr-2">{currentUser?.username}</span>
-              <span onClick={logout} className="cursor-pointer">| Se déconnecter</span>
-            </>
-          )}
-              </li>
-
+              <div className="mb-2 mt-2 border-b border-gray-300"></div>
+              <li className="md:absolute md:right-5">
+              {currentUser ? (
+                <div>
+                  <span className="mr-2">{currentUser?.username}</span>
+                  <span onClick={logout} className="cursor-pointer">
+                    | Se déconnecter
+                  </span>
+                </div>
+              ) : (
+            <Link className="text-sm flex items-center max-w-[150px] justify px-3 py-1 bg-red-700 rounded-md hover:bg-red-800" to="/login">
+              <span>Espace réservé</span>
+              <CiLock className="ml-2" />
+            </Link>
+              )}
+            </li>
             </ul>
           </div>
         </div>
