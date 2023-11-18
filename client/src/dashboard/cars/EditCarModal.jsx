@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { IoMdClose } from 'react-icons/io';
 
 export const EditCarModal = ({ car, isOpen, onClose, onUpdate }) => {
   const [formData, setFormData] = useState(car);
@@ -25,8 +26,17 @@ export const EditCarModal = ({ car, isOpen, onClose, onUpdate }) => {
     <div className={`modal fixed top-0 left-0 w-full h-screen bg-black bg-opacity-50 flex overflow-y-auto items-center justify-center ${isOpen ? '' : 'hidden'}`}>
       <div className="p-6 "> 
         <form onSubmit={handleSubmit}>
-          <div className="bg-white modal-body p-6 mt-[400px] ">
-          <h2 className="text-xl font-semibold mb-4">Modifier la Voiture</h2>
+        
+        <div className="bg-white modal-body p-6 mt-[400px] md:mt-[100px]">
+        <div className="flex items-center">
+          <h2 className="text-xl font-semibold flex-grow">Modifier la Voiture</h2>
+            <button
+              className="flex ml-auto text-gray-500 hover:text-gray-700 py-2"
+              onClick={onClose}
+            >
+              <IoMdClose size={30} />
+            </button>
+        </div>
         <div className="mb-4">
           <label htmlFor="title" className="block mb-2">Modèle de la Voiture</label>
           <input
@@ -39,6 +49,7 @@ export const EditCarModal = ({ car, isOpen, onClose, onUpdate }) => {
             className="border border-gray-400 w-full"
           />
         </div>
+        
         <div className="mb-4">
           <label htmlFor="year" className="block mb-2">Année</label>
           <input
@@ -127,8 +138,7 @@ export const EditCarModal = ({ car, isOpen, onClose, onUpdate }) => {
               Annuler
             </button>
           </div>
-      </div>
-
+          </div>
         </form>
       </div>
     </div>

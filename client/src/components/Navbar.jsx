@@ -81,7 +81,7 @@ export const Navbar = () => {
             </button>
           </div>
           <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full md:flex md:w-auto md:order-1`}>
-            <ul className="flex flex-col space-y-3 p-4 max-w-sm ml-auto md:space-y-0  md:p-0 mt-4 border border-stone-700  rounded-md  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
+            <ul className="flex flex-col space-y-3 p-4  ml-auto md:space-y-0  md:p-0 mt-4 border border-stone-700  rounded-md  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
               <li>
                 <Link className="font-semibold " to="/" onClick={handleLinkClick}>Accueil</Link>
               </li>
@@ -90,6 +90,9 @@ export const Navbar = () => {
               </li>
               <li>
                 <Link className="font-semibold " to="/contact" onClick={handleLinkClick}>Contact</Link>
+              </li>
+              <li>
+                {currentUser &&<Link className="font-semibold "  to="/dashboard " onClick={handleLinkClick}>Tableau de bord</Link>}
               </li>
               <div className="mb-2 mt-2 border-b border-gray-300"></div>
               <li className="md:absolute md:right-5">
