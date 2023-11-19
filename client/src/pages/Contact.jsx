@@ -40,11 +40,11 @@ export function Contact() {
     const apiUrl = process.env.REACT_APP_API_URL;
   
     // vérification des regex
-    const userRegex = /^[A-Za-z\s-]+$/;
+    const userRegex = /^[A-Za-zÀ-ÿ\s-]+$/;
     const phoneRegex = /^[\d\s\-+]+$/;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const objectRegex = /^[a-zA-Z0-9\s-]+$/;
-    const messageRegex = /^[A-Za-z0-9\s.,\-!?'’()]+$/;
+    const objectRegex = /^[a-zA-Z0-9À-ÿ\s-]+$/;
+    const messageRegex = /^[A-Za-zÀ-ÿ0-9\s.,\-!?'’()]+$/;
   
     if (!userRegex.test(formData.lastName) || !userRegex.test(formData.firstName)) {
       setSubmissionStatusErr('Le nom ne doit contenir que des lettres, des tirets et des espaces.');

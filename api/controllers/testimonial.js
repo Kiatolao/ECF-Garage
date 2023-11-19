@@ -39,8 +39,8 @@ export const addTestimonial = (req, res) => {
     ];
 
   // validation avec le regex
-  const userRegex = /^[A-Za-z\s-]+$/;
-  const testimonialRegex = /^[A-Za-z0-9\s.,\-!?'’()]+$/;
+  const userRegex = /^[A-Za-zÀ-ÿ\s-]+$/;
+  const testimonialRegex = /^[A-Za-zÀ-ÿ0-9\s.,\-!?'’()]+$/;
   const noteRegex = /^[0-5]$/;
   const validatedRegex = /^[0-1]$/;
 

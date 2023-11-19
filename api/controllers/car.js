@@ -7,7 +7,7 @@ import {v2 as cloudinary} from 'cloudinary'
 dotenv.config();
  
 //récupération des voitures
-export const getCars =  (req, res) => {
+export const getCars =  (req, res, next) => {
     const q = 'SELECT * FROM cars';
     db.query(q, (err, result) => {
         if (err) 
@@ -17,7 +17,7 @@ export const getCars =  (req, res) => {
 };
 
 // récupération d'une voiture par son id
-export const getCar =  (req, res) => {
+export const getCar =  (req, res, next) => {
     const q = 'SELECT * FROM cars WHERE id = ?';
     db.query (q, [req.params.id], (err, result) => {
         if (err) 
@@ -35,7 +35,7 @@ cloudinary.config({
 });
 
 //effacer une voiture par son id avec comparaison du token
-export const deleteCar = (req, res) => {
+export const deleteCar = (req, res, next) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Vous devez être connecté pour supprimer une voiture.");
 
@@ -47,9 +47,10 @@ export const deleteCar = (req, res) => {
 
     db.query(q, [carId], (err, data) => {
       if (err) {
-        return res.status(500).json('Une erreur s\'est produite lors de la suppression de la voiture.');
+        next(err);
+        return;
       }
-
+      
       const car = data[0];
       if (!car) {
         return res.status(404).json("La voiture n'a pas été trouvée.");
@@ -64,7 +65,8 @@ export const deleteCar = (req, res) => {
           const deleteQuery = 'DELETE FROM cars WHERE id = ?';
           db.query(deleteQuery, [carId], (err) => {
             if (err) {
-              return res.status(500).json('Une erreur s\'est produite lors de la suppression de la voiture.');
+              next(err);
+              return;
             }
             return res.status(200).json('La voiture a été supprimée avec succès.');
           });
@@ -78,12 +80,15 @@ export const deleteCar = (req, res) => {
 };
  
 // ajouter une voiture
-  export const addCar= (req, res) => {
+  export const addCar= (req, res, next) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Pas de token trouvé.");
   
     jwt.verify(token, process.env.JWT_SECRET, (err) => {
-      if (err) return res.status(403).json("Le token n'est pas valide.");
+      if (err) {
+        next(err);
+        return;
+      }
   
       const q =
         "INSERT INTO cars (`title`, `image`, `year`, `price`,`km`, `fuel`, `gearbox`, `warrant`) VALUES (?)";
@@ -100,14 +105,17 @@ export const deleteCar = (req, res) => {
       ];
   
       db.query(q, [values], (err, data) => {
-        if (err) return res.status(500).json(err);
+        if (err) {
+          next(err);
+          return;
+        }
         return res.json("La voiture a été ajoutée avec succès.");
       });
     });
   };
 
 // modifier une voiture
-export const updateCar =  (req, res) => {
+export const updateCar =  (req, res, next) => {
        const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Pas de token trouvé.");
   
@@ -130,7 +138,11 @@ export const updateCar =  (req, res) => {
       ];
   
       db.query(q, values, (err, data) => {
-        if (err) return res.status(500).json(err);
+        if (err) {
+          next(err);
+          return;
+        }
+  
         return res.json("La voiture a été modifiée avec succès.");
       });
     });

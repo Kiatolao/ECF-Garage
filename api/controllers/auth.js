@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 //enregister un nouvelle employé
-export const register = async (req, res) => { 
+export const register = async (req, res, next) => { 
     // validation du password, 8 caractères et un chiffre au minimum, on utilise Dompurify pour echapper toutes balises ou scripts malveillants
     const password = DOMPurify.sanitize(req.body.password); 
 
@@ -54,7 +54,7 @@ export const register = async (req, res) => {
 };
 
 //formulaire de connexion
-export const login = async (req, res) => { 
+export const login = async (req, res, next) => { 
     // si l'utilisateur existe
     const q = "SELECT * FROM users WHERE email = ?";
     
@@ -87,7 +87,7 @@ export const login = async (req, res) => {
   };
 
 //déconnexion
-export const logout = async (req, res) => { 
+export const logout = async (req, res, next) => { 
     //on efface le cookie pour se déconnecter
     res.clearCookie("access_token", {
         httpOnly: true,
@@ -97,7 +97,7 @@ export const logout = async (req, res) => {
 };
 
 //récupération des utilisateurs
-export const getUsers =  (req, res) => {
+export const getUsers =  (req, res, next) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Vous devez être connecté pour supprimer un utilisteur.");
   
@@ -113,7 +113,7 @@ export const getUsers =  (req, res) => {
 };
 
 //effacer un utilisateur
-export const deleteUser = (req, res) => {
+export const deleteUser = (req, res, next) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json("Vous devez être connecté pour supprimer un utilisteur.");
   

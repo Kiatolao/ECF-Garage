@@ -21,7 +21,7 @@ export const TestimonialAdd = () => {
     e.preventDefault();
 
       // vérification regex
-      const userRegex = /^[A-Za-z\s-]+$/;
+      const userRegex = /^[A-Za-zÀ-ÿ\s-]+$/;
       const testimonialRegex = /^[A-Za-z0-9\s.,\-!?'’()]+$/;
       const noteRegex = /^[0-5]$/;
 
