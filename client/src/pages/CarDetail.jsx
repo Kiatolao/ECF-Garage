@@ -40,16 +40,14 @@ export const CarDetail = () => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   return (
   <>
-  <SocialMedia className='z-50'/>
-  <div>
-    <img src={layer} alt="Moteur" className="h-[70px] w-full bg-cover shadow-xl bg-opacity-80"/>
-    <div className="flex-grow border-t border-black"></div>
-  </div>
-  <div className="flex py-3 items-center p-5 pt-5 z-0">
-      <div className="flex-grow  border-red-700"></div>
+    <SocialMedia />
+      <img src={layer} alt="fond navbar" className="h-[70px] w-full bg-cover shadow-xl bg-opacity-80 "/>
+      <div className="flex-grow border-t border-black"></div>
+    <div className="relative flex py-3 items-center p-5 pt-5">
+      <div className="flex-grow border-t border-red-700"></div>
         <img src={logo2} className="h-[50px]" alt="logo garage parrot" />
-      <div className="flex-grow  border-red-700 z-0"></div>
-  </div>
+      <div className="flex-grow border-t border-red-700"></div>
+    </div>
 
 {/* File d'ariane */}
 <>
