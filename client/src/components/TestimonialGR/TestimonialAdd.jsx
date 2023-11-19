@@ -99,8 +99,6 @@ export const TestimonialAdd = () => {
 
   return (
     <div className="w-[325px]">
-      <h2 className="text-xl font-bold mb-4">Ajouter un témoignage</h2>
-
       <div className="w-full">
         <form onSubmit={handleSubmit} className="mt-4 p-2 w-full">
           <div className="mb-4">
@@ -122,7 +120,7 @@ export const TestimonialAdd = () => {
               value={testimonial}
               onChange={(e) => setTestimonial(e.target.value)}
               required
-              className="w-full h-50 px-3 py-1 border focus:outline-none focus:ring focus:border-blue-300"
+              className="w-full h-40 px-3 py-1 border focus:outline-none focus:ring focus:border-blue-300"
             />
           </div>
           {submissionStatus && <p className="text-green-500 mt-2 mb-2">{submissionStatus}</p>}
@@ -174,15 +172,16 @@ export const TestimonialButton = () => {
       </p>
 
       {showModal && (
-        <div className="modal fixed top-10 left-0 w-full h-screen bg-black bg-opacity-50 flex overflow-y-auto items-center justify-center z-100">
-          <div className="bg-white p-4 rounded-lg shadow-lg top-10">
+        <div className="modal fixed top-0 left-0 w-full h-screen bg-black bg-opacity-50 flex overflow-y-auto items-center justify-center z-100">
+          <div className="bg-white p-4 rounded-lg shadow-lg top-10 relative">
             <button
-              className="top-10 pl-[300px] text-gray-500 hover:text-gray-700"
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
               onClick={handleCloseModal}
             >
               <IoMdClose size={30} />
             </button>
-              <TestimonialAdd />
+            <h2 className="text-xl font-bold mb-4">Ajouter un témoignage</h2>
+            <TestimonialAdd />
           </div>
         </div>
       )}

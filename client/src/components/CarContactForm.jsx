@@ -180,7 +180,8 @@ export const CarContactForm = ({ carTitle }) => {
         {submissionStatusErr && (
             <p className="text-red-500 mb-2">{DOMPurify.sanitize(submissionStatusErr)}</p>
         )}
-                      <ReCAPTCHA
+        
+        <ReCAPTCHA
         sitekey={sitekey}
         onChange={handleRecaptchaChange}
       />

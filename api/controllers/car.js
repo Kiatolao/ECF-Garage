@@ -58,7 +58,7 @@ export const deleteCar = (req, res) => {
       const imageURL = car.image;
       const imagePublicId = imageURL.split('/').pop().split('.')[0];
 
-      // Delete the image from Cloudinary
+      // Efface l'image de cloudinary
       cloudinary.uploader.destroy(imagePublicId)
         .then(() => {
           const deleteQuery = 'DELETE FROM cars WHERE id = ?';

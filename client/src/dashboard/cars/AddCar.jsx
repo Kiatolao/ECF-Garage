@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DOMPurify from 'isomorphic-dompurify';
 
-
 export const AddCar = () => {
 
   const [status, setStatus] = useState(''); 

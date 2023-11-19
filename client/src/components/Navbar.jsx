@@ -100,7 +100,7 @@ export const Navbar = () => {
                 <div>
                   <span className="mr-2">{currentUser?.username}</span>
                   <span onClick={logout} className="cursor-pointer">
-                    | Se déconnecter
+                    | Déconnexion
                   </span>
                 </div>
               ) : (

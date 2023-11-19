@@ -57,7 +57,7 @@ app.use("/api/schedules", scheduleRoutes);
 app.use("/api/services", servicesRoutes)
 app.use("/api/testimonials", testimonialsRoutes)
 
-//gestion des erreurs
+//gestion des erreurs, les erreurs seront retournées avec ce message générique
 app.use((err, req, res, next) => {
   res.status(500).json({ error: "Une erreur s'est produite." });
 });

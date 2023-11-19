@@ -8,7 +8,7 @@ dotenv.config();
 
 //enregister un nouvelle employé
 export const register = async (req, res) => { 
-    // validation du password, 8 caractères et un chiffre au minimum
+    // validation du password, 8 caractères et un chiffre au minimum, on utilise Dompurify pour echapper toutes balises ou scripts malveillants
     const password = DOMPurify.sanitize(req.body.password); 
 
     if (!password || password.length < 8) {
