@@ -45,6 +45,7 @@ export const UserList = () => {
   };
 
   return (
+
     <div className="w-full mt-5">
       <h2 className="text-xl font-bold mb-4">Liste des employés</h2>
       <button
@@ -56,7 +57,7 @@ export const UserList = () => {
       {users.length > 0 ? (
         <table className="w-full">
           <thead>
-            <tr className="bg-neutral-200"> 
+            <tr className="bg-neutral-200" key='info'> 
               <th className="px-4 py-2">Nom d'utilisateur</th>
               <th className="px-4 py-2">Adresse e-mail</th>
               <th className="px-4 py-2">Rôle</th>
@@ -65,7 +66,8 @@ export const UserList = () => {
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user.id}>
+              <React.Fragment key={user.id}>
+              <tr >
                 <td className="border px-4 py-2">{user.username}</td>
                 <td className="border px-4 py-2">{user.email}</td>
                 <td className="border px-4 py-2">{user.role}</td>
@@ -78,6 +80,7 @@ export const UserList = () => {
               </button>
                 </td>
               </tr>
+              </React.Fragment>
             ))}
           </tbody>
         </table>
