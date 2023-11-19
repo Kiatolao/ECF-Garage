@@ -54,7 +54,7 @@ export const CarDetail = () => {
 {/* File d'ariane */}
 <>
     {!isMobile && (
-      <nav className="flex px-5 md:px-20" aria-label="Breadcrumb">
+      <nav className="flex px-5 md:px-5" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-3">
           <li className="inline-flex items-center">
             <svg className="w-5 h-5 mr-2.5" fillRule="currentColor" viewBox="0 0 20 20">
