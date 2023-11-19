@@ -17,8 +17,8 @@ export const Home = () => {
   const isMobile = useWindowWidth() < 965; 
   return (
     <>
-      <div style={divStyle} className="p-5 bg-no-repeat bg-center bg-cover h-screen shadow-xl">
-        <div className="bgfix absolute inset-0 flex flex-col justify-center items-start  text-white">
+      <div style={divStyle} className=" bg-fix p-5 bg-no-repeat bg-center bg-cover h-screen shadow-xl">
+        <div className=" absolute inset-0 flex flex-col justify-center items-start  text-white">
           <div className="max-w-[600px] mx-auto mt-20 bg-black bg-opacity-40 p-8 shadow-xl rounded sm:ml-10 z-10">
             <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl  ">
               <span className="font-bold">Garage Parrot</span> réparations automobiles de confiance depuis <span className="font-bold">2004</span>
