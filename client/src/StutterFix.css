@@ -1,0 +1,22 @@
+
+.content {
+  position: absolute;
+  left: 50%;
+  margin-top: 5rem;
+  transform: translateX(-50%);
+  width: 80%;
+}
+
+.bgfix {
+    background: url("./assets/garage-3.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #74992e;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+
+    z-index: -1; 
+  }
+
+  

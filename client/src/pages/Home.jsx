@@ -1,5 +1,5 @@
 import React from 'react';
-import garageImage from '../assets/garage-3.jpg';
+
 import { Overview } from '../components/Overview';
 import { Testimonial } from '../components/TestimonialGR/Testimonial';
 import { Infos } from '../components/Infos';
@@ -7,18 +7,16 @@ import { AiOutlineRight } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { SocialMedia } from '../components/Socialmedia';
 import { useWindowWidth } from '@react-hook/window-size';
+import '../StutterFix.css'
 
 export const Home = () => {
-  const divStyle = {
-    backgroundImage: `url(${garageImage})`,
-    backgroundAttachment: 'fixed', 
-  };
+
   const isMobile = useWindowWidth() < 965; 
   return (
     <>
-      <div style={divStyle} className="p-5 bg-no-repeat bg-center bg-cover h-screen shadow-xl">
-        <div className="absolute inset-0 flex flex-col justify-center items-start  text-white">
-          <div className="max-w-[600px] mx-auto mt-20 bg-black bg-opacity-40 p-8 shadow-xl rounded sm:ml-10 ">
+      <div className="p-5 bg-no-repeat bg-center bg-cover  h-screen shadow-xl ">
+        <div className="bgfix absolute inset-0 flex flex-col justify-center  items-start  text-white">
+          <div className=" max-w-[600px] mx-auto mt-20 bg-black bg-opacity-40 p-8 shadow-xl rounded sm:ml-10 ">
             <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl  ">
               <span className="font-bold">Garage Parrot</span> réparations automobiles de confiance depuis <span className="font-bold">2004</span>
             </h1>
@@ -36,10 +34,10 @@ export const Home = () => {
             </div>
         </div>
       </div>
-          <div>
+          <div className='bg-white'>
             <Overview />
           </div>
-          <div>
+          <div className='bg-white'>
             <Testimonial />
           </div>
             <Infos />
