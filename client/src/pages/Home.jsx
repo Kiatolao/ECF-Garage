@@ -16,7 +16,7 @@ export const Home = () => {
   const isMobile = useWindowWidth() < 965; 
   return (
     <>
-      <div style={divStyle} className="p-5 bg-no-repeat bg-center bg-cover h-screen shadow-xl overflow-auto">
+      <div style={divStyle} className="p-5 bg-no-repeat bg-center bg-cover h-screen shadow-xl">
         <div className="absolute inset-0 flex flex-col justify-center items-start  text-white">
           <div className="max-w-[600px] mx-auto mt-20 bg-black bg-opacity-40 p-8 shadow-xl rounded sm:ml-10 ">
             <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl  ">
