@@ -1,10 +1,14 @@
 Note pour le correcteur
 
 Mise à jour faites après avoir déposé l'évaluation:
-1- Regex
+1- Ajout Regex
   - Auth.js
     - Ajout d'un Regex email/password dans les controleurs register et  login
     - Les modifications  ont été faites en conséquence dans le frontend
+
+2- Bug détécté dans le dashboard - Supprimer un utilisateur
+  - Deboggage en cours
+    - Les requêtes sont succesfull coté front et back end mais l'utilisateur ne s'efface pas dans la BDD
 
 
 Installation du projet en local 
