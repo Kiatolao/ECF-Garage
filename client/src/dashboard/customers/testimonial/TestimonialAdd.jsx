@@ -9,12 +9,32 @@ export const TestimonialAdd = () => {
   const [user, setUser] = useState('');
   const [testimonial, setTestimonial] = useState('');
   const [rating, setRating] = useState(0);
-  const [status, setStatus] = useState('');
+  const [submissionStatus, setSubmissionStatus] = useState('');
+  const [submissionStatusErr, setSubmissionStatusErr] = useState('');
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // envoyer les données au serveur
+    
+      // vérification regex
+      const userRegex = /^[A-Za-zÀ-ÿ\s-]+$/;
+      const testimonialRegex = /^[A-Za-zÀ-ÿ0-9\s.,\-!?'’()]+$/;
+      const noteRegex = /^[0-5]$/;
+
+      if (!userRegex.test(user)) {
+        setSubmissionStatusErr('Le nom ne doit contenir que des lettres, des tirets et des espaces.');
+        return;
+      }
+
+      if (!testimonialRegex.test(testimonial)) {
+        setSubmissionStatusErr('Le témoignage contient des caractères non autorisés.');
+        return;
+      }
+
+      if (!noteRegex.test(rating)) {
+        setSubmissionStatusErr('La note doit être comprise entre 0 et 5.');
+        return;
+      }
     try {
       const response = await axios.post(`${apiUrl}/api/testimonials`, {
         user: DOMPurify.sanitize(user),
@@ -28,10 +48,10 @@ export const TestimonialAdd = () => {
       setUser('');
       setTestimonial('');
       setRating(0);
-      setStatus('success');
+      setSubmissionStatus('Le témoignage a été envoyé avec succès!');
       console.log(response.data);
     } catch (error) {
-      setStatus('error');
+      setSubmissionStatus('Une erreur s\'est produite lors de l\'envoi du témoignage.');
       console.error('Erreur lors de la soumission du témoignage :', error);
     }
   };
@@ -84,13 +104,8 @@ export const TestimonialAdd = () => {
             {renderStars()}
           </div>
         </div>
-        {status === 'success' && 
-            <p className="text-green-700 font-semibold mb-2">Le témoignage a été ajoutée avec succes</p>
-          }
-
-          {status === 'error' &&
-            <p className="text-red-700 font-semibold mb-2">Erreur lors de l'ajout du témoignage</p>
-          }
+        {submissionStatus && <p className="text-green-500 mt-2 mb-2">{submissionStatus}</p>}
+          {submissionStatusErr && <p className="text-red-500 mt-2 mb-2">{submissionStatusErr}</p>}
         <button type="submit" className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600 mb-4">
           Soumettre
         </button>
