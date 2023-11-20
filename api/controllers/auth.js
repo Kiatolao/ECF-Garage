@@ -122,10 +122,10 @@ export const getUsers =  (req, res, next) => {
 //effacer un utilisateur
 export const deleteUser = (req, res, next) => {
     const token = req.cookies.access_token;
-    if (!token) return res.status(401).json("Vous devez être connecté pour supprimer un utilisteur.");
+    if (!token) return res.status(401).json("Vous devez être connecté pour supprimer une voiture.");
   
     jwt.verify(token, process.env.JWT_SECRET, (err) => {
-      if (err) return res.status(403).json("Vous n'êtes pas autorisé à supprimer cet utilisteur.");
+      if (err) return res.status(403).json("Vous n'êtes pas autorisé à supprimer cette voiture.");  
       
       const userId = req.params.id;
       const q = 'DELETE FROM users WHERE `id` = ?';
@@ -134,8 +134,10 @@ export const deleteUser = (req, res, next) => {
         if (err) {
           return res.status(500).json('Une erreur s\'est produite lors de la suppression de l\'utilisateur.');
         }
+        //la requête passe mais n'efface pas l'utilisateur pour une raison que j'ignore, en cours de déboggage
+        console.log('L\'utilisateur a été supprimé avec succès.'); 
         return res.status(200).json('L\'utilisateur a été supprimé avec succès.');
+
       });
     });
   };
-

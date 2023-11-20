@@ -32,7 +32,8 @@ export const UserList = () => {
         withCredentials: true,
       });
       // mettre à jour la liste des employés après la suppression
-      setUsers(users.filter((user) => user.id !== userId));
+      fetchUsers();
+      console.log('Requête succès, à la fois coté front et back mais n\'efface pas l\'utilisateur, en cours de debuggage')
     } catch (error) {
       console.error('Erreur lors de la suppression de l\'employé');
     }
@@ -54,6 +55,7 @@ export const UserList = () => {
       >
         Rafraîchir
       </button>
+      
       {users.length > 0 ? (
         <table className="w-full">
           <thead>
@@ -66,7 +68,6 @@ export const UserList = () => {
           </thead>
           <tbody>
             {users.map((user) => (
-              <React.Fragment key={user.id}>
               <tr >
                 <td className="border px-4 py-2">{user.username}</td>
                 <td className="border px-4 py-2">{user.email}</td>
@@ -80,7 +81,7 @@ export const UserList = () => {
               </button>
                 </td>
               </tr>
-              </React.Fragment>
+
             ))}
           </tbody>
         </table>

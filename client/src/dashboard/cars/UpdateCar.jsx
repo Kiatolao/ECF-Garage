@@ -35,7 +35,7 @@ export const UpdateCar = () => {
         });
         setCars(cars.filter((car) => car.id !== carId));
       } catch (error) {
-        console.error('Erreur lors de la suppression de la voiture :', error);
+        console.error('Erreur lors de la suppression de la voiture');
       }
     }
   };
