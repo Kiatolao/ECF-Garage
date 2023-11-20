@@ -32,21 +32,23 @@ export const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // condition de validation du formulaire 8 caractères, 1 chiffre et password = confirmPassword
-    if (formData.password.length < 8) {
+    if (!/^(?=.*[A-Za-zÀ-ÿ])(?=.*\d)[A-Za-zÀ-ÿ\d]{8,}$/.test(formData.password)) {
       setStatus('error');
-      setStatusMessage('Le mot de passe doit contenir au moins 8 caractères.');
-      return;
-    }
-    
-    if (!/\d/.test(formData.password)) {
-      setStatus('error');
-      setStatusMessage('Le mot de passe doit contenir au moins un chiffre.');
+      setStatusMessage('Le mot de passe doit contenir au moins 8 caractères, y compris au moins une lettre et un chiffre.');
       return;
     }
 
     if (formData.password !== confirmPassword) {
       setStatus('error');
       setStatusMessage("Les mots de passe ne correspondent pas.");
+      return;
+    }
+
+    //regex email
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(formData.email)) {
+      setStatus('error');
+      setStatusMessage('Veuillez fournir une adresse e-mail valide.');
       return;
     }
   

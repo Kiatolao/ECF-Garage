@@ -1,3 +1,12 @@
+Note pour le correcteur
+
+Mise à jour faites après avoir déposé l'évaluation:
+1- Regex
+  - Auth.js
+    - Ajout d'un Regex email/password dans les controleurs register et  login
+    - Les modifications  ont été faites en conséquence dans le frontend
+
+
 Installation du projet en local 
 
 1 - Télecharger le repository

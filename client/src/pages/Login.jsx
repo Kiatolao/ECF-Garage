@@ -23,10 +23,23 @@ export const Login = () => {
   const handleChange = (e) => {
     setInputs(prev=>({...prev, [e.target.name]: e.target.value}))
   }
-  // Ici on envoie les données du state au serveur
+  // on envoie les données du state au serveur
   const handleSubmit = async e => {
     e.preventDefault()
     try {
+
+      // verification du regex password
+      if (!/^(?=.*[A-Za-zÀ-ÿ])(?=.*\d)[A-Za-zÀ-ÿ\d]{8,}$/.test(inputs.password)) {
+        setError('Le mot de passe doit contenir au moins 8 caractères, y compris au moins une lettre et un chiffre.');
+        return;
+      }
+  
+      // verification du regex email
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(inputs.email)) {
+        setError('Veuillez fournir une adresse e-mail valide.');
+        return;
+      }
       await login(inputs)
       navigate('/dashboard')
     } catch (err) {

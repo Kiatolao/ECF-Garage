@@ -11,16 +11,11 @@ export const register = async (req, res, next) => {
     // validation du password, 8 caractères et un chiffre au minimum, on utilise Dompurify pour echapper toutes balises ou scripts malveillants
     const password = DOMPurify.sanitize(req.body.password); 
 
-    if (!password || password.length < 8) {
+    if (!password || !/^(?=.*[A-Za-zÀ-ÿ])(?=.*\d)[A-Za-zÀ-ÿ\d]{8,}$/.test(password)) {
         return res.status(400).json({
-          error: 'Le mot de passe doit contenir au moins 8 caractères.',
+          error: 'Le mot de passe doit contenir au moins 8 caractères, y compris au moins une lettre et un chiffre.',
         });
-    }
-    if (!/\d/.test(password)) {
-        return res.status(400).json({
-          error: 'Le mot de passe doit contenir au moins un chiffre.',
-        });
-    }
+      }
 
     // création utilisateurs
     const q = "SELECT * FROM users WHERE email = ? OR username = ?";
@@ -55,6 +50,18 @@ export const register = async (req, res, next) => {
 
 //formulaire de connexion
 export const login = async (req, res, next) => { 
+    const { email, password } = req.body;
+
+    //verification du regex password
+    if (!/^(?=.*[A-Za-zÀ-ÿ])(?=.*\d)[A-Za-zÀ-ÿ\d]{8,}$/.test(password)) {
+      return res.status(400).json('Le mot de passe doit contenir au moins 8 caractères, y compris au moins une lettre et un chiffre.');
+    }
+  
+    //verification du regex email
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json('Veuillez fournir une adresse e-mail valide.');
+    }
     // si l'utilisateur existe
     const q = "SELECT * FROM users WHERE email = ?";
     
