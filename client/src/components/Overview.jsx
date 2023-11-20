@@ -20,7 +20,7 @@ export const Overview = () => {
 
   return (
     <>
-    <div className="relative flex py-3 items-center p-5 pt-5">
+    <div className="relative flex py-3 items-center p-5 pt-10">
       <div className="flex-grow border-t border-red-700"></div>
         <img src={logo2} className="h-[50px]" alt="logo garage parrot" />
       <div className="flex-grow border-t border-red-700"></div>
@@ -61,7 +61,7 @@ export const Overview = () => {
       </div>
     </div>
     </div>
-    <div style={divStyle} className="p-5 bg-no-repeat bg-center bg-cover">
+    <div style={divStyle} className="p-5 pt-5 bg-no-repeat bg-center bg-cover">
     <h1 className=" flex justify-center items-center font-bold mt-5 mx-auto text-2xl text-white">
       <GoGear className="mr-2" /> Nos services</h1>
       <div className="flex flex-wrap justify-center mb-5">

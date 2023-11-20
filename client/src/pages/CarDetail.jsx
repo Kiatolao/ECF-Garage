@@ -43,7 +43,7 @@ export const CarDetail = () => {
     <SocialMedia />
       <img src={layer} alt="fond navbar" className="h-[70px] w-full bg-cover shadow-xl bg-opacity-80 "/>
       <div className="flex-grow border-t border-black"></div>
-    <div className="relative flex py-3 items-center p-5 pt-5">
+    <div className="relative flex py-3 items-center p-5 pt-10">
       <div className="flex-grow border-t border-red-700"></div>
         <img src={logo2} className="h-[50px]" alt="logo garage parrot" />
       <div className="flex-grow border-t border-red-700"></div>

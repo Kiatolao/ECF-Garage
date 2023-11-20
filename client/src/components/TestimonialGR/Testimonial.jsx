@@ -90,21 +90,22 @@ export const Testimonial = () => {
       {/* conditions pour afficher les témoignages: si tem. >3 on affiche 'voir plus de commentaires' et il n'y plus de tem. à afficher
           on affiche 'Cacher commentaires'
       */}
-      {testimonials.length > 3 && (
-        <div className="flex flex-col items-center mb-5 sm:flex-row sm:justify-center">
-          {visibleCount < testimonials.length && (
-            <p
-              onClick={showMoreComments}
-              className="text-red-600 hover:text-red-700 py-2 px-4 font-semibold cursor-pointer">
-              {showAllComments ? 'Cacher les commentaires' : 'Voir plus de commentaires'}
-            </p>
-          )}
-          {visibleCount > 3 && (
-            <p
-              onClick={toggleComments}
-              className="text-red-600 hover:text-red-700 py-2 px-4 font-semibold cursor-pointer">
-              Cacher les commentaires
-            </p>
+     {testimonials.length > 3 && (
+  <div className="flex flex-col items-center mb-5 sm:flex-row sm:justify-center">
+    {visibleCount < testimonials.length ? (
+      <p
+        onClick={showMoreComments}
+        className="text-red-600 hover:text-red-700 py-2 px-4 font-semibold cursor-pointer"
+      >
+        {showAllComments ? 'Cacher les commentaires' : 'Voir plus de commentaires'}
+      </p>
+    ) : (
+      <p
+        onClick={toggleComments}
+        className="text-red-600 hover:text-red-700 py-2 px-4 font-semibold cursor-pointer"
+      >
+        Cacher les commentaires
+      </p>
           )}
           <TestimonialButton />
         </div>
