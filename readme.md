@@ -40,5 +40,8 @@ Installation du projet en local
     - Editer le fichier en ajoutant les paramètres choisis lors de la création de la connection
 
    - Deuxième solution recréer un base de données, grâce à la liste de commande SQL fourni dans le dossier
-     - Il faudra s'assurer d"ajouter un utilisateur dans la table 'users' avec un mot de passe d'au moins 8 caractères et un chiffre
+    - Créer un nouvel admin directement dans la base de données
+        - lui attribuer un nom d'utilisateur, un email, un id qui n'existe pas déja
+        - pour le mot de passe il faudra se rendre sur https://www.bcrypt.fr/
+          - générer un mot de passe hashé, le récupérer et le rentrer dans la BDD
      - L'utilisateur devra avoir le rôle 'admin'
