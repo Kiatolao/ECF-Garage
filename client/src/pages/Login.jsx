@@ -30,7 +30,7 @@ export const Login = () => {
 
       // verification du regex password
       if (!/^(?=.*[A-Za-zÀ-ÿ])(?=.*\d)[A-Za-zÀ-ÿ\d]{8,}$/.test(inputs.password)) {
-        setError('Le mot de passe doit contenir au moins 8 caractères, y compris au moins une lettre et un chiffre.');
+        setError('Mot de passe incorrecte.');
         return;
       }
   
