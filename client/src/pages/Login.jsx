@@ -43,8 +43,8 @@ export const Login = () => {
       await login(inputs)
       navigate('/dashboard')
     } catch (err) {
-      // Si il y a une erreur on la stock dans le state error
-      setError(err.response.data)
+      // Message d'erreur si l utilisateur n'est pas reconnu
+      setError('Identifiants inconnus.')
     }
   }
 
