@@ -25,7 +25,6 @@ export const AuthContextProvider = ({ children }) => {
             });
 
         } catch (err) {
-            console.log(err);
         }
     };
 
@@ -38,7 +37,7 @@ export const AuthContextProvider = ({ children }) => {
             Cookies.remove("access_token");
             setCurrentUser(null);
         } catch (err) {
-            console.log(err);
+
         }
     };
     return (
