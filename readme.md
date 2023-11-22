@@ -41,7 +41,7 @@ Installation du projet en local
     - Ajouter un fichier .env à la racin du dossier API ( .env fourni dans le rapport)
     - Editer le fichier en ajoutant les paramètres choisis lors de la création de la connection
 
-   - Deuxième solution recréer un base de données, grâce à la liste de commande SQL fourni dans le dossier 
+   - Deuxième solution recréer un base de données, grâce à la liste de commande SQL fourni dans le dossier
     - Créer un nouvel admin directement dans la base de données
         - lui attribuer un nom d'utilisateur, un email, un id qui n'existe pas déja
         - pour le mot de passe il faudra se rendre sur https://www.bcrypt.fr/
