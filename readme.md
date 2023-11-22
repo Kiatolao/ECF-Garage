@@ -11,7 +11,7 @@ Mises à jour faites après avoir déposé l'évaluation:
   - Deboggage en cours
     - Les requêtes sont succesfull coté front et back end mais l'utilisateur ne s'efface pas dans la BDD
 
-3- Ajoute d'un ReCaptcha login en cours
+3- Ajout d'un ReCaptcha login en cours
 
 -------------------------------
 Installation du projet en local 
