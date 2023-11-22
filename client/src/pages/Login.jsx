@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import garageLogo from '../assets/parrot-logo.png';
 import { AuthContext } from '../context/authContext';
 import layer from '../assets/layer.jpg';
+import axios from 'axios';
 
 export const Login = () => {
   
@@ -30,7 +31,7 @@ export const Login = () => {
 
       // verification du regex password
       if (!/^(?=.*[A-Za-zÀ-ÿ])(?=.*\d)[A-Za-zÀ-ÿ\d]{8,}$/.test(inputs.password)) {
-        setError('Mot de passe incorrecte.');
+        setError('Format du mot de passe incorrecte.');
         return;
       }
   
@@ -41,10 +42,11 @@ export const Login = () => {
         return;
       }
       await login(inputs)
+      await axios.post(`${apiUrl}/api/auth/login`,inputs);
       navigate('/dashboard')
     } catch (err) {
       // Message d'erreur si l utilisateur n'est pas reconnu
-      setError('Identifiants inconnus.')
+      setError(err.response.data)
     }
   }
 
