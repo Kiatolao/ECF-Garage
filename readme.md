@@ -1,6 +1,6 @@
 Note pour le correcteur
 
-Mise à jour faites après avoir déposé l'évaluation:
+Mises à jour faites après avoir déposé l'évaluation:
 
 1- Ajout Regex
   - Auth.js
