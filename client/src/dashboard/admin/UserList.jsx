@@ -33,7 +33,6 @@ export const UserList = () => {
       });
       // mettre à jour la liste des employés après la suppression
       fetchUsers();
-      console.log('Requête succès, à la fois coté front et back mais n\'efface pas l\'utilisateur, en cours de debuggage')
     } catch (error) {
       console.error('Erreur lors de la suppression de l\'employé');
     }
