@@ -7,7 +7,7 @@ import layer from '../assets/layer.jpg';
 import axios from 'axios';
 
 export const Login = () => {
-  
+  const apiUrl = process.env.REACT_APP_API_URL;
   // mise en place du state input
   const [inputs, setInputs] = useState({
     email: '',
