@@ -1,15 +1,19 @@
-Note pour le correcteur
+Note de mises à jour pour le correcteur
 
 Mises à jour faites après avoir déposé l'évaluation:
 
-1- Ajout Regex
+1- Ajout Regex **Effectué**
   - Auth.js
     - Ajout d'un Regex email/password dans les controleurs register et  login
     - Les modifications  ont été faites en conséquence dans le frontend
 
-2- Ajout d'un ReCaptcha login en cours
+2- Ajout de Dompurify dans la page login **Effectué**
+
+3- Ajout d'un ReCaptcha login **en cours**
 
 -------------------------------
+-------------------------------
+
 Installation du projet en local 
 
 1 - Télecharger le repository

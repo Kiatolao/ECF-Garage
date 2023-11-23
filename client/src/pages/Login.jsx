@@ -5,13 +5,14 @@ import garageLogo from '../assets/parrot-logo.png';
 import { AuthContext } from '../context/authContext';
 import layer from '../assets/layer.jpg';
 import axios from 'axios';
+import DOMPurify from 'isomorphic-dompurify';
 
 export const Login = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
   // mise en place du state input
   const [inputs, setInputs] = useState({
-    email: '',
-    password: ''
+    email: DOMPurify.sanitize(''),
+    password: DOMPurify.sanitize('')
   })
   // mise en place du state error
   const [err, setError] = useState(null)
